@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 25 - Slide bằng javascript</title>
+    <!-- Bài này ta có 2 cọc relative-absolute 
+    1: ul-relative và li-absolute (li là danh sách các slide)
+    2: motSlide-relative và các phần tử trong nó - absolute -->
+
+    <style>
+        body, html{
+            margin: 0px;
+            padding: 0px;
+            width: 100%;  /* Lúc nào trang đầu nhìn thấy lúc nào cũng full màn hình */
+            height: 100%;
+            overflow-x: hidden; /* Ẩn thanh cuộn ngang */
+        }
+        .slidesWrapper{position: relative; height: 100%; width: 100%; overflow: hidden;}
+
+        .cacSlide{position: absolute; height: 100%; width: 100%;}
+
+        .chuyenSlide{
+            position: absolute; 
+            width: 100%;
+            text-align: center;
+            bottom: 20px;
+            z-index: 9;
+            /* THỦ THUẬT CANH GIỮA */
+            left: 50%;
+            transform: translateX(-50%);
+            }
+
+        li{list-style: none;}
+
+        ul{padding: 0px;margin: 0px;}
+
+        .chuyenSlide ul{display: inline;}
+
+        .chuyenSlide ul li{
+            display: inline-block;
+            border: 1px solid steelblue;
+            text-indent: -9999px;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            margin: 20px 20px; /*  trên-dưới trái-phải */
+            transition: 0.5s;
+        }
+        .chuyenSlide ul li:hover,
+        .chuyenSlide ul li.active
+        {
+            background-color: tomato;
+        }
+
+        /* css cho nội dung slide */
+
+       .cacSlide{
+            list-style: none;
+            position: absolute;
+
+            /* hiển thị full màn hình */
+            width: 100%;
+            height: 100%;
+       }
+       .cacSlide ul{
+           /* hiển thị full màn hình */
+            width: 100%;
+            height: 100%;
+
+            position: relative;
+       }
+       .cacSlide li{
+           /* hiển thị full màn hình */
+            width: 100%;
+            height: 100%;
+
+            position: absolute; /*ăn theo thằng ul là cha (relative)*/
+
+            /* b1: ban đầu sẽ cho toàn bộ slide ẩn đi */
+            transition: 0.5s;
+            opacity: 0;
+       }
+       .cacSlide ul li.active{
+           /* b2 hiển thị thằng slide 1 */
+           opacity: 1;
+       }
+       .cacSlide .motSlide{
+           /* hiển thị full màn hình */
+            width: 100%;
+            height: 100%;
+       }
+
+       .motSlide .anh{
+            /* hiển thị full màn hình */
+            width: 100%;
+            height: 100%;
+
+            background-size: cover;
+       }
+       .motSlide .tamgiacnau_1,
+       .motSlide .tamgiacnau_2,
+       .motSlide .textNoiDung{
+            position: absolute;
+            z-index: 1;
+            top: 0px;
+            opacity: 0;
+       }
+
+       .motSlide .tamgiacnau_1{
+            opacity: 0;
+            top: -80%;
+       }
+       /* khi slide đang dc active: */
+       .cacSlide ul li.active .tamgiacnau_1{
+           animation: tamGiacNauDiVao 1s ease forwards;
+       }
+       .cacSlide ul li.active .tamgiacnau_2{
+           animation: tamGiacNauDiVao 1.2s ease forwards;
+       }
+       @-webkit-keyframes tamGiacNauDiVao {
+           from { 
+               /* chuyển động chéo lên nghĩa là vừa chạy theo trục X vừa chạy theo trục Y */
+                transform: translateX(-100%) translateY(100%);
+                opacity: 0;
+           }
+           to {
+                transform: translateX(0) translateY(0);
+                opacity: 0.4;
+           }
+       }
+       .motSlide .tamgiacnau_2{
+            opacity: 0.5;
+            top: -35%;
+       }
+       .motSlide .textNoiDung{
+            width: 20%;
+            left: 5%;
+            top: 30%;
+            z-index: 3;
+            opacity: 1;
+            color: white;
+       }
+
+       .textNoiDung h2{
+            font-size: 70px;
+            font-weight: normal;
+            font-family: segoe ui light;
+            margin: 0px;
+            opacity: 0;
+       }
+       .textNoiDung small{
+            font-size: 30px;
+            font-weight: bold;
+            text-transform: uppercase;
+            padding: 10px 0px 20px 0px;
+            display: block; /*  để display: để nó nhận padding; */
+            opacity: 0;
+       }
+       .textNoiDung .duongKe{
+            width: 90%;
+            height: 2px;
+            margin-bottom: 10px;
+            background-color: rgba(255, 255, 255, 0.534);
+            opacity: 0;
+       }
+       .textNoiDung p{
+            font-family: segoe ui light;
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.719);
+            opacity: 0;
+       }
+       .textNoiDung .nut{
+            position: absolute;
+            color: white;
+            width: auto;
+            height: auto;
+            font-size: 15px;
+            font-weight: bold;
+            text-align: center;
+            text-transform: uppercase;
+            border: 1px solid white;
+            padding: 10px 10px;
+
+            left: 50%;
+            transform: translateX(-50%);
+
+            margin-top: 10px;
+            display: inline;
+            opacity: 0;
+
+            transform: translateX(-50%);
+       }
+       a{
+            text-decoration: none;
+        }
+
+        .cacSlide ul li.active .textNoiDung h2{
+            animation: traiQuaPhai 1s ease forwards;
+            animation-delay: 0.5s;
+        }
+        .cacSlide ul li.active .textNoiDung small{
+            animation: traiQuaPhai 1.1s ease forwards;
+            animation-delay: 0.5s;
+        }
+        .cacSlide ul li.active .textNoiDung .duongKe{
+            animation: traiQuaPhai 1.2s ease forwards;
+            animation-delay: 0.5s;
+        }
+        .cacSlide ul li.active .textNoiDung p{
+            animation: traiQuaPhai 1.3s ease forwards;
+            animation-delay: 0.5s;
+        }
+        .cacSlide ul li.active .textNoiDung .nut{
+            animation: traiQuaPhai 1.4s ease forwards;
+            animation-delay: 0.5s;
+        }   
+
+        @-webkit-keyframes traiQuaPhai {
+           from { 
+               /* chuyển động chéo lên nghĩa là vừa chạy theo trục X vừa chạy theo trục Y */
+                transform: translateX(-20%);
+                opacity: 0;
+           }
+           to {
+                transform: translateX(0);
+                opacity: 1;
+           }
+       }
+
+    </style>
+</head>
+<body>
+<div class="slidesWrapper">
+    <div class="cacSlide">
+        <ul>
+            <li class="active">
+                <div class="motSlide">
+                    <div class="anh" style="background-image: url(anh/xinh.jpg);"></div>
+                    <img src="anh/anhnau.png" alt="" class="tamgiacnau_1">
+                    <img src="anh/anhnau.png" alt="" class="tamgiacnau_2">
+        
+                    <div class="textNoiDung">
+                        <h2>01</h2>
+                        <small>Thích Thả Thính</small>
+                        <div class="duongKe"></div>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius sit excepturi consequatur id corrupti cumque placeat sequi, dolorem fugiat velit vitae, maxime dolor assumenda ratione possimus sapiente quidem odio. Quibusdam?
+                        </p>
+                        <a href="" class="nut">See Project</a>
+                    </div>
+                    
+                </div>
+            </li>
+
+            <li>
+                <div class="motSlide">
+                    <div class="anh" style="background-image: url(anh/2gai.jpg);"></div>
+                    <img src="anh/anhnau.png" alt="" class="tamgiacnau_1">
+                    <img src="anh/anhnau.png" alt="" class="tamgiacnau_2">
+        
+                    <div class="textNoiDung">
+                        <h2>02</h2>
+                        <small>Thích Thả Thính</small>
+                        <div class="duongKe"></div>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius sit excepturi consequatur id corrupti cumque placeat sequi, dolorem fugiat velit vitae, maxime dolor assumenda ratione possimus sapiente quidem odio. Quibusdam?
+                        </p>
+                        <a href="" class="nut">See Project</a>
+                    </div> 
+
+                </div>
+            </li>
+
+            <li>
+                <div class="motSlide">
+                    <div class="anh" style="background-image: url(anh/dep.jpg);"></div>
+                    <img src="anh/anhnau.png" alt="" class="tamgiacnau_1">
+                    <img src="anh/anhnau.png" alt="" class="tamgiacnau_2">
+        
+                    <div class="textNoiDung">
+                        <h2>03</h2>
+                        <small>Thích Thả Thính</small>
+                        <div class="duongKe"></div>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius sit excepturi consequatur id corrupti cumque placeat sequi, dolorem fugiat velit vitae, maxime dolor assumenda ratione possimus sapiente quidem odio. Quibusdam?
+                        </p>
+                        <a href="" class="nut">See Project</a>
+                    </div>
+
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <div class="chuyenSlide">
+        <ul>
+            <li class="active">1</li>
+            <li>2</li>
+            <li>3</li>
+        </ul>
+    </div>
+ </div> <!--end slidewrapper -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function(){
+            var listNuts = document.querySelectorAll(".chuyenSlide ul li");
+            var listSlides = document.querySelectorAll(".cacSlide ul li");
+            // xử lý tự động chuyển slide
+
+            var thoiGian = setInterval(function(){
+            // bước 1: xem slide nào đang hiển thị
+            var viTriSlide = 0;
+            var slideHienTai = document.querySelector(".cacSlide ul li.active");
+
+            for(viTriSlide = 0; slideHienTai = slideHienTai.previousElementSibling; viTriSlide++){}
+            
+            // nếu mà chưa đến slide cuối cùng tức là viTriSlide < listSlides.length -> chạy bt
+            if(viTriSlide < listSlides.length - 1)
+            {
+                // cho ẩn hết slide đi
+                for(var i = 0; i < listSlides.length; i++)
+                {
+                    listSlides[i].classList.remove("active");
+                    listNuts[i].classList.remove("active");
+                }
+                listSlides[viTriSlide].nextElementSibling.classList.add("active");
+                listNuts[viTriSlide].nextElementSibling.classList.add("active");
+            }
+            else{
+                for(var i = 0; i < listSlides.length; i++)
+                {
+                    listSlides[i].classList.remove("active");
+                    listNuts[i].classList.remove("active");
+                }
+                listSlides[0].classList.add("active");
+                listNuts[0].classList.add("active");
+                }
+            }, 4000);
+
+            // bắt sự kiện click cho từng nút
+            for(var i = 0; i < listNuts.length; i++)
+            {
+                listNuts[i].addEventListener("click", function(){
+                    // trước tiên hủy auto chạy slide đi
+                    clearInterval(thoiGian);
+                    // trước đó bỏ tất cả các thằng đang active đi
+                    for(var j = 0; j < listNuts.length; j++)
+                    {
+                        listNuts[j].classList.remove("active");
+                    }
+                    this.classList.add("active");
+
+                    // Xử lý phần tính vị trí nút người dùng bấm
+                    var nutKichHoat = this;
+                    var viTriNutKichHoat = 0;
+                    for(viTriNutKichHoat = 0; nutKichHoat = nutKichHoat.previousElementSibling; viTriNutKichHoat++){}
+                    console.log(viTriNutKichHoat);
+                    // VIDEO 75
+                    // Hết vòng lập này thì viTriNutKichHoat = số thứ tự nút dc kích
+                    // bước 1: cho tất cả slide ẩn đi = remove class active
+                    for(var m = 0; m < listSlides.length; m++)
+                    {
+                        listSlides[m].classList.remove("active");
+                        listSlides[viTriNutKichHoat].classList.add("active"); // add active cho nút vừa kích
+                    }
+                });
+            }
+            // hết sự kiện kích nút
+
+
+        }, false)
+    </script>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Accordion - Video 17 - Download fancybox cho hiệu ứng phóng to ảnh</title>
+	<script src="jquery-3.4.1.js"></script>
+	<script src="jquery-3.4.1.min.js"></script>
+	<script src="jquery.easing.1.3.js"></script>
+	<!-- load google font -->
+	<link href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,100i,300,300i,400,400i,600,600i,700,700i&display=swap" rel="stylesheet">
+	<!-- use font >>> font-family: 'Josefin Slab', serif; -->
+
+	<!-- những link bên dưới cho việc hiệu ứng phóng to ảnh với fancybox -->
+	
+	<!-- Add mousewheel plugin (this is optional) -->
+	<script type="text/javascript" src="jquery.mousewheel.pack.js?v=3.1.3"></script>
+
+	<!-- Add fancyBox main JS and CSS files -->
+	<script type="text/javascript" src="jquery.fancybox.pack.js?v=2.1.5"></script>
+	<link rel="stylesheet" type="text/css" href="jquery.fancybox.css?v=2.1.5" media="screen" />
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+
+		}
+		h1.tieude{
+			font-family: 'Josefin Slab', serif;
+			font-weight: 100px;
+			text-align: center;
+			padding-bottom: 40px;
+		}
+		h1.tieudekhoi{
+			font-family: 'Josefin Slab', serif;
+			font-weight: 50px;
+			font-size: 70px;
+			color: lightblue;
+			margin-bottom: 20px;
+			height: 70px;
+			cursor: pointer;
+			overflow: hidden; /*làm cho ảnh có hiệu ứng tiến từ phải vào*/
+			transition: 0.4s; /*làm cho hiệu ứng đổi màu từ từ thôi*/
+			border-radius: 4px;
+		}
+		body{
+			background-image: url(Anh/khoi1.png);
+		}
+		.noidung{
+			width: 40%;
+			margin:auto;
+			font-family: 'Josefin Slab', serif;
+		}
+		img.anhnho{
+			float: left;
+			width: 100px;
+			height: 100px;
+			margin-right: 10px;
+
+		}
+		.motvaianh{
+			overflow: hidden; /*tránh cho các phần tử khác tràn lên*/
+		}
+		.motkhoi{
+			border-bottom: 1px solid gray;
+			padding-bottom: 30px; /*nội dung sẽ cách đường viền dưới 10 px*/
+			margin-bottom: 30px;
+		}
+		.tieudekhoi img{
+			float: right;
+			width: 50px; height: 50px;
+			transition: 0.4s;
+			margin-top: 10px; /*di chuyển ảnh lên xuống được*/
+			margin-right: -100px;
+			/*opacity: 0; */
+		}
+		h1.tieudekhoi:hover img{
+			margin-right: 0;
+			/*opacity: 1; hoặc có thể dùng overflow: hidden*/
+		}
+		h1.tieudekhoi:hover  {
+			color: #0099FF;
+		}
+		.tieudekhoi.xanh{
+			color: #0099FF;
+		}
+		h1.tieudekhoi.xanh img{
+			margin-right: 0;
+			transform: rotate(180deg);
+			/*margin-bottom: 30px;*/
+
+		}
+	</style>
+	<script>
+		jQuery(document).ready(function($) {
+			$('.tieudekhoi').click(function(event) {
+				/* Act on the event */
+				$(this).toggleClass('xanh');
+
+				// hiện nội dung bên dưới ra
+				$(this).next().slideToggle(900, "easeOutElastic");
+
+				// hiệu ứng cuộn nội dung lên top
+				$("html, body").animate({scrollTop: $(this).offset().top}, 900, "easeOutElastic");
+			});
+
+			// code cho phần phóng to ảnh
+			$('.motvaianh a').fancybox(
+				// chỗ này mình có thể thêm hiệu ứng có sẵn trong file demo > index
+				{openEffect : 'elastic'}
+				);
+
+			// code cho phần co dãn nội dung
+			$('.noidungkhoi').slideUp();
+		});
+	</script>
+</head>
+<body>
+	<div class="noidung">
+		<h1 class="tieude">Hieu Ung Ap Dung Accodion</h1>Download fancybox cho hiệu ứng phóng to ảnh
+		<h1 class="tieude">Download fancybox cho hiệu ứng phóng to ảnh</h1>
+		<h1 class="tieude">Để nhóm 3 ảnh lại với nhau để có thể xem ảnh sau hoặc trước thì ta nhóm 3 ảnh lại với thuộc tính rel="cungmotnhom" vào thẻ a</h1>
+		<div class="motkhoi">
+			<h1 class="tieudekhoi">About <img src="Anh/minidown.png" alt=""></h1>
+			<div class="noidungkhoi">
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+			<div class="motvaianh">
+				<a href="Anh/anime1.png" rel="cungmotnhom"><img class="anhnho"  src="Anh/anime1.png" alt=""></a>
+				<a href="Anh/anime2.png" rel="cungmotnhom"><img class="anhnho"  src="Anh/anime2.png" alt=""></a>
+				<a href="Anh/anime3.png" rel="cungmotnhom"><img class="anhnho"  src="Anh/anime3.png" alt=""></a>
+			</div>
+			</div>
+		</div>
+		<div class="motkhoi">
+			<h1 class="tieudekhoi">New<img  src="Anh/minidown.png" alt=""></h1>
+			<div class="noidungkhoi">
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+			<div class="motvaianh">
+				<a href="Anh/anime1.png"><img class="anhnho" src="Anh/anime1.png" alt=""></a>
+				<a href="Anh/anime2.png"><img class="anhnho" src="Anh/anime2.png" alt=""></a>
+				<a href="Anh/anime3.png"><img class="anhnho" src="Anh/anime3.png" alt=""></a>
+			</div>
+			</div>
+		</div>
+		<div class="motkhoi">
+			<h1 class="tieudekhoi">Contact<img  src="Anh/minidown.png" alt=""></h1>
+			<div class="noidungkhoi">
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+			</div>
+		</div>
+	</div>
+</body>
+</html>

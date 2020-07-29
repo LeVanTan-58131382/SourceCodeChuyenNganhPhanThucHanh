@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 8 - Array</title>
+</head>
+<body>
+    <script>
+        // khai báo
+        var name_array = new Array();
+        // Hoặc
+        var name_array = new Array(1,2,3);
+        // Hoặc
+        var name_array = [];
+        // Hoặc
+        var name_array = [1,2,3];
+
+        // Hàm array.join()
+        // Để hiển thị các phần tử ra ngoài trình duyệt chúng ta sẽ sử dụng hàm array.join()
+        var t = new Array(1,2,3);
+        document.write(t.join()); // kết quả 1,2,3
+        document.write(t.join('-')); // kết quả 1-2-3
+    </script>
+    1. Danh sách các hàm xử lý mảng trong javascript <br>
+    Hàm array.valueOf() <br>
+    Hàm array.push() <br>
+    Hàm array.pop() <br>
+    Hàm array.shift() <br>
+    Hàm array.unshift() <br>
+    Hàm array.splice() <br>
+    Hàm array.sort() <br>
+    Hàm array.reverse() <br>
+    Hàm array.concat() <br>
+    Hàm array.slice() <br>
+
+    2. Bắt buộc 8 hàm phải biết: 
+    - filter
+    - map
+    - find
+    - forEach
+    - some
+    - every
+    - reduce
+    - includes
+    <script>
+        const listItem = [
+            {name: "Xe đạp" , price: 1000},
+            {name: "Xe máy" , price: 3000},
+            {name: "Xe đạp điện" , price: 1500},
+            {name: "Xe máy điện" , price: 3000},
+            {name: "Xe ô tô" , price: 10000},
+            {name: "Xe tải" , price: 8000},
+            {name: "Xe ben" , price: 9000},
+            {name: "Xe mui trần" , price: 99000},
+            {name: "Xe khách" , price: 6000},
+        ];
+        console.log(listItem);
+
+        // hàm filer loc4 ra các loại xe có giá dưới 6000
+        const xeGiaDuoi6000 = listItem.filter((item) => {
+            return item.price <= 6000;
+        })
+        console.log(xeGiaDuoi6000);
+
+        // dùng hàm map chỉ ra tên của các item
+        const tenCacXe = listItem.map((item) => {
+            return item.name;
+        })
+        console.log(tenCacXe);
+
+        // tìm một loại xe giống với tên bạn muốn tìm kiếm
+        const timXe = listItem.find((item) => {
+            return item.name === "Xe mui trần";
+        })
+        console.log(timXe);
+
+        // Lặp qua mảng và xuất ra giá của các loại xe
+        listItem.forEach((item) => {
+            console.log(item.price);
+        })
+
+        // kiểm tra xem có xe nào có giá dưới 2000 hay không
+        const hasInexpensiveItems = listItem.some((item) => {
+            return item.price < 2000; // true
+            //return item.price < 1000; // false
+        })
+        console.log(hasInexpensiveItems); // true
+
+        // kiểm tra có phải tất cả các xe có giá dưới 2000 hay không
+        const hasInexpensiveItems_2 = listItem.every((item) => {
+            return item.price < 2000; // true
+            //return item.price < 1000; // false
+        })
+        console.log(hasInexpensiveItems_2); // false
+
+        // kiểm tra xem trong mảng có chứa một phần tử hay không
+        listItem.forEach((item) => {
+            if(item.name.includes("Xe tải"))
+            {console.log("Có chứa " + item.name);}
+        })
+    </script>
+</body>
+</html>

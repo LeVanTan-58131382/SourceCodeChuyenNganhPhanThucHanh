@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="jquery-3.4.1.js"></script>
+	<script src="jquery-3.4.1.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="font/KaushanScript-Regular.ttf">
+	<!-- font-family: 'Kaushan Script', cursive; -->
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.menutren{
+			width: 100%;
+			height: 100px;
+			background-color: rgba(128, 128, 128, 0);
+			position: fixed;
+			top: 0px;
+			transition: 0.5s;
+		}
+		.menuduoi{
+			width: 100%;
+			font-family: 'Kaushan Script', cursive;
+			font-size: 30px;
+			height: 100px;
+			background-color: lightblue;
+			position: static;
+			transition: 0.5s;
+		}
+		.canggiua{
+			width: 1000px;
+			margin: auto;
+		}
+		.trai{
+			width: 50%;
+			float: left;
+		}
+		.phai{
+			width: 50%;
+			float: left;
+			text-align: right;
+		}
+		a.logo{
+			font-family: 'Kaushan Script', cursive;
+			font-size: 30px;
+			font-weight: bold;
+			text-decoration: none;
+			display: block;
+			padding: 20px 0 0 0;
+			transition: 0.5s;
+		}
+		.mtrai{
+			float: right; /*cho nó áp sát về bên phải*/
+		}
+
+		.mtrai li{
+			float: left; /*cho nó nằm ngang trên cùng một hàng*/
+			list-style: none;
+		}
+
+		.mtrai a{
+			text-decoration: none; /*mất đường gạch dưới thường có của thẻ a*/
+			font-family: 'Kaushan Script', cursive;
+			font-size: 20px;
+			font-weight: bold;
+			padding: 30px 20px;
+			display: block; /*phải có cái display: block thì nó mới hiểu cái padding*/
+			transition: 0.5s;
+		}
+
+		.text{
+			width: 900px;
+			font-family: 'Kaushan Script', cursive;
+			font-size: 20px;
+			line-height: 40px;
+			margin: auto;
+		}
+
+		.anh{
+			height: 500px;
+			width: 100%;
+			background-image: url(Anh/a3.jpg);
+			background-size: cover; /*ảnh sẽ hiện đằng sau các phần tử có vị trí trùng nó*/
+		}
+
+		.menutren.bienhinh{
+			height: 70px;
+			background-color: rgba(0, 0, 0, 0.32);
+		}
+
+		.menutren.bienhinh a.logo{
+			font-family: 'Kaushan Script', cursive;
+			font-size: 20px;
+			font-weight: bold;
+			text-decoration: none;
+			display: block;
+			padding: 20px 0 0 0;
+		}
+
+		.menutren.bienhinh .mtrai a{
+			text-decoration: none; /*mất đường gạch dưới thường có của thẻ a*/
+			font-family: 'Kaushan Script', cursive;
+			font-size: 18px;
+			padding: 20px 15px;
+			display: block; /*phải có cái display: block thì nó mới hiểu cái padding*/
+			transition: 0.5s;
+		}
+
+		.menutren.bienmat{
+			transform: translateY(-100px);
+
+		}
+
+		.menuduoi.ghimlentop{
+			position: fixed;
+			top: 0px;
+			left: 0px;
+			z-index: 9999;
+		}
+
+	</style>
+</head>
+<body>
+	<div class="menutren">
+		<div class="canggiua">
+			<div class="trai">
+				<a class="logo" href="#">Scroll Jquery</a>
+			</div>
+			<div class="phai">
+				<div class="mtrai">
+					<ul>
+						<li><a href="">HaHa</a></li>
+						<li><a href="">HiHi</a></li>
+						<li><a href="">HeHe</a></li>
+						<li><a href="">KaKa</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="noidung">
+		<div class="anh"></div>
+		<div class="text">
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+			<div class="menuduoi">
+				Đây là menu dưới để test
+			</div>
+
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+		</div>
+	</div>
+	<script>
+		jQuery(document).ready(function($) {
+			// khi chưa làm gì vẫn tính trước vị trí của menu dưới lun, chứ nếu lỡ tí cuộn xuống và menu dưới được ghi lên top thì sẽ có vị trí lun bé hơn vị trí của body => remove class khó
+			var vitriduoi = $('.menuduoi').offset().top;
+
+			// hàm check sự kiện scroll chuột của người dùng
+			$(window).scroll(function(event) {
+				/* Act on the event */
+				var vitri = $('html, body').scrollTop(); // hàm này tính ra vị trí của người dùng đang cuộn đến
+				console.log(vitri);
+				if( vitri >= 400){
+					$('.menutren').addClass('bienhinh');
+				}
+				else {$('.menutren').removeClass('bienhinh')};
+				if(vitri >=800){
+					$('.menutren').addClass('bienmat');
+				}
+				else {$('.menutren').removeClass('bienmat')};
+
+				// code cho menu dưới
+			// sử dụng hàm ofset() để tính vị trí của một thẻ bất kỳ
+			
+			if(vitri >= vitriduoi){
+				$('.menuduoi').addClass('ghimlentop');
+			} else {$('.menuduoi').removeClass('ghimlentop')};
+
+			});
+
+			
+		});
+	</script>
+</body>
+</html>

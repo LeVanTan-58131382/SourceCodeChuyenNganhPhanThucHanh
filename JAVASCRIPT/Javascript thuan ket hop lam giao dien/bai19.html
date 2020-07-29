@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 19 - Hiệu ứng facebook</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+        .thanhngangxanh{
+            width: 100%;
+            height: 50px;
+            background-color: #4267b2;
+        }
+        .motphantu{
+            position: relative;
+            left :1000px;
+            width: 300px;
+        }
+        .tamgiac{
+            position: absolute;
+            font-size: 30px;
+            right: 0px;
+            cursor: pointer;
+            transition: 0.5s;
+        }
+        .tamgiacmautrang{
+            color: white;
+        }
+        .danhsach{
+            position: absolute;
+            top: 50px;
+            right: -10px;
+            width: 180px;
+            transition: 0.5s;
+
+            opacity: 0;
+            visibility: hidden;
+        }
+        .daudanhsach{
+            position: absolute;
+            top: -20px;
+            font-size: 30px;
+            right: 10px;
+            transform: rotateY(180deg);
+            color: ivory;
+        }
+        .hiendanhsach{
+            opacity: 1;
+            visibility: visible;
+        }
+        ul{
+            width: 100%;
+            height: auto;
+            background-color: ivory;
+            border-radius: 5px;
+            border: 1px solid gray;
+        }
+        li{
+            margin-bottom: 5px;
+        }
+
+        li:hover{
+            background-color: #4267b2;
+        }
+    </style>
+</head>
+<body>
+    <div class="thanhngangxanh">
+        <div class="motphantu">
+            <div class="tamgiac"><i class="fa fa-caret-down"></i></div>
+            <div class="danhsach">
+                <i class="fa fa-caret-up daudanhsach"></i>
+                <ul>
+                    <li>Item 1 nha</li>
+                    <li>Item 2 nha</li>
+                    <li>Item 3 nha</li>
+                    <li>Item 4 nha</li>
+                    <li>Item 5 nha</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function(){
+            // khai báo các biến cần sử dụng
+            var listTamGiac = document.getElementsByClassName("tamgiac"); // trả về 1 mảng - hoặc nếu muốn lấy lun thì dùng ID
+            var listDanhSach = document.getElementsByClassName("danhsach");
+
+            var tamGiacCanLay = listTamGiac[0];
+            var danhSachCanLay = listDanhSach[0];
+
+            console.log(tamGiacCanLay);
+            
+            // sử dụng hàm onclick là toggle cho tamgiac đổi màu
+            tamGiacCanLay.onclick = function(){
+                //this.style.color = "white"; => một cách set thuộc tính css
+                this.classList.toggle("tamgiacmautrang");
+                danhSachCanLay.classList.toggle("hiendanhsach");
+            }
+
+        }, false)
+    </script>
+</body>
+</html>

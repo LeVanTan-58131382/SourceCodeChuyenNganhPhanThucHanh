@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 2 - Lệnh switch trong javascript</title>
+</head>
+<body>
+    <script>
+        // Trường hợp thông thường
+        var number = parseInt(prompt("Nhập số cần kiểm tra"));
+ 
+        var mod = (number % 2);
+  
+        switch (mod)
+        {
+            case 0 : {
+                document.write(number + " là số chẵn");
+                break;
+            }
+            case 1: {
+                document.write(number + " là số lẽ");
+                break;
+            }
+            default : {
+                document.write("Ký tự bạn nhập không phải số");
+            }
+        }
+
+        // Trường hợp không có default, nếu false sẽ không in ra thông báo gì cả
+        var color = prompt("Nhập màu cần kiểm tra");
+ 
+        switch (color){
+            case 'red' : 
+                document.write("Bạn nhập màu đỏ, đúng rồi đó");
+                break;
+            case 'yellow' : 
+                document.write("Bạn nhập màu vàng, đúng rồi đó");
+                break;    
+        }
+
+        // Trường hợp gom nhóm case
+        var color = prompt("Nhập màu cần kiểm tra");
+ 
+        switch (color){
+            case 'red' : 
+            case 'yellow' : 
+            case 'blue' : 
+                document.write("Bạn nhập màu " + color + ", đúng rồi đó");
+                break; 
+            default :
+                document.write("Màu bạn nhập không có trong hệ thống");
+        }
+    </script>
+</body>
+</html>

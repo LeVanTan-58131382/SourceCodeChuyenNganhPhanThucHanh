@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="css/boostrap.css">
+	<script type="text/javascript" href="js/jquery-3.4.1.js"></script>
+	<style>
+		.motkhoi{
+			width: 220px;
+			height: 220px;
+			background: url(Anh/nguoisat.png) -270px -70px; /*thứ tự là left - top*/
+			border-radius: 5px; /*bo góc 1 tí*/
+			border: 1px solid; /*do ảnh ko trọn nên thêm boder*/
+			margin: auto;  /*canh khối này ở giữa màn hình*/
+			box-shadow: inset 0px 1px 0px 20px rgba(255, 255, 255, 0.4); /*Hiệu ứng viền trong suốt phía trong (có thể dùng tt outset)*/
+			position: relative;
+			perspective: 500px;
+		}
+		.trang{
+			width: 180px;
+			height: 180px;
+			background-color: white;
+			position: absolute;
+			left: 20px;
+			top: 20px;
+			box-shadow: inset 0px 0px 2px 1px rgba(0, 0, 0, 0.4);
+		}
+		.den{
+			width: 180px;
+			height: 180px;
+			background-color: blue;
+			position: absolute;
+			left: 20px;
+			top: 20px;
+			text-align: center;
+			color: white;
+			box-sizing: border-box; /*Cố định thằng boder bố, những thằng con ở trong nếu tăng padding hay gì thì tự nó nhỏ lại chứ ko phải thằng bố to ra*/
+			padding: 30px;
+			/*xoay theo div xanh*/
+			transition: 0.9s;
+			/*backface-visibility: hidden;*/ /*khi quay hơn 90 độ mặt sau sẽ biến mất*/
+			transform: rotateY(-180deg); /*khi div xanh quay thì div chữ cũng quay theo*/
+		}
+		.xanh{
+			width: 180px;
+			height: 180px;
+			background: url(Anh/nguoisat.png) -290px -90px;
+			position: absolute;
+			left: 20px;
+			top: 20px;
+			/*xoay*/
+			transition: 0.9s;
+			backface-visibility: hidden; /*khi quay hơn 90 độ mặt sau sẽ biến mất*/
+		}
+		.motkhoi:hover .xanh{
+			transform: rotateY(180deg);
+		}
+		.motkhoi:hover .den{
+			transform: rotateY(0deg);
+		}
+	</style>
+</head>
+<body>
+	<div class="motkhoi">
+		<div class="trang">
+			
+		</div>
+		<div class="den">
+			<div class="chu">
+				Demo Hiệu Ảnh
+			</div>
+		</div>
+		<div class="xanh">
+			
+		</div>
+	</div>
+</body>
+</html>

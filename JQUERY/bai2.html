@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="jquery-3.4.1.js"></script>
+	<script src="jquery-3.4.1.min.js"></script>
+	<script src="jquery.easing.1.3.js"></script> <!-- plugin tạo hiệu ứng chuyển động với gia tốc đẹp mắt -->
+	<style type="text/css">
+		*{
+			margin: 0; 
+			padding: 0;
+		}
+		.menutren ul li{
+			float: left;
+			list-style: none;
+
+		}
+		.menutren{
+			width: 100%;
+			height: 50px;
+			padding: 10px; 
+			z-index: 10;
+			background-color: #0099FF;
+			margin: auto;
+			position: fixed; /*đứng trên tất cả*/
+
+		}
+		.menutren a{
+			text-decoration: none; /*bỏ đường gạch dưới chân thẻ a*/
+			display: block;
+			padding: 10px 35px; /*trên-dưới  trái-phải*/
+			color: white;
+			font-family: tahoma;
+			font-weight: bold;
+		}
+		.home{
+			width: 100%;
+			height: 900px;
+			background-image: url(Anh/13.png);
+			background-attachment: fixed; /*bức ảnh đứng yên dưới nền*/
+			background-size: cover; /*giống như ảnh bìa, full toàn bộ màn hình lúc ban đầu*/
+		}
+		.noidung1, .noidung2, .noidung3, .noidung4{
+			height: 800px;
+			padding: 50px 0;
+			text-align: center;
+			color: gray;
+		}
+		.chapter1{
+			height: 800px;
+			background-image: url(Anh/doremon4.png);
+			background-size: cover;
+		}
+		.chapter2{
+			height: 800px;
+			background-image: url(Anh/doremon5.png);
+			background-size: cover;
+		}
+		.chapter3{
+			height: 800px;
+			background-image: url(Anh/doremon3.png);
+			background-size: cover;
+		}
+		.chapter4{
+			height: 800px;
+			background-image: url(Anh/lq2.png);
+			background-size: cover;
+		}
+		.chuto{
+			color: #00FF00;
+			font-family: tahoma;
+			font-size: 270px;
+			margin-left: 15%;
+			padding-top: 400px;
+		}
+		.nutlentren{
+			position: fixed;
+			bottom: 0px;
+			right: 0px;
+			background-color: blue;
+			color: yellow;
+			padding: 10px;
+			border-radius: 4px;
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+	<header>
+		<nav class="menutren">
+		    <ul>
+		       	<li><a href="">Chapter 1</a></li>
+		     	<li><a href="">Chapter 2</a></li>
+		     	<li><a href="">Chapter 3</a></li>
+		     	<li><a href="">Chapter 4</a></li>
+		     	<li><a href="https://www.youtube.com/">Chapter 5</a></li>
+		    </ul>
+		    </ul>
+		</nav>
+	</header>
+	<div class="home">
+		
+	</div>
+	<div class="noidung1">
+		<h1 class="canhgiua">Nội dung đầu tiên</h1>
+		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+	</div>
+	<div class="chapter1">
+		<h1 class="chuto">1</h1>
+	</div>
+	<div class="noidung2">
+		<h1 class="canhgiua">Nội dung thứ hai</h1>
+		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+	</div>
+	<div class="chapter2">
+		<h1 class="chuto">2</h1>
+	</div>
+	<div class="noidung3">
+		<h1 class="canhgiua">Nội dung thứ ba</h1>
+		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+	</div>
+	<div class="chapter3">
+		<h1 class="chuto">3</h1>
+	</div>
+	<div class="noidung4">
+		<h1 class="canhgiua">Nội dung thứ tư</h1>
+		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+	</div>
+	<div class="chapter4">
+		<h1 class="chuto">4</h1>
+	</div>
+	<div class="nutlentren">Back to top</div>
+	<script>
+		$(function() {
+
+			$('.menutren ul li:nth-child(1) a').on('click', function(event) {
+				event.preventDefault(); // hàm này sẽ làm cho các thẻ a không link đến trang khác mà chỉ quần quần trên trang này thôi
+				/* Act on the event */
+				//console.log('chạy 1');
+				$("html, body").animate({scrollTop :$('.chapter1').offset().top}, 1500, "easeOutElastic"); });
+			$('.menutren ul li:nth-child(2) a').on('click', function(event) {
+				event.preventDefault(); // hàm này sẽ làm cho các thẻ a không link đến trang khác mà chỉ quần quần trên trang này thôi
+				/* Act on the event */
+				//console.log('chạy');
+				$("html, body").animate({scrollTop :$('.chapter2').offset().top}, 1500, "easeInBack"); });
+			$('.menutren ul li:nth-child(3) a').on('click', function(event) {
+				event.preventDefault(); // hàm này sẽ làm cho các thẻ a không link đến trang khác mà chỉ quần quần trên trang này thôi
+				/* Act on the event */
+				//console.log('chạy');
+				$("html, body").animate({scrollTop :$('.chapter3').offset().top}, 1500, "easeInBounce"); });
+			$('.menutren ul li:nth-child(4) a').on('click', function(event) {
+				event.preventDefault(); // hàm này sẽ làm cho các thẻ a không link đến trang khác mà chỉ quần quần trên trang này thôi
+				/* Act on the event */
+				//console.log('chạy');
+				$("html, body").animate({scrollTop :$('.chapter4').offset().top}, 1500, "easeOutBounce"); });
+
+			// viết cho nút back to top
+			$('.nutlentren').on('click', function(event) {
+				event.preventDefault(); // hàm này sẽ làm cho các thẻ a không link đến trang khác mà chỉ quần quần trên trang này thôi
+				/* Act on the event */
+				//console.log('chạy');
+				$("html, body").animate({scrollTop :0}, 500); });
+		});
+	</script>
+</body>
+</html>

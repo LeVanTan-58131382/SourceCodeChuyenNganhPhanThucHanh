@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>VUEJS</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+</head>
+<body>
+    <div class="container-fluid">
+            <header><h1>Header</h1></header>
+            <div class="list-blog">
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Autem, ipsa optio cumque quaerat nihil voluptatibus accusamus ipsam eaque. Impedit eum obcaecati odit laborum reprehenderit libero dignissimos quia? Iusto, veritatis placeat.
+            <br>
+            <br>
+            <br>
+            </div>
+            <div id="app">
+                <button class="btn btn-outline-dark" v-on:click="a++">A = A + 1</button>
+                <button class="btn btn-outline-dark" v-on:click="b++">B= B + 1</button>
+                <p>Number + A = {{addA}}</p>
+                <p>Number + B = {{addB}}</p>
+                <p></p>
+            </div>
+                
+            </div>
+            <br>
+            <br>
+            <br>
+            <footer><h1>Footer</h1></footer>
+    </div>
+    
+</body>
+<script >
+    var app = new Vue({
+        el: "#app",
+        data: {
+            a: 0,
+            b: 0,
+            number: 0
+        },
+        method: {
+            addA(){
+                console.log("Hàm addA");
+                return this.a + this.number
+            },
+            addB(){
+                console.log("HÀm adB");
+                return this.b + this.number
+             }
+        },
+        computed: {
+            addA(){
+                console.log("Hàm addA");
+                return this.a + this.number
+            },
+            addB(){
+                console.log("Hàm adB");
+                return this.b + this.number
+             }
+        }
+        // Số lượng methods sẽ được run không mong muốn ( bị thừa) -> giảm tốc độ chương trình, vì khi Vue 
+        // Khi gọi computed thì chỉ cần gọi tên, không gọi theo kiểu gọi hàm method()
+        // hàm computed được lưu vào đối tượng vue, và chỉ được gọi khi có bất kì đối
+        // tượng nào trong hàm bị thay đỗi, trường hợp này là đối tượng biến a hoặc b. Hai hàm này chạy cùng lúc khi biến number thay đổi
+        // test trên console trên trình duyệt: app.number = 100;
+
+    })
+</script>
+</html>

@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+	<script type="text/javascript" href="js/jquery-3.4.1.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script src='https://kit.fontawesome.com/a076d05399.js'></script> <!-- Hai nút điều hướng trái và phải phải có cái này -->
+	<style>
+		.motsanpham{
+			width: 480px;
+			height: 780px;
+			margin: 5px;
+			float: left;
+
+		}
+		.khoisanpham{
+			display: block;
+			width: 480px;
+			height: 600px;
+			overflow: hidden; /*tất cả các phần tử ngoài bán kính 480x600 đều biến mất khỏi tầm nhìn*/
+			position: relative;
+			/*theo công thức thì khối bố bao bên ngoài là relative còn các khối con bên trong sẽ là absolute*/
+		}
+		.slide_anh img{
+			width: 100%;
+			height: 100%;
+			position: absolute;
+		}
+		span.nut_dieu_huong .trai, span.nut_dieu_huong .phai{
+			height: 600px;
+			width: 30px;
+			position: absolute;
+			background-color: gray;
+			color: white;
+			top: 0px;
+			line-height: 600px; /*set đúng bằng chiều cao thì icon nó sẽ nằm giữa theo chiều dọc*/
+			text-align: center; /*set để icon nằm giữa theo chiều ngang*/
+			transition: 0.6s;
+			opacity: 0; /*mặc định chưa hiển thị*/
+			cursor: pointer;
+		}
+		span.nut_dieu_huong .trai{
+			left: 0px;
+		}
+		span.nut_dieu_huong .phai{
+			right: 0px;
+		}
+		.khoisanpham:hover .trai, .khoisanpham:hover .phai{
+			opacity: 1; /*khi di chuột vào sẽ hiển thị lên*/
+		}
+		span.tien_ich{
+			width: 100%;
+			height: 40px;
+		}
+		a.tensanpham{
+			color: #666;
+			font-size: 20px;
+			display: block;
+			padding: 10px 0 8px 0; /*trên-phải-dưới-trái*/
+		}
+		.gia{
+			color: black;
+			font-weight: bold;
+			font-size: 30px;
+		}
+		span.quickview{
+			width: 50%;
+			height: 40px;
+			background-color: rgba(49,49,49,0.4);
+			position: absolute;
+			z-index: 4;
+			bottom: 0px;
+			text-align: center;
+			color: white;
+			line-height: 40px;
+			transition: 0.6s;
+			/*hiệu ứng xô từ trái vào*/
+			left: -50%; /*bình thường left là 0%*/
+			cursor: pointer;
+		}
+		.khoisanpham:hover span.quickview{
+			left: 0%;
+		}
+		span.quickview:hover{
+			background-color: rgba(49,49,49,0.9); /*đổi màu đậm hơn*/
+		}
+		span.wishlist{
+			width: 50%;
+			height: 40px;
+			background-color: rgba(49,49,49,0.4);
+			position: absolute;
+			z-index: 4;
+			bottom: 0px;
+			text-align: center;
+			color: white;
+			line-height: 40px;
+			transition: 0.6s;
+			/*hiệu ứng xô từ phải vào*/
+			right: -50%; /*bình thường right là 0%*/
+			cursor:pointer;
+		}
+		.khoisanpham:hover span.wishlist{
+			right: 0%;
+		}
+		span.wishlist:hover{
+			background-color: rgba(49,49,49,0.9); /*đổi màu đậm hơn*/
+		}
+		.den{
+			position: fixed;
+			width: 100%;
+			height: 100%;
+			background-color: rgba(49, 79, 77, 0.6);
+			z-index: 2;
+			top: 0px;
+			left: 0px;
+			transition: 0.6s;
+			/*ban đầu không hiển thị*/
+			opacity: 0;
+			visibility: hidden;
+		}
+		.quickviewful{
+			position: fixed;
+			top: 10%;
+			left: 10%;
+			z-index: 10;
+			width: 80%;
+			height: 80%;
+			overflow-y: scroll; /*thuộc tính này tạo ra một thanh cuộn theo trục dọc (Y)*/
+			/*ban đầu khung hình này sẽ không hiển thị*/
+			opacity: 0;
+			visibility: hidden; /*kết hợp 2 thuộc tính này sẽ không hiển thị*/
+
+		}
+		.nutx{
+			/*float: right;*/
+			font-size: 40px;
+			color: gold;
+			right: 117px;
+			top: 65px;
+			/*position: absolute;*/
+			position: fixed;
+			cursor: pointer;
+		}
+		.nutx:hover{
+			color: white;
+		}
+		.hienlen{
+			opacity: 1;
+			visibility: visible;
+		}
+	</style>
+</head>
+<body>
+	<div class="motsanpham">
+		<div class="khoisanpham" >
+			<a href="" class="slide_anh">
+				<img src="Anh/2.png" alt="">
+				<img src="Anh/3.png" alt="">
+				<img src="Anh/4.png" alt="">
+			</a>
+			<span class="nut_dieu_huong">
+				<span class="trai"><i class="fas fa-angle-left" style='font-size:48px'></i></i></span>
+				<span class="phai"><i class="fas fas fa-angle-right" style='font-size:48px'></i></span>
+			</span>
+			<span class="tien_ich">
+				<span class="quickview"><i class="fa fa-eye" style='font-size:20px'></i> Quick View</span>
+				<span class="wishlist"><i class="fa fa-heart" style='font-size:20px'></i> Wish List</span>
+			</span>
+		</div>
+		<div class="duoi_sp" style="text-align: center;">
+			<a class="tensanpham" href="">Sản Phẩm A</a>
+			<div class="gia">$96</div>
+		</div>
+
+		<div class="quickviewful"> <!-- Đoạn này chỉ demo, nếu muốn chi tiết thì cấu hình thành 1 thẻ div lun -->
+			<i class="nutx fa fa-close"></i>
+			<img src="Anh/5.png" alt="">
+		</div> <!-- hết quickviewful -->
+	</div> <!-- hết motsanpham -->
+	<div class="motsanpham">
+		<div class="khoisanpham" >
+			<a href="" class="slide_anh">
+				<img src="Anh/2.png" alt="">
+				<img src="Anh/3.png" alt="">
+				<img src="Anh/4.png" alt="">
+			</a>
+			<span class="nut_dieu_huong">
+				<span class="trai"><i class="fas fa-angle-left" style='font-size:48px'></i></i></span>
+				<span class="phai"><i class="fas fas fa-angle-right" style='font-size:48px'></i></span>
+			</span>
+			<span class="tien_ich">
+				<span class="quickview"><i class="fa fa-eye" style='font-size:20px'></i> Quick View</span>
+				<span class="wishlist"><i class="fa fa-heart" style='font-size:20px'></i> Wish List</span>
+			</span>
+		</div>
+		<div class="duoi_sp" style="text-align: center;">
+			<a class="tensanpham" href="">Sản Phẩm A</a>
+			<div class="gia">$96</div>
+		</div>
+
+		<div class="quickviewful"> <!-- Đoạn này chỉ demo, nếu muốn chi tiết thì cấu hình thành 1 thẻ div lun -->
+			<i class="nutx fa fa-close"></i>
+			<img src="Anh/3.png" alt="">
+		</div> <!-- hết quickviewful -->
+	</div> <!-- hết motsanpham -->
+	<div class="motsanpham">
+		<div class="khoisanpham" >
+			<a href="" class="slide_anh">
+				<img src="Anh/2.png" alt="">
+				<img src="Anh/3.png" alt="">
+				<img src="Anh/4.png" alt="">
+			</a>
+			<span class="nut_dieu_huong">
+				<span class="trai"><i class="fas fa-angle-left" style='font-size:48px'></i></i></span>
+				<span class="phai"><i class="fas fas fa-angle-right" style='font-size:48px'></i></span>
+			</span>
+			<span class="tien_ich">
+				<span class="quickview"><i class="fa fa-eye" style='font-size:20px'></i> Quick View</span>
+				<span class="wishlist"><i class="fa fa-heart" style='font-size:20px'></i> Wish List</span>
+			</span>
+		</div>
+		<div class="duoi_sp" style="text-align: center;">
+			<a class="tensanpham" href="">Sản Phẩm A</a>
+			<div class="gia">$96</div>
+		</div>
+
+		<div class="quickviewful"> <!-- Đoạn này chỉ demo, nếu muốn chi tiết thì cấu hình thành 1 thẻ div lun -->
+			<i class="nutx fa fa-close"></i>
+			<img src="Anh/4.png" alt="">
+		</div> <!-- hết quickviewful -->
+	</div> <!-- hết motsanpham -->
+	<div class="den">
+		
+	</div>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			// đếm số lượng ảnh
+			var soluonganh = $('.slide_anh img').length;
+			// thêm một thẻ html vào trong vị trí bất kỳ
+			$('.slide_anh').append("<img src='' class='anh' >");
+			var dem = 1; // biến này ta dùng để đếm phần tử 'img' thứ 'dem' trong khối slide_anh
+
+			// Khi click nút 'phải' ta xử lý chuyển sang thằng slide_anh thực hiện hiệu ứng chuyển
+			// nhằm tránh việc kích vào 1 thằng mà 3 4 thằng cùng class cùng nhảy, vậy nên ta dùng 
+			// this (nút phải) .parent.prev.children('.anh')-> thằng con tên là 'anh' chứ ko phải tất cả con
+			$('.phai').click(function() {
+				// đếm số lượng ảnh
+			var soluonganh = $(this).parent().prev().children().length; // lấy số lượng ảnh của thằng đang dc kích chuyển
+			soluonganh = soluonganh - 1;
+				//để lấy tên nguồn của thẻ img ta dùng: .attr('src')
+				// đển gán tên nguồn cho thẻ img ta dùng: .attr({src})
+				$(this).parent().prev().children('.anh').attr({src:$('.slide_anh img:nth-child('+dem+')').attr('src')});
+				if(dem == soluonganh) { dem = 0;} // lặp lại
+				dem = dem+1;
+			});
+
+			// xử lý hiện quickview
+			$('.quickview').click(function(event) {
+				$(this).parent().parent().next().next().addClass('hienlen');
+				$('.den').addClass('hienlen');
+			});
+			// Ở đây ta kích vào nút x là mất nhưng kích vào vùng đen cũng mất nên ta thêm ',den'.
+			$('i.nutx, .den').click(function(event) {
+				$('.quickviewful').removeClass('hienlen');
+				$('.den').removeClass('hienlen');
+			});
+
+			// xử lý cho việc bấm nút esc biến mất khối đen
+			$(document).keyup(function(e){
+				if(e.keyCode == 27){
+					$('.quickviewful').removeClass('hienlen');
+					$('.den').removeClass('hienlen');
+				}
+			});
+		});
+	</script>
+</body>
+</html>

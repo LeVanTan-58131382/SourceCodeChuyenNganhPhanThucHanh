@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bind dữ liệu với v-model - Ep02 | #12</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+</head>
+<body>
+    <div class="wrapper">
+        <div id="app">
+            <input type="text" name="" id="" v-model="name" placeholder="nhập tên">
+            <p>tên bạn nhập là: {{ name}}</p>
+       </div>
+    </div>
+
+    <div class="wrapper">
+        <div id="app-2">
+            <input type="checkbox" id="checkbox" v-model="checked">
+            <label for="checkbox">{{ checked }}</label>
+        </div>
+    </div>
+
+    <div class="wrapper">
+        <div id="app-3">
+            <input type="checkbox" id="com-chien-toi" value="Cơm chiên tỏi" v-model="checkedNames">
+            <label for="com-chien-toi">Cơm chiên tỏi</label><br>
+            <input type="checkbox" id="dot-bi-xao-toi" value="Đọt bí xào tỏi" v-model="checkedNames">
+            <label for="dot-bi-xao-toi">Đọt bí xào tỏi</label><br>
+            <input type="checkbox" id="canh-rau-rung" value="Canh rau rừng" v-model="checkedNames">
+            <label for="canh-rau-rung">Canh rau rừng</label>
+            <br>
+            <span>Món đã chọn: {{ checkedNames }}</span>
+        </div>
+    </div>
+
+    <div class="wrapper">
+        <div id="app-4">
+            <input type="radio" id="cac-mon-rau" value="Các món rau" v-model="picked">
+            <label for="cac-mon-rau">Các món rau</label><br>
+            <input type="radio" id="cac-mon-thit" value="Các món thịt" v-model="picked">
+            <label for="cac-mon-thit">Các món thịt</label><br>
+            <span>Đã chọn: {{ picked }}</span>
+        </div>
+    </div>
+
+    <div class="wrapper">
+        <div id="app-5">
+            <select v-model="selected">
+                <option disabled value="">Vui lòng chọn món</option>
+                <option>Đọt bí xào tỏi</option>
+                <option>Canh bông điên điển</option>
+                <option>Lẩu nấm</option>
+              </select>
+              <span>Món đã chọn: {{ selected }}</span>
+        </div>
+    </div>
+
+    <script>
+        // v-model dùng để ràng buộc dữ liệu 2 chiều lên các phần tử form input và textarea.
+        new Vue({
+            el: "#app",
+            data: {
+                name : "Lê Văn Tân"
+            },
+            methods: {
+
+            }
+
+        });
+
+        new Vue({
+            el:"#app-2",
+            data: {
+                checked : "checked",
+            },
+            methods: {
+
+            }
+        });
+
+        new Vue({
+            el:"#app-3",
+            data: {
+                // Nhiều checkbox, ràng buộc vào cùng một mảng:
+                checkedNames : [],
+            },
+            methods: {
+
+            }
+        });
+
+        new Vue({
+            el:"#app-4",
+            data: {
+                picked : "checked"
+            },
+            methods: {
+
+            }
+        });
+
+        new Vue({
+            el:"#app-5",
+            data: {
+                selected : "selected",
+            },
+            methods: {
+
+            }
+        });
+    </script>
+    <a href="https://vi.vuejs.org/v2/guide/forms.html">Link tham khảo</a>
+
+
+    <style>
+        .wrapper{
+            position: relative;
+            width: 300px;
+            height: 300px;
+            border: 1px solid blueviolet;
+            border-radius: 5px;
+            margin: 10px;
+            float: left;
+        }
+    </style>
+</body>
+</html>

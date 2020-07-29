@@ -1,0 +1,15 @@
+Tạo mới một project: (Đối với cli 2.x)
+    -> Vào thư mục Project, gõ cmd.
+    -> Gõ $ vue init webpack-simple + tên của project (Có thể không cần dấu $ đằng trước).
+    -> ...
+    -> cd my_project
+    -> npm install
+    -> npm run dev
+
+Format code bằng Shift + Alt + F
+Lệnh xóa màn hình cmd: cls
+
+Cài đặt cli 3 hoặc bản cao hơn:
+    npm uninstall -g vue-cli
+    npm install -g @vue/cli
+    -> tạo mới 1 project: $ vue create <project-name>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Điều Kiện Trong VueJs</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+</head>
+<body>
+	<div id="app">
+		<p>You are a student?</p>
+		<p v-if="xacdinh">Yes, I am.</p>
+		<p v-else>No, I am a Super men.</p>
+		<button @click="changeCondition()">Change bằng methods</button>
+		<button @click="xacdinh = !xacdinh">Change trực tiếp</button>
+		<template v-if="xacdinh">
+			<div>Nội dung</div>
+			<div>Nội dung</div>
+			<div>Nội dung</div>
+			<div>Nội dung</div>
+			<div>Nội dung</div>
+		</template>
+		<!-- v-if thì xóa lun phần tử khi false -->
+		<!-- template cũng dùng để xác định một khối các nội dung thực hiện với cùng một điều kiện VÀ CHỈ SỬ DỤNG ĐƯỢC V-IF -->
+		<template v-show="xacdinh">
+			<div>Nội dung</div>
+			<div>Nội dung</div>
+			<div>Nội dung</div>
+			<div>Nội dung</div>
+			<div>Nội dung</div>
+		</template>
+		<!-- v-show thì chỉ ẩn đi khi false -->
+	</div>
+	
+</body>
+<script type="text/javascript">
+	new Vue({
+		el: "#app",
+		data: {
+			xacdinh: true,
+		},
+		methods: {
+			changeCondition: function(){
+				this.xacdinh = false;
+			}
+		}
+	});
+</script>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+#myDIV {
+  width: 100%;
+  padding: 50px 0;
+  text-align: center;
+  background-color: lightblue;
+  margin-top: 20px;
+  visibility: hidden;
+}
+</style>
+</head>
+<body>
+
+<p>Click the button to find out if the DIV is hidden. If it is, then display it.</p>
+
+<button onclick="myFunction()">Try it</button>
+
+<div id="myDIV">
+This is my DIV element.
+</div>
+
+<p>Some text...</p>
+
+<script>
+function myFunction() {
+  var x = document.getElementById("myDIV");
+  if (window.getComputedStyle(x).visibility === "hidden") {
+    x.style.visibility = "visible";
+  }
+}
+</script>
+
+</body>
+</html>
+

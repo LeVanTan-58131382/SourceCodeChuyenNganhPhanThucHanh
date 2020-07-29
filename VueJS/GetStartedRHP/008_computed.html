@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tối ưu hóa code thông qua computed - Ep02 | #13</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+</head>
+<body>
+    <div id="app">
+        <p>Giá trị A: {{ tangA }}</p>
+        <p>Giá trị B: {{ tangB }}</p>
+        <button v-on:click="a++">Tăng A</button>
+        <button v-on:click="b++">Tăng B</button>
+
+        <p>Giá trị D: {{ tangD() }}</p>
+        <p>Giá trị C: {{ tangC() }}</p>
+        <button v-on:click="d++">Tăng D</button>
+        <button v-on:click="c++">Tăng C</button>
+    </div>
+
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                a: 0,
+                b: 0,
+                d: 0,
+                c: 0
+            },
+            computed: {
+                // lưu ý: các function trong computed chỉ dc xem là một properti nên khi 
+                // đưa ra view thì không có dấu () đằng sau
+                // hàm ở computed sẽ chạy trước hàm đặt ở method
+                tangA : function(){
+                    return this.a;
+                },
+                tangB :function(){
+                    return this.b;
+                }
+            },
+            methods: {
+                // thay vì viết 2 hàm này ở methodsthi2 ta sẽ đưa lên computed
+                // để khi click vào thằng nào thì thằng đó lắng nghe và chạy thôi
+                // để ở methods thì khi click cả 2 thằng đều lắng nghe và chạy đồng thời
+                // tangA : function(){
+                //     return this.a;
+                // },
+                // tangB :function(){
+                //     return this.b;
+                // }
+                tangD :function(){
+                    return this.d;
+                },
+                tangC :function(){
+                    return this.c;
+                }
+            }
+        });
+    </script>
+</body>
+</html>

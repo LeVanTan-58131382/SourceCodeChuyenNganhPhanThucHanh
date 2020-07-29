@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Vòng Lặp For Trong VueJs</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+</head>
+<body>
+	<div id="app">
+		<ul>
+			<li v-for="(menu, i) in menus">{{menu}} với index là {{i}}</li>
+		</ul>
+		<ul>
+			<li v-for="student in students">Tuổi {{student.age}}</li>
+		</ul>
+		<ul>
+			khi duyệt xong nó sẽ hiện ra thông tin của 3 student
+			<li v-for="student in students">
+				<div v-for="(value, key, index) in student">{{key}} : {{value}} ({{index}})</div>
+			</li>
+		</ul>
+		v-for cũng dùng dc cho template d8e63 quản lý các block code
+		<template v-for="(menu, i) in menus">
+			<h1>{{menu}}</h1>
+			<p>{{i}}</p>
+		</template>
+	</div>
+	
+</body>
+<script type="text/javascript">
+	new Vue({
+		el: "#app",
+		data: {
+			menus: ["Home", "About", "Detail"],
+			students: [
+				{name: "Cường", age: 21, class: "CNTT"},
+				{name: "Hoài", age: 22, class: "XDCD"},
+				{name: "Tiến", age: 23, class: "KTDH"},
+			]
+		},
+		methods: {
+			
+		}
+	});
+</script>
+</html>

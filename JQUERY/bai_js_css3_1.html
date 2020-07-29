@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="jquery-3.4.1.js"></script>
+	<script src="jquery-3.4.1.min.js"></script>
+
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		body{
+			background-color: rgba(46, 192, 138, 1);
+			color: rgba(110, 63, 0, 1);
+			font-family: segoe ui light;
+		}
+
+		.tieude{
+			background-color: rgba(0, 175, 61, 1);
+			text-align: center;
+			font-size: 30px;
+			padding: 45px;
+		}
+
+		.phan2cot{
+			width: 1000px;
+			margin: auto;
+			height: 400px;
+			padding-top: 20px;
+		}
+		.cottrai{
+			width: 50%;
+			float: left;
+			margin-right: 5%;
+			padding: 10px 10px;
+			font-size: 30px;
+			color: white;
+			border-right: 1px solid white;
+		}
+		.cotphai .nut{
+			background-color: rgba(191, 175, 61, 1);
+			width: 120px;
+			border-radius: 15px;
+			float: left;
+			font-family: segoe ui light;
+			color: white;
+			font-size: 23px;
+			text-align:center;
+			padding: 10px 10px;
+			cursor: pointer;
+		}
+		.cotphai .nut:hover {
+			background-color: rgba(191, 175, 61, 0.5);
+		}
+
+		.noidung{
+			position: fixed;
+			width: 30%;
+			background-color: rgba(191, 175, 61, 1);
+			top: 25%;
+			left: 35%;
+			border-radius: 15px;
+			overflow: hidden;
+			z-index: 2;
+
+			visibility: hidden;
+			opacity: 0;
+			/*hiệu ứng*/
+			transition: 0.6s;
+			transform: scale(0);
+		}
+
+		.noidung.noidunghienra{
+			visibility: visible;
+			opacity: 1;
+			transition: 0.6s;
+			transform: scale(1);
+		}
+
+		.noidung h3{
+			text-align: center;
+			background-color: rgba(123, 255, 75, 1);
+			padding: 10px 0px;
+
+		}
+
+		.noidung .text{
+			padding: 10px 10px;
+		}
+
+		.nutdong{
+			width: 100px;
+			text-align: center;
+			color: white;
+			padding: 10px 10px;
+			background-color: rgba(123, 255, 75, 1);
+			margin: auto;
+			border-radius: 5px;
+			cursor: pointer;
+			margin-bottom: 10px;
+		}
+
+		.momo{
+			width: 100%;
+			height: 100%;
+			top: 0px;
+			position: fixed;
+			background-color: rgba(0, 0, 0, 0.5);
+			z-index: 1;
+
+			visibility: hidden; /*Vì nếu chỉ cho opacity = 0 thì nó chỉ tàng hình thôi chứ thật ra nó vẫn ở đó, thêm thuộc tính này nó sẽ thật sự biến mất*/
+			opacity: 0;
+			transition: 0.3s;
+			transform: scale(0);
+		}
+
+		.momo.momohienra{
+			visibility: visible;
+			opacity: 1;
+			transition: 0.3s;
+			transform: scale(1);
+		}
+	</style>	
+</head>
+<body>
+	<div class="tieude">
+		<h2 class="chuto">Đây là demo phương pháp code kết hợp jquery với css</h2>
+		<small class="chunho">Đây là demo phương pháp code kết hợp jquery với css</small>
+	</div>
+	<div class="phan2cot">
+		<div class="cottrai">
+			Đây là demo phương pháp code kết hợp jquery với css. Đây là phương pháp cực kỳ đơn giản!
+		</div>
+		<div class="cotphai">
+			<div class="nut">
+		Click me
+	</div>
+		</div>
+	</div>
+
+<div class="momo"></div>
+	
+	<div class="noidung">
+		<h3>Đăng Nhập Tại Đây</h3>
+		<div class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+		<div class="nutdong">Close</div>
+	</div>
+
+
+	<script>
+		jQuery(document).ready(function($) {
+			// nút mở
+			$('.nut').click(function(event) {
+				$('.noidung').addClass('noidunghienra');
+				$('.momo').addClass('momohienra');
+			});
+
+			// nếu muốn đóng thẻ noidung tự động sau 4s ta dùng hàm sau 
+			var dongtudong = setInterval(function(){
+				$('.noidung').removeClass('noidunghienra');
+				$('.momo').removeClass('momohienra');
+
+				//để tránh lặp lại nhiều lần thì ta clear nó đi
+				clear(dongtudong);
+			}, 4000);
+
+			//nút đóng
+			$('.nutdong').click(function(event) {
+				$('.noidung').removeClass('noidunghienra');
+				$('.momo').removeClass('momohienra');
+			});
+			// khi kích vào khoảng trống (div mờ mờ) thì cũng đóng lun
+			$('.momo').click(function(event) {
+				$('.noidung').removeClass('noidunghienra');
+				$('.momo').removeClass('momohienra');
+			});
+			// hoặc có thể viết theo cách này
+			// $('.nutdong, momo').click(function(event) {
+			// 	$('.noidung').removeClass('noidunghienra');
+			// 	$('.momo').removeClass('momohienra');
+			// });
+		});
+	</script>
+</body>
+</html>

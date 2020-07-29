@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ví dụ 1 - các directives trong vuejs</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+</head>
+<body>
+    <div id="app">
+        
+    </div>
+    <div v-style="
+    top: top + 'px',
+    left: left + 'px',
+    background-color: 'rgb(0,0,' + bg + ')'
+    "></div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                    name: ''
+                }
+            })
+    </script>
+</body>
+</html>

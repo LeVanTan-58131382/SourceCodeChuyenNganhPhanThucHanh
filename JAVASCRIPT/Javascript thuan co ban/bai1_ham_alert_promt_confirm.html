@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 1 - Hàm alert, confirm, promt</title>
+</head>
+<body>
+    <button>Bấm vào đây</button>
+    <script>
+        var xacNhan = confirm("Bạn muốn xác nhận hay không?"); // trả về true hoặc false
+
+        // hàm confirm
+        // if(xacNhan == true)
+        // {
+        //     alert("Bạn đã đồng ý xác nhận!");
+        // }
+        // else alert("Bạn đã từ chối xác nhận!");
+        // hoặc
+        xacNhan == true ? alert("Bạn đã đồng ý xác nhận!") : alert("Bạn đã từ chối xác nhận!");
+
+        //---
+
+        // hàm prompt
+        // hàm promt nhận giá trị nhập vào nếu nhấn Ok, nhận null nếu nhấn cancel
+        var ten = prompt("Tên bạn là gì?");
+        document.write(ten);
+
+        var a = prompt("Nhập vào giá trị của a: ", 0); // 0 là giá trị hiện lên ban đầu -> mặc định là kiểu String
+        var b = prompt("Nhập vào giá trị của b: ", 0);
+
+        a = parseInt(a); // ép kiểu thanh kiểu int
+        b = parseInt(b);
+        
+        var tong = 0;
+        tong = a + b;
+        document.write("Giá trị tổng của a và b là: " + tong);
+
+
+
+    </script>
+    <br>
+    Với hàm confirm, bạn chọn đồng ý (true) và cancel (false) <br>
+    Với hàm promt, bạn có thể nhập dữ liệu vào, giúp chúng ta lấy dữ liệu <br>
+    từ người dùng <br>
+</body>
+</html>

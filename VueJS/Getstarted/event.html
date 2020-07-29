@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>VUEJS</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+    <style>
+        .box {
+            width: 200px;
+            height: 200px;
+            position: relative;
+            background-color: aqua;
+        }
+        .box-2 {
+            width: 60px;
+            height: 60px;
+            background-color:blue;
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+            <header><h1>Header</h1></header>
+            <div class="list-blog">
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Autem, ipsa optio cumque quaerat nihil voluptatibus accusamus ipsam eaque. Impedit eum obcaecati odit laborum reprehenderit libero dignissimos quia? Iusto, veritatis placeat.
+            <br>
+            <br>
+            <br>
+            </div>
+            <div id="app">
+                <h1>Counter: {{count}} </h1>
+                <button v-on:click="handleClick(event, 5)">Click me</button>
+                <div v-on:mousemove="handlemousemove(event)" class="box">
+                    <p>Client X: {{clientX}}</p>
+                    <p>Client Y: {{clientY}}</p>
+                    <div class="box-2" v-on:mousemove.stop="handlemousemoveChild(event)"></div>
+                </div>
+                <form  class="form-group" action="serve.php" v-on:submit.prevent="handleSubmitForm">
+                    <fieldset >
+                        <label  for="">Nhập Tên</label>
+                        <input class="form-control" type="text">
+                    </fieldset>
+                    <fieldset >
+                            <label  for="">Nhập Email</label>
+                            <input class="form-control" type="text">
+                    </fieldset>
+                    <button class="btn btn-success" type="submit">Gửi</button>
+                </form>
+            </div>
+                
+            </div>
+            <br>
+            <br>
+            <br>
+            <footer><h1>Footer</h1></footer>
+    </div>
+    
+</body>
+<script>
+    var app = new Vue({
+        el: "#app",
+        data:{
+            count: 0,
+            clientX:0,
+            clientY:0,
+        },
+        methods:{
+            handleClick(event, number){
+                //console.log("click", this);
+                this.count += number;
+            },
+
+            handlemousemove(event){
+                this.clientX = event.clientX;
+                this.clientY = event.clientY;
+            },
+            handleSubmitForm(event){
+                console.log(event);
+                // event.preventDefault() // nếu như dùng v-on:submit.prevent="handleSubmitForm" thì ko cần dùng lệnh này
+            },
+            handlemousemoveChild(event){
+                console.log("Sự kiện của box 2", event.target);
+                // v-on:mousemove.stop="handlemousemoveChild(event)" : thực hiện khi move trên box 2, sự kiện trên box cha sẽ không xảy ra
+            }
+        }
+    });
+</script>
+</html>

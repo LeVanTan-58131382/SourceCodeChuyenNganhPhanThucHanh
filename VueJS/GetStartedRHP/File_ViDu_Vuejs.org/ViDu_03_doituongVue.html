@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ví dụ 3 - đối tượng vue</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+</head>
+<body>
+    <div id="example">
+
+    </div>
+    <script>
+        // Chúng ta khởi tạo một object "data"
+        var data = { a: 1 }
+
+        // Object này được truyền vào một đối tượng Vue
+        var vm = new Vue({
+            el: '#example',
+            data: data
+        })
+
+        // Truy xuất đến thuộc tính của đối tượng 
+        // trả về giá trị của object "data" đã khởi tạo 
+        vm.a == data.a // => true
+
+        // Thay đổi thuộc tính của vm cũng
+        // ảnh hưởng đến dữ liệu ban đầu
+        vm.a = 2
+        data.a // => 2
+
+        // ... và ngược lại
+        data.a = 3
+        vm.a // => 3
+
+        // Một số phương thức có sẵn của đối tượng trog view có dấu $ đằng trước để phân biệt với các
+        // phương thức mà người dùng tự định nghĩa
+        // ví dụ
+        vm.$data === data // => true
+        vm.$el === document.getElementById('example') // => true
+        console.log(vm.$data);
+        console.log(vm.$el);
+
+        // $watch là một phương thức của đối tượng Vue
+        vm.$watch('a', function (newValue, oldValue) {
+        // Hàm callback này sẽ được gọi khi `vm.a` thay đổi
+        })
+
+        // Một số method khác:
+        vm.$props;
+
+        vm.$options;
+        new Vue({
+            customOption: 'foo',
+            created: function () {
+                console.log(this.$options.customOption) // => 'foo'
+            }
+            })
+
+        vm.$parent;
+        vm.$root;
+        vm.$children;
+        vm.$slots;
+
+
+        // một component Vue cũng là một đối tượng Vue
+    </script>
+</body>
+</html>

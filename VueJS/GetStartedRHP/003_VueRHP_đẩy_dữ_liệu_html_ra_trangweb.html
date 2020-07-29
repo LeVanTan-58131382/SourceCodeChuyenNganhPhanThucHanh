@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đẩy dữ liệu html ra trang web - video Ep02 #06</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+</head>
+<body>
+    <div id="app-1">
+        <p>{{ testMaHTML}}</p>
+        <!-- thẻ p trên sẽ hiển thị đoạn TEXT <a href="abcdksksks....">Get Password </a> -->
+        <!-- => để hiển thị dạng thẻ (tag) HTML thì ta dùng v-html -->
+        <p v-html = "testMaHTML"></p>
+    </div>
+
+    <script>
+        // Tất cả dữ liệu truyền qua HTML đều ở dạng dữ liệu thô
+        new Vue({
+            el:"#app-1",
+            data: {
+                testMaHTML : '<a href="abcdksksks....">Get Password </a>',
+            },
+            methods: {
+
+            }
+        });
+    </script>
+</body>
+</html>

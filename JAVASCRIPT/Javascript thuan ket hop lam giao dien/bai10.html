@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 10 - Object và Constructor</title>
+</head>
+<body>
+    <script>
+        var cacmonan = {
+            ten: "Thịt kho",
+            nguyenLieu: "Thịt lợn",
+            gia : 20000,
+        }
+
+        var monanso2 = cacmonan; // bằng kiểu, bằng giá trị (true)
+        // 2 biến này sẽ dùng chung vùng nhớ => thay đổi 1 cái, cái kia cũng thay đổi theo
+
+        console.log(cacmonan);
+
+        // - Ta nên viết constructor
+        function MonAn(t, ngl, g){
+            this.ten = t; // tên của thằng đối tượng mới
+            this.nguyenLieu = ngl; // nguyên liệu của thằng đối tượng mới
+            this.gia = g; // giá của thằng đối tượng mới
+        }
+
+        var mon_1 = new MonAn("Rau muống xào", "Rau muống", 200);
+        var mon_2 = new MonAn("Cá chiên xù", "Cá rô", 200);
+        console.log(mon_1);
+        console.log(mon_2);
+    </script>
+</body>
+</html>

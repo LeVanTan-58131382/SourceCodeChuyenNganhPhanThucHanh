@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Bài 1</title>
+	<script src="jquery-3.4.1.js"></script>
+	<script src="jquery-3.4.1.min.js"></script>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		body{
+			background-color: #00FFCC;
+			
+		}
+		.container{
+			text-align: center;
+		}
+		.hieuung{
+			width: 40%;
+			margin: auto;
+			margin-top: 50px;
+			}
+		.motkhoi h3{
+			background-color: #0066FF;
+			color: #FFFF00;
+			padding: 10px 12px;
+		}
+		.noidungmotkhoi{
+			padding: 10px 12px;
+			border: 1px solid gray;
+			background-color: white;  
+		}
+
+		/*xử lý khi hover lên tiêu đề sẽ hiện mũi tên xuống*/
+		.motkhoi h3:hover{
+			background-image: url(Anh/minidown.png) no-repeat 96% ;
+			background-size: 50px 50px;
+			color: #003300;
+		}
+		h3.xanh{
+			background-color: #00FF00;
+		}
+		.motkhoi h3.xanh:hover{
+			background-image: url(Anh/miniup.png) no-repeat 96% ;
+			background-size: 50px 50px;
+			color: #003300;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<h1>Hiệu ứng jquery đầu tiên</h1>
+		<h3>Accordion</h3>
+	</div>
+	<div class="hieuung">
+		<div class="motkhoi">
+			<h3>Selector</h3>
+			<div class="noidungmotkhoi">
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+			</div>
+		</div> <!-- end motkhoi --><div class="motkhoi">
+			<h3>Event</h3>
+			<div class="noidungmotkhoi">
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+			</div>
+		</div> <!-- end motkhoi --><div class="motkhoi">
+			<h3>Effect</h3>
+			<div class="noidungmotkhoi">
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+			</div>
+		</div> <!-- end motkhoi --><div class="motkhoi">
+			<h3>Dictionary</h3>
+			<div class="noidungmotkhoi">
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+			</div>
+		</div> <!-- end motkhoi -->
+		
+	</div>
+	
+	<script>
+		jQuery(document).ready(function($) {
+			// cho tất cả nội dung thu lại
+			$('.noidungmotkhoi').slideUp();
+
+			// click vào thẻ h3
+			$('.motkhoi h3').click(function(event) {
+				// nếu muốn kích để xem lần lượt từng cái một và các cái khác đóng lại
+				$('.noidungmotkhoi').slideUp();
+
+				$(this).next().slideToggle();
+				$(this).toggleClass('xanh');
+			});
+		});
+	</script>
+</body>
+</html>

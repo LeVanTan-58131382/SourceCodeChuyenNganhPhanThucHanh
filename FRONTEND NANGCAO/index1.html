@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="css/boostrap.css">
+	<script type="text/javascript" href="js/jquery-3.4.1.js"></script>
+	<style>
+		.bo{
+			position: relative;
+			width: 220px;
+			height: 220px;
+			/*background-color: green;*/
+			background: url(Anh/6.png);
+			border-radius: 50%; /*thuộc tính này để bo tròn*/
+			perspective: 600px; /*làm hoạt ảnh 3d lên*/
+		}
+		.chu{
+			position: absolute; /*static,absolute,fixed,relative*/
+			z-index: 1;
+			width: 180px;
+			height: 180px;
+			border-radius: 50%;
+			background-color: rgba(106, 244, 138, 0.8); /*rbga : màu có tính trong suốt (a: alpha);*/
+			left: 20px;
+			top:20px; /*left và top để cho div chữ nằm giữa*/
+			text-align: center;
+			line-height: 180px; /*Tăng hoặc giảm khoảng cách giữa các dòng*/
+			font-size: 25px;
+
+		}
+		.nap{
+			position: absolute; /*static,absolute,fixed,relative*/
+			border-radius: 50%;
+			z-index: 2;
+			width: 180px;
+			height: 180px;
+			left: 20px;
+			top:20px;
+			background: url(Anh/6.png) -23px -21px;
+			box-shadow: rgba(67, 101, 138, 0.8);
+			/*xoay*/
+			transition: 0.9s;
+			transform-origin: 50% 100%; /*tông quay cách trái 50, cách trên 100*/
+		}
+
+		.bo:hover .nap{
+			transform: rotateX(-180deg);
+		}
+		/*Thuộc tính z-index thiết lập thứ tự xếp chồng nhau của một thành phần vị trí.
+		Thứ tự chồng nhau được sắp xếp dựa theo giá trị số, thành phần HTML nào có chỉ số z-index cao hơn sẽ nằm trên, ngược lại sẽ nằm dưới, giá trị mặc định là 0.
+		Có thể sử dụng số âm.
+		Giá trị tốt nhất là không sử dụng đơn vị.
+		Chú ý: z-index chỉ làm việc cùng với thuộc tính position.*/
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="bo">
+			<div class="chu">Đây là Text</div>
+			<div class="nap"></div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 12 - HTML5 LocalStorage và SessionStorage</title>
+</head>
+<body>
+    Như bạn biết, Cookie trong Javascript có công dụng lưu trữ dữ liệu tạm thời ở browser, chúng ta hay sử dụng nó để lưu trữ các thông tin cấu hình cho mỗi user và đương nhiên là các thông tin này giữa các users sẽ không liên quan với nhau. Cookie thật sự rất hữu ích và không thể thiếu khi bạn xây dựng website.
+    --------------------------
+    1. HTML5 Local Storage
+    Local Storage có công dụng tương tự như cookie, có nghĩa là nó sẽ lưu trữ thông tin trên browser mà người dùng đang truy cập. Điểm khác biệt lớn nhất giữa Cookie và Local Storage là Local Storage cho phép bạn lưu trữ thông tin tương đối lớn lên đến 5MB, ngoài ra local storage không gửi thông tin lên server như Cookie. Cả local storage và cookie đều không ảnh hưởng đến hiệu xuất của trang web.
+
+    Chúng ta có 2 loại local storage đó là:
+
+    window.localStorage: Lưu trữ dữ liệu vô thời hạn, dữ liệu sẽ được lưu trữ cho tới khi người dùng clear history.
+    window.sessionStorage: Lưu trữ dữ liệu cho mội phiên làm việc, có nghĩa dữ liệu sẽ bị mất khi bạn tắt browser.
+    Bây giờ chúng ta sẽ tìm hiểu hai đối tượng này nhé.
+
+    2. localStorage Object
+    localStorage Object lưu trữ dữ liệu vô thời hạn, có nghĩa dữ liệu sẽ không bị mất cho tới khi bạn sử dụng chức năng clear history của trình duyệt, hoặc bạn sử dụng localStorage API để xóa. Chúng ta có hai thao tác chính đó là gán dữ liệu và lấy dữ liệu, và trước khi sử dụng các phương thức này thì ta phải chắc chắn là trình duyệt có hỗ trợ HTML5. Đoạn code dưới đây sẽ giúp ta kiểm tra trình duyệt có hỗ trợ localStorage hay là không.
+
+    Ví dụ: Lưu trữ domain freetuts.net vào trình duyệt của người dùng.
+
+    Bạn hãy tạo cho mình hai file a.html và b.html với nội dung như sau.
+
+    a.html:
+        if (typeof(Storage) !== "undefined") {
+            var domain = 'freetuts.net';
+            localStorage.setItem('domain', domain);
+        } else {
+            document.write('Trình duyệt của bạn không hỗ trợ local storage');
+        }
+
+    b.html:
+        if (typeof(Storage) !== "undefined") {
+            var domain = localStorage.getItem('domain');
+            document.write(domain); // kết quả freetuts.net
+        } else {
+            document.write('Trình duyệt của bạn không hỗ trợ local storage');
+        }
+    Bây giờ bạn chạy file a.html trước, sau đó bạn chạy file b.html thì sẽ thấy thông tin domain freetuts.net đã dược in lên website, điều này có nghĩa file a.html đã lưu trữ thông tin vào browser rồi nên file b.html mới có thể lấy được thông tin đó. Bây giờ bạn thử tắt trình duyệt và mở lại file b.html để xem dữ liệu còn không nhé.
+
+    Như vậy để lưu dữ liệu thì ta dùng phương thức setItem(key, value) và để lấy dữ liệu thì ta dùng phương thức getItem(key).
+
+    --------------------------
+    3. sessionStorage Object
+    Công dụng của sessionStorage cũng tương tự như localStorage, chỉ có một điểm khác đó là dữ liệu của sessionStorage sẽ mất khi bạn đóng trình duyệt. sessionStorage không tồn tại hai phương thức getItem và setItem mà bạn sẽ bổ sung key và value cho nó.
+
+    Ví dụ:
+
+    if (typeof(Storage) !== "undefined") {
+        // Gán dữ liệu
+        sessionStorage.domain = 'freetuts.net';
+        
+        // Lấy dữ liệu
+        var domain = sessionStorage.domain; // freetuts.net
+    } else {
+        document.write('Trình duyệt của bạn không hỗ trợ local storage');
+    }
+    Quay lại ví dụ ở phần 2 thì mình sẽ viết như sau:
+
+    a.html
+        if (typeof(Storage) !== "undefined") {
+            sessionStorage.domain = 'freetuts.net';
+        } else {
+            document.write('Trình duyệt của bạn không hỗ trợ local storage');
+        }
+    b.html
+        if (typeof(Storage) !== "undefined") {
+            document.write(sessionStorage.domain); // kết quả freetuts.net
+        } else {
+            document.write('Trình duyệt của bạn không hỗ trợ local storage');
+        }
+</body>
+</html>

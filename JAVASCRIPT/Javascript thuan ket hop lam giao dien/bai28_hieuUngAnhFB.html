@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 28 - Hiệu ứng phóng to ảnh của facebook</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+        html, body{
+            height: 100%;
+            width: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        .menuTren{
+            position: fixed;
+            width: 100%;
+            height: 60px;
+            z-index: 9;
+            top: 0;
+            left: 0;
+            background-color: rgb(42, 39, 230);
+        }
+        .noiDungChinh{
+            position: relative;
+            height: auto;
+        }
+        .trai{
+            position: fixed;
+            width: 20%;
+            height: 100%;
+            top: 80px;
+            left: 0;
+            background-color: cornflowerblue;
+        }
+        .phai{
+            position: fixed;
+            width: 30%;
+            height: 100%;
+            top: 80px;
+            right: 0;
+            background-color: cornflowerblue;
+        }
+
+        .giua{
+            position: relative;
+            width: 50%;
+            left: 20%;
+
+        }
+        .motKhoi{
+            position: relative;
+            width: 96%;
+            margin: 2%;
+            margin-top: 80px;
+        }
+        .motKhoi .avatar{
+            height: 70px;
+            background-color: cyan;
+        }
+        .motKhoi .cacAnh{
+            width: 100%;
+            height: auto;
+        }
+        
+        .cacAnh img{
+            position: relative;
+            width: 32%;
+            max-height: 200px;
+            cursor: pointer;
+        }
+        .cacAnh img._1AnhTren{
+            width: 100%;
+            max-height: 100%;
+            cursor: pointer;
+        }
+        .popup{
+
+        }
+        .popup .nenDen{
+            transition: 0.4s;
+            background-color: rgba(0, 0, 0, 0.6);
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 3;
+
+            opacity: 0;
+            visibility: hidden;
+        }
+        .ra{
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
+        .nutDong{
+            position: absolute;
+            right: 30px;
+            top: 70px;
+            width: 30px;
+            height: 30px;
+        }
+        .thongTinAnh{
+            position: fixed;
+            width: 70%;
+            height: 80%;
+            z-index: 5;
+            
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+            opacity: 0;
+            visibility: hidden;
+        }
+        .thongTinAnh .thongTinTrai{
+            float: left;
+            width: 70%;
+            height: 100%;
+            background-color: slategray;
+            top: 0;
+        }
+        .thongTinAnh .thongTinPhai{
+            float: left;
+            width: 30%;
+            height: 100%;
+            background-color: sienna;
+            top: 0;
+        }
+
+        .khoiCacAnh {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        .khoiCacAnh ul li{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            text-align: center;
+
+            /* căn giữa theo chiều dọc */
+            display: flex;
+            align-items: center;
+            opacity: 0;
+        }
+        .khoiCacAnh ul li img{
+            max-width: 100%;
+            max-height: 100%;
+        }
+        .khoiCacAnh ul li.active{
+            opacity: 1;
+        }
+        .nutTrai, .nutPhai{
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            margin: 5px;
+            z-index: 6;
+            
+        }
+       
+        .nutTrai{
+            left: 0;
+        }
+        .nutPhai{
+            right: 28%;
+        }
+        .khoiCacNut b{
+            color: darkviolet;
+        }
+        .khoiCacNut b:hover{
+            color: lightcyan;
+        }
+        ul{
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="popup">
+        <div class="nenDen">
+            <div class="nutDong"><i style="font-size: 30px; color: seashell; cursor: pointer;" class="fa fa-times" aria-hidden="true"></i></div>
+        </div>
+        <div class="thongTinAnh">
+            <div class="thongTinTrai">
+                <div class="khoiCacAnh">
+                    <ul>
+                        <li><img src="anh/gaixinh1.jpg" alt=""></li>
+                        <li><img src="anh/gaixinh2.jpg" alt=""></li>
+                        <li><img src="anh/gaixinh3.jpg" alt=""></li>
+                        <li><img src="anh/gai.jpg" alt=""></li>
+                    </ul>
+                </div>
+                <div class="khoiCacNut">
+                    <b style="font-size: 70px; cursor: pointer;" class="nutTrai fa fa-angle-left"></b>
+                    <b style="font-size: 70px; cursor: pointer;" class="nutPhai fa fa-angle-right"></b>
+                </div>
+            </div>
+            <div class="thongTinPhai"></div>
+        </div>
+        
+        
+    </div>
+    <div class="menuTren"></div>
+    <section class="noiDungChinh">
+        <div class="trai"></div>
+        <div class="giua">
+            <div class="motKhoi">
+                <div class="avatar"></div>
+                <div class="cacAnh">
+                    <img class="_1AnhTren" src="anh/gaixinh1.jpg" alt="">
+                    <img style="float: left;" src="anh/gaixinh2.jpg" alt="">
+                    <img style="text-align: center; margin-left: 2%;" src="anh/gaixinh3.jpg" alt="">
+                    <img style="float: right;" src="anh/gai.jpg" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="phai">
+            Căn giữa phần tử theo chiều dọc:
+                - div bố: display: flex
+                        + align-items: center
+        </div>
+    </section>
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function(){
+            var listAnh = document.querySelectorAll(".cacAnh img");
+            var nenDen = document.querySelector(".nenDen");
+            var nutDong = document.querySelector(".nutDong");
+            var thongTinAnh = document.querySelector(".thongTinAnh");
+            var khoiCacAnh_Li = document.querySelectorAll(".khoiCacAnh ul li");
+
+            var nutPhai = document.querySelector(".nutPhai");
+            var nutTrai = document.querySelector(".nutTrai");
+            var thuTuAnhDangActive = 0;
+
+            // tắt nền đen khi kích vào nèn đen
+            nenDen.addEventListener("click", function(){
+                nenDen.classList.remove("ra");
+                thongTinAnh.classList.remove("ra");
+
+                // tắt lun cái ảnh vừa mới mở trong trạng thái còn active
+                var anhDangActive = document.querySelector(".khoiCacAnh ul li.active");
+                anhDangActive.classList.remove("active");
+            });
+
+            for(var i = 0; i < listAnh.length; i++)
+            {
+                listAnh[i].addEventListener("click", function(){
+                    console.log("bạn vừa kích");
+                    nenDen.classList.add("ra");
+                    thongTinAnh.classList.add("ra");
+
+                    var anhDuocClick = this;
+                    var chiSo = 0;
+                    for(var k = 0; anhDuocClick = anhDuocClick.previousElementSibling; k++){}
+                    chiSo = k;
+
+                    // ảnh thứ k là ảnh sẽ dc active
+                    khoiCacAnh_Li[chiSo].classList.add("active");
+                    thuTuAnhDangActive = chiSo;
+                });
+            } 
+            var chiSoPhuHienTai = thuTuAnhDangActive; 
+            // chỉ số phụ này dùng để làm biến trung gian ( thay đổi sau mỗi lần kích) 
+            // thì phân tử ảnh đang active sẽ thay đổi, vì ban đầu khi kích vào một ảnh thì
+            // thuTuAnhDangActive sẽ cố định ngay bức số 1 đó lun
+            nutPhai.addEventListener("click", function(){
+                var phanTuHienTai = khoiCacAnh_Li[chiSoPhuHienTai];
+                
+                chiSoPhuHienTai = (chiSoPhuHienTai < khoiCacAnh_Li.length - 1) ?
+                (chiSoPhuHienTai + 1) : 0;
+
+                var phanTuTiepTheo = khoiCacAnh_Li[chiSoPhuHienTai];
+                
+                phanTuHienTai.classList.remove("active");
+                phanTuTiepTheo.classList.add("active");
+            });
+
+            nutTrai.addEventListener("click", function(){
+                var phanTuHienTai = khoiCacAnh_Li[chiSoPhuHienTai];
+                
+                chiSoPhuHienTai = (chiSoPhuHienTai > 0) ?
+                (chiSoPhuHienTai - 1) : khoiCacAnh_Li.length - 1;
+
+                var phanTuTiepTheo = khoiCacAnh_Li[chiSoPhuHienTai];
+                
+                phanTuHienTai.classList.remove("active");
+                phanTuTiepTheo.classList.add("active");
+            });
+        },false)
+    </script>
+</body>
+</html>

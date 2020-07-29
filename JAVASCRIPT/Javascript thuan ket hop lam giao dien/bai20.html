@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 20 - Tổng quát hóa hiệu ứng</title>
+</head>
+<body>
+    <button class="nut" data-matKhau = "123456789">Kích vào để lấy giá trị 1</button>
+    <button class="nut" data-matKhau = "987654321">Kích vào để lấy giá trị 2</button>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function(){
+            var nut = document.getElementsByClassName("nut");
+            for(var i = 0; i < nut.length; i++)
+            {
+                nut[i].onclick = function()
+                {
+                    var matKhauCuaNut = this.getAttribute("data-matKhau");
+                    console.log(matKhauCuaNut);
+                }
+            }
+           
+        }, false)
+    </script>
+</body>
+</html>

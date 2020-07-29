@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Các hình học với css3</title>
+    <style>
+        /* ngôi sao */
+        #star {
+            width: 0;
+            height: 0;
+            margin: 50px 0;
+            color: #fc2e5a;
+            position: relative;
+            display: block;
+            border-right: 100px solid transparent;
+            border-bottom: 70px solid #fc2e5a;
+            border-left: 100px solid transparent;
+            -moz-transform: rotate(35deg);
+            -webkit-transform: rotate(35deg);
+            -ms-transform: rotate(35deg);
+            -o-transform: rotate(35deg);
+        }
+        #star:before {
+            height: 0;
+            width: 0;
+            position: absolute;
+            display: block;
+            top: -45px;
+            left: -65px;
+            border-bottom: 80px solid #fc2e5a;
+            border-left: 30px solid transparent;
+            border-right: 30px solid transparent;
+            content: '';
+            -webkit-transform: rotate(-35deg);
+            -moz-transform: rotate(-35deg);
+            -ms-transform: rotate(-35deg);
+            -o-transform: rotate(-35deg);
+        }
+        #star:after {
+            content: '';
+            width: 0;
+            height: 0;
+            position: absolute;
+            display: block;
+            top: 3px;
+            left: -105px;
+            color: #fc2e5a;
+            border-right: 100px solid transparent;
+            border-bottom: 70px solid #fc2e5a;
+            border-left: 100px solid transparent;
+            -webkit-transform: rotate(-70deg);
+            -moz-transform: rotate(-70deg);
+            -ms-transform: rotate(-70deg);
+            -o-transform: rotate(-70deg);
+        }
+
+        /* ngôi sao 6 cánh */
+        #star_six_points {
+            width: 0;
+            height: 0;
+            display: block;
+            position: absolute;
+            border-left: 50px solid transparent;
+            border-right: 50px solid transparent;
+            border-bottom: 100px solid #de34f7;
+            margin: 10px auto;
+        }
+        #star_six_points:after {
+            content: "";
+            width: 0;
+            height: 0;
+            position: absolute;
+            border-left: 50px solid transparent;
+            border-right: 50px solid transparent;
+            border-top: 100px solid #de34f7;
+            margin: 30px 0 0 -50px;
+        }
+
+        /*hình ngũ giác */
+        #pentagon {
+            width: 54px;
+            position: relative;
+            border-width: 50px 18px 0;
+            border-style: solid;
+            border-color: #277bab transparent;
+        }
+
+        #pentagon:before {
+            content: "";
+            height: 0;
+            width: 0;
+            position: absolute;
+            top: -85px;
+            left: -18px;
+            border-width: 0 45px 35px;
+            border-style: solid;
+            border-color: transparent transparent #277bab;
+        }
+
+        /* hình lục giác */
+        #hexagon {
+            width: 100px;
+            height: 55px;
+            background: #fc5e5e;
+            position: relative;
+            margin: 10px auto;
+        }
+        #hexagon:before {
+            content: "";
+            width: 0;
+            height: 0;
+            position: absolute;
+            top: -25px;
+            left: 0;
+            border-left: 50px solid transparent;
+            border-right: 50px solid transparent;
+            border-bottom: 25px solid #fc5e5e;
+        }
+        #hexagon:after {
+            content: "";
+            width: 0;
+            height: 0;
+            position: absolute;
+            bottom: -25px;
+            left: 0;
+            border-left: 50px solid transparent;
+            border-right: 50px solid transparent;
+            border-top: 25px solid #fc5e5e;
+        }
+        
+        /* hình bát giác */
+        #octagon {
+            width: 100px;
+            height: 100px;
+            background: #ac60ec;
+            position: relative;
+        }
+
+        #octagon:before {
+            content: "";
+            width: 42px;
+            height: 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-bottom: 29px solid #ac60ec;
+            border-left: 29px solid #f4f4f4;
+            border-right: 29px solid #f4f4f4;
+        }
+
+        #octagon:after {
+            content: "";
+            width: 42px;
+            height: 0;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            border-top: 29px solid #ac60ec;
+            border-left: 29px solid #f4f4f4;
+            border-right: 29px solid #f4f4f4;
+        }
+
+        .item_wrapper{
+            position: relative;
+            float: left;
+            width: 100px;
+            height: 100px;
+            box-sizing: border-box;
+        }
+        .item{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        
+    </style>
+</head>
+<body>
+    <br>
+    <div class="item_wrapper">
+        <div class="item" id="star"></div> ngôi sao
+    </div>
+    <div class="item_wrapper">
+        <div class="item" id="star_six_points"></div> ngôi sao 6 cạnh
+    </div>
+    <div class="item_wrapper">
+        <div class="item" id="pentagon"></div> hình ngũ giác
+    </div>
+    <div class="item_wrapper">
+        <div class="item" id="hexagon"></div> hình 6 cạnh
+    </div>
+    <div class="item_wrapper">
+        <div class="item" id="octagon"></div> hình 8 cạnh
+    </div>
+
+</body>
+</html>

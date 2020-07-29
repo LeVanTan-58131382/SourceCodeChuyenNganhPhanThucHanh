@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 3 - Hàm setTimeOut và setInterval</title>
+</head>
+<body>
+    <script>
+        // Trường hợp 1:
+        // setTimeout(function(){
+        //     alert("Cố gắng học javascript nào!");
+        //     }, 3000);
+        // -> hàm ở trên gồm có 2 tham số: một function thự hiện và thời gian để chạy function đó
+
+        // Trường hợp 2: 
+        // var do_alert = function(){
+        //     alert("Cố gắng học javascript nào!");
+        // };
+        // setTimeout(do_alert, 3000);
+        // -> một function được khai báo bên ngoài
+
+        // Hàm hủy setTimeOut
+        var do_alert = setTimeout(function(){
+            alert("Cố gắng học javascript nào!");
+        }, 3000);
+        function clearAlert()
+        {
+            clearTimeout(do_alert);
+        }
+
+        // Hàm setInterval và hàm hủy
+        var interval_obj = setInterval(function(){
+            alert("Cố gắng học javascript nào!");
+            clearInterval(interval_obj);
+        }, 3000);
+    </script>
+    <input type="button" onclick="clearAlert()" value="Clear" />
+    <br>
+    Hàm setInterval() có cú pháp và chức năng giống như hàm setTimeout(), <br>
+    tuy nhiên với hàm setInterval() thì số lần thực hiện lã mãi mãi.
+</body>
+</html>

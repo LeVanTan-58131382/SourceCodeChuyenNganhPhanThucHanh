@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 4 - Xử lý sự kiện</title>
+    <style>
+        .danhDauCopy{
+            width: 100px;
+            height: 20px;
+            background-color: orange;
+            color: honeydew;
+            padding: 5px;
+            border-radius: 3px;
+        }
+        .danhDauCopy.daCopy{
+            background-color: green;
+        }
+        .tab{
+            width: 300px;
+            height: 200px;
+            padding: 20px;
+            margin: 10px;
+            border: 1px solid steelblue;
+            border-radius: 10px;
+            float: left;
+        }
+    </style>
+</head>
+<body>
+
+    <script language="javascript">
+            // Hàm show kết quả
+            function show_result()
+            {
+                // hàm xử lý sự kiện onkeyup
+                // Lấy hai thẻ HTML
+                var input = document.getElementById("message");
+                var div = document.getElementById("result");
+                
+                // Gán nội dung ô input vào thẻ div
+                div.innerHTML = input.value;
+            }
+
+            // hàm xử lý sự kiện oncopy
+            function copyDongNay()
+            {
+                //alert("Bạn đã copy thành công");
+                var divDanhDauCopy = document.querySelector(".danhDauCopy");
+                divDanhDauCopy.classList.add("daCopy");
+                divDanhDauCopy.innerHTML = "Đã copy";
+            }
+
+            // hàm xử lý sự kiện tính tổng
+            function tinh()
+            {
+                // Lấy 3 ô input
+                var a = document.getElementById("a");
+                var b = document.getElementById("b");
+                
+                var result = document.getElementById("result_2");
+                
+                // Tính tổng hai ô đầu tiên
+                var tong = parseInt(a.value) + parseInt(b.value);
+                
+                // Gán giá trị vào ô thứ ba
+                // Phải kiểm tra tổng hai số này có bị lỗi hay không
+                if (!isNaN(tong)){ 
+                    result.value = tong;
+                }
+            }
+
+    </script>
+
+    <div class="tab">
+        <input type="text" id="message" value="" onkeyup="show_result()"/>
+        <div id="result"></div>
+    </div>
+    <div class="tab">
+        <h3>Hãy copy dòng chữ dưới đây:</h3>
+        <div oncopy="copyDongNay()">Cố gắng học javascript nào!</div> 
+        <br>
+        <div class="danhDauCopy">Chưa copy</div>
+    </div>
+    <div class="tab">
+        a: <input type="text" id="a" value="" onkeyup="tinh()"/> 
+        <br>
+        b: <input type="text" id="b" value="" onkeyup="tinh()"/>
+        <br>
+        Kết quả: <input type="text" id="result_2" value=""/>
+    </div>
+
+    <div class="tab">
+
+    </div>
+  </body>
+</html>
+
+</body>
+</html>

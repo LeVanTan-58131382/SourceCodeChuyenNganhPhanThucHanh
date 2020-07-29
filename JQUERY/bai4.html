@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="jquery-3.4.1.js"></script>
+	<script src="jquery-3.4.1.min.js"></script>
+	<style type="text/css">
+		body{
+			margin:0;
+			padding:0;
+		}
+		.tinto{
+			width: 400px;
+			height: 300px;
+			overflow: hidden;
+			position: relative; /*vì đây là thành phần bố nên phải để relative để các thành phần con nó canh theo*/
+		}
+		img.layer1{
+			width: 400px;
+			height: 300px;
+		}
+		.xam{
+			width: 400px;
+			height: 300px;
+			background-color: rgba(0, 0, 0, 0.32);
+
+			/*4 thuộc tính bên dưới là 4 thuộc tính mặc định để xác định vị trí của một layer*/
+			position: absolute;
+			top: 0px;
+			left: 0px;
+			z-index: 1;
+			transition: 0.6s;
+
+		}
+		.gradient{
+			width: 400px;
+			height: 300px;
+			/*ta đổ màu radient - thuộc tính background-radient chính là background-image*/
+			background-image: -webkit-linear-gradient(45deg, red 0%, black 100%);
+
+
+			/*4 thuộc tính bên dưới là 4 thuộc tính mặc định để xác định vị trí của một layer*/
+			position: absolute;
+			top: 0px;
+			left: 0px;
+			z-index: 2;
+
+			transition: 0.6s;
+
+			/*bình thường khi chưa làm gì*/
+			opacity: 0;
+		}
+
+		.hinhvuong{
+			width: 80%;
+			height: 80%;
+			position: absolute;
+			z-index: 3;
+			left: 10%; /*vì width đã bằng 80% và cho nó cách biên 10%*/
+			top: 10%; /*cũng vậy*/
+			border: 2px solid white;
+			transition: 0.6s;
+
+			/*bình thường khi chưa làm gì*/
+			opacity: 0;
+			transform: scale(0);
+		}
+
+		.chuto{
+			font-size: 30px;
+			font-family: segoe ui light;
+			top: 35%;
+			left: 0%;
+			width: 100%;
+			position: absolute;
+			text-align: center;
+			color: white;
+			z-index: 4; 
+			transition: 0.6s;
+		}
+
+		.chunho{
+			font-size: 15px;
+			font-family: segoe ui light;
+			top: 50%;
+			left: 15%; /*cho nó cách biên trái của hình vuông một tí >> sẽ nằm giữa nếu thêm text-align là center*/
+			width: 70%; /*cho nó cách biên một tí*/
+			position: absolute;
+			text-align: center;
+			color: white;
+			z-index: 5; 
+			text-transform: uppercase;/* in hoa chữ*/
+			transition: 0.6s;
+
+			/*bình thường khi chưa làm gì*/
+			opacity: 0;
+			transform: scale(0); /*lúc đầu rất nhỏ, rê chuột vào sẽ phóng to lên*/
+		}
+
+		/*hiệu ứng*/
+		.tinto:hover .chuto{
+			top: 25%;
+			/*cách trên là ta cho thay đổi thuộc tính top, ta có thể dùng thuộc tính mới như sau:*/
+			/*transform: translateY(-10px);*/
+		}
+
+		.tinto:hover .chunho{
+			transform: scale(1);
+			opacity: 1;
+		}
+
+		.tinto:hover .hinhvuong{
+			transform: scale(1);
+			opacity: 1;
+		}
+
+		.tinto:hover .xam{
+			opacity: 0;
+		}
+		
+		.tinto:hover .gradient{
+			opacity: 0.4;
+		}
+	</style>
+</head>
+<body>
+	<div class="tinto">
+		<img class="layer1" src="Anh/a2.jpg" alt="">
+		<div class="xam"></div>
+		<div class="gradient"></div>
+		<div class="hinhvuong"></div>
+		<div class="chuto">Warm Oscar</div>
+		<div class="chunho">Đây là bản thử nghiệm đầu tiên của tôi. Rất đẹp phải không! Video 30 có phần import thư viện load phần tử lên từ từ</div>
+	</div>
+</body>
+</html>

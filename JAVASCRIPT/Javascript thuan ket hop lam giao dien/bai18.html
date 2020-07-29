@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 18 - Test hiệu ứng với javascript</title>
+    <style>
+        #nut{
+            position: relative;
+            top: 200px;
+            width: 200px;
+            height: 100px;
+            border-radius: 5px;
+            border: 1px solid gray;
+            background-color: green;
+            transition: 3s;
+        }
+        #nut2{
+            position: relative;
+            top: 200px;
+            width: 200px;
+            height: 100px;
+            border-radius: 5px;
+            border: 1px solid gray;
+            background-color: green;
+            transition: 3s;
+        }
+
+        .bayqua{
+            transform: translateX(500px) rotateZ(360deg);
+        }
+    </style>
+</head>
+<body>
+    <button id="nut">Kích đi dùng Toggle</button>
+    <br>
+    <button id="nut2">Kích không dùng Toggle</button>
+    <script>
+        document.addEventListener("DOMContentLoaded", function(){
+            // 1. Dùng hàm toggle
+            var x = document.getElementById("nut");
+            x.onclick = function(){
+                // hàm anonymous
+                console.log('ll');
+                x.classList.toggle("bayqua");
+            }
+
+            // 2. Không dùng hàm toggle
+            var y = document.getElementById("nut2");
+            var trangthai = "lan1";
+            y.onclick = function(){
+                if(trangthai == "lan1")
+                {
+                    y.classList.add("bayqua");
+                    trangthai = "lan2";
+                }
+                else if(trangthai == "lan2")
+                {
+                    y.classList.remove("bayqua");
+                    trangthai = "lan1";
+                }
+            }
+
+        }, false)
+    </script>
+</body>
+</html>

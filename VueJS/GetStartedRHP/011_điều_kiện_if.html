@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Điều kiện if - Ep 03 | #01</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+</head>
+<body>
+    <div id="app">
+        <h3>Bạn là một sinh viên?</h3>
+        <!-- nếu biến xacDinh = true thì hiển thị, nếu = false thì sẽ xóa lun element trong view hiển thị -->
+        <p v-if="xacDinh">Vâng, tôi là một sinh viên</p>
+        <p v-else>Không, tôi là một nông dân</p>
+        <button @click="xacDinh = !xacDinh">Thay đổi câu trả lời</button>
+
+        <!-- nếu đúng thì xổ cái menu bên dưới ra => ứng dụng làm hiệu ứng xổ menu, trong view html sẽ ko có code template -->
+        <template v-if="xacDinh">
+            <ul>
+                <li><div>Menu item</div></li>
+                <li><div>Menu item</div></li>
+                <li><div>Menu item</div></li>
+                <li><div>Menu item</div></li>
+                <li><div>Menu item</div></li>
+            </ul>
+        </template>
+
+        <!-- Trường hợp sử dụng v-if nếu sai sẽ xóa element đó đi, nếu chỉ muốn ẩn mà không xóa hẳn thì ta dùng v-show -->
+        <h3 v-show="xacDinh">Đúng nha, nhưng sai thì ẩn đi thôi chứ không xóa</h3>
+    </div>
+   
+
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                xacDinh : true
+            },
+            methods : {
+
+            }
+        });
+    </script>
+</body>
+</html>

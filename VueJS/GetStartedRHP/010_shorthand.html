@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sử dụng shorthand - Ep02 | #15</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- <button v-on:click="thayDoiLink">
+            Bấm thay đổi link
+        </button>  thay vì sử dụng v-on, ta có thể sử dụng @ thôi-->
+        <button @click="thayDoiLink">
+            Bấm thay đổi link
+        </button>
+        <a v-bind:href="link">Link</a>
+    </div>
+
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                link: "http://www.google.com",
+            },
+            methods: {
+                thayDoiLink : function(){
+                    this.link = "http://www.facebook.com"
+                }
+            }
+
+        });
+    </script>
+</body>
+</html>

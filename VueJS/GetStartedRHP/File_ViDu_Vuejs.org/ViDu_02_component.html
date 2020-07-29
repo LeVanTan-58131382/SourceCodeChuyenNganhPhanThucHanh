@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ví dụ 2 - Sơ sơ về component</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+</head>
+<body>
+    <div class="wrapper">
+        <template id="button-template">
+            <div>
+                <h1>Ví dụ 1 về component trong Vue.js</h1>
+                <button class="btn btn-success" v-on:click="count++">Bạn đã nhấn {{ count }} lần.</button>
+            </div>
+        </template>
+        <div class="container" id="app">
+            <button-counter></button-counter>
+        </div>    
+    </div>
+
+    <div class="wrapper">
+        <div class="container" id="app_2">
+            <h1>  ĐĂNG KÝ TOÀN CỤC</h1>
+            <a-component-toancuc></a-component-toancuc>
+            <b-component-toancuc></b-component-toancuc>
+            <c-component-toancuc></c-component-toancuc>
+        </div>    
+    </div>
+
+    <div class="wrapper">
+        <div class="container" id="app_3">
+            <h1>  ĐĂNG KÝ CỤC BỘ</h1>
+            <a-component-cucbo></a-component-cucbo>
+            <b-component-cucbo></b-component-cucbo>
+            <c-component-cucbo></c-component-cucbo>
+        </div>    
+    </div>
+
+    <div class="wrapper">
+        <div id="app-7">
+            <p>Những thứ họ mua:</p>
+            <ol>
+              <!--
+                Ở đây chúng ta cung cấp một object "todo" cho mỗi component
+                "todo-item". Bằng cách này nội dung của từng component trở nên động.
+                Mỗi component cũng sẽ nhận một thuộc tính "key". Chúng ta sẽ
+                nói thêm về thuộc tính này sau.
+              -->
+              <todo-item
+                v-for="item in groceryList"
+                v-bind:todo="item"
+                v-bind:key="item.id">
+              </todo-item>
+            </ol>
+          </div>   
+    </div>
+
+    <div class="wrapper">
+        <div id="app-8">
+            <p>Những loại xe chúng tôi bán</p>
+            <ol>
+                <xe_item
+                  v-for="item in xe_list_cu_the"
+                  v-bind:xe_list="item"
+                  v-bind:key="item.id">
+                </xe_item>
+              </ol>
+        </div>
+    </div>
+    
+    
+    
+    <script>
+        // Đăng ký một component
+        Vue.component('button-counter',{
+            data: function () {
+                return {
+                    count: 0
+                }
+            },
+            template: '#button-template'
+        })
+        new Vue({
+            el: '#app'
+        });
+
+        // Đăng ký Component toàn cục bằng cú pháp: Vue.component()
+        Vue.component('a-component-toancuc', {
+        components: {
+            'bcomponent': bcomponent,
+            },
+            template: 
+                "<h1>Lê Văn Tân - component-toancuc A</h1><b-component-toancuc></b-component-toancuc>"
+            });
+        var bcomponent = Vue.component('b-component-toancuc',{
+                template: '<h1>Lê Văn Tân - component-toancuc B</h1>'
+            });
+        Vue.component('c-component-toancuc',{
+                template: '<h1>Lê Văn Tân - component-toancuc C</h1>'
+            });
+        var app_2 = new Vue({
+                el: '#app_2',
+            });
+
+        // Đăng ký cục bộ
+        // Đăng ký toàn cục gặp phải một vấn đề khi sử dụng với các hệ thống build code như Webpack,
+        // các component toàn cục vẫn được đóng gói vào phiên bản cuối cùng mặc dù có thể nó không được gọi đến
+        var acomponent = Vue.component('a-component-cucbo', {
+            template: '<h1>Lê Văn Tiến - component-cucbo A</h1><bcomponent-cucbo></bcomponent-cucbo>'
+            });
+        var bcomponent = Vue.component('b-component-cucbo',{
+                template: '<h1>Lê Văn Tiến - component-cucbo B</h1>'
+            });
+        var ccomponent = Vue.component('c-component-cucbo',{
+                template: '<h1>Lê Văn Tiến - component-cucbo C</h1>'
+            });
+        var app_3 = new Vue({
+                el: '#app_3',
+                components: {
+                'a-component-cucbo': acomponent,
+                'b-component-cucbo': bcomponent
+                }
+            });
+
+        
+        Vue.component('todo-item', {
+        // Ở đây chúng ta khai báo cho component todo-item 
+        // nhận một "prop" (có thể hiểu là một thuộc tính tùy biến) 
+        // có tên là "todo".
+        props: ['todo'],
+        template: '<li>{{ todo.text }}</li>'
+        })
+        var app7 = new Vue({
+            el: '#app-7',
+            data: {
+                groceryList: [
+                { id: 0, text: 'Cà pháo' },
+                { id: 1, text: 'Mắm tôm' },
+                { id: 2, text: 'Miễn ăn được là được' }
+                ]
+            }
+            })
+
+        // ví dụ khác tương tự như vd trên
+        Vue.component('xe_item', {
+        props: ['xe_list'],
+        template: '<li>{{ xe_list.ten }}:{{ xe_list.gia }}</li>'
+        })
+        var app8 = new Vue({
+            el: '#app-8',
+            data: {
+                xe_list_cu_the: [
+                { id: 0, ten: 'Xe đạp', gia: 2000 },
+                { id: 1, ten: 'Xe máy', gia: 4500 },
+                { id: 2, ten: 'Xe ô tô', gia:5500 }
+                ]
+            }
+            })
+    </script>
+
+
+    <style>
+        .wrapper{
+            width: 400px;
+            height: auto;
+            float: left;
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid steelblue;
+            border-radius: 5px;
+        }
+    </style>
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+	<script type="text/javascript" href="js/jquery-3.4.1.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"> -->
+	<style>
+		.bon_nut{
+			width: 900px;
+			height: 50px;
+			margin:auto;
+			text-align: center;
+		}
+		.bon_noidung{
+			width: 900px;
+			top: 30px;
+			margin:auto;
+			position: relative;
+		}
+		.bon_nut li{ /*phân biệt với li bên dưới nội dung*/
+			list-style: none;
+			float: left;
+			margin: 20px;
+			padding: 20px;
+			box-sizing: border-box;
+		}
+		.bon_noidung li{
+			list-style: none;
+			position: absolute;
+			width: 900px;
+			border: 1px solid #ddd;
+			padding: 20px;
+			transition: 0.6s;
+			/*transform: translateX(-1300px);*/
+			transform: scale(0);
+		}
+
+		.bon_noidung li:after{
+			content: "";
+			display: block;
+			width: 14px;
+			height: 14px;
+			border: 1px solid #ddd;
+			position: absolute;
+			top: -8px; /*cách top 0px*/
+			transform: rotateZ(45deg);
+		}
+		.bon_noidung li:before{
+			content: "";
+			display: block;
+			width: 14px;
+			height: 14px;
+			background-color: white;
+			position: absolute;
+			top: -7px; /*cách top 0px*/
+			transform: rotateZ(45deg);
+			z-index: 4;
+		}
+
+		.bon_noidung li{
+			/*ban đầu cho 4 nội dung ẩn đi*/
+			opacity: 0;
+			visibility: hidden;
+		}
+		.bon_noidung li.hienlen{
+			opacity: 1;
+			visibility: visible;
+			/*transform: translateX(0px);*/
+			transform: scale(1);
+		}
+
+		.noidung_chitiet img{
+			width: 30%;
+			height: 30%;
+			border: 1px solid gray;
+			padding: 2px;
+			margin-right: 20px;
+		}
+		li.active b.btn{
+			/*Nghĩa là với những thẻ b nào nằm trong active thì nó sẽ có màu cam*/
+			background-color: orange;
+			color: white;
+		}
+	</style>
+	<script>
+		$(document).ready(function(){
+			$('.bon_nut li').click(function() {
+				$('.bon_nut li').removeClass('active');
+				$(this).addClass('active');
+
+				//hiện nội dung
+				x = $(this).index();
+				x = x + 1;
+				$('.bon_noidung ul li').removeClass('hienlen');
+				$('.bon_noidung ul li:nth-child('+ x +')').addClass('hienlen');
+			});
+		});
+	</script>
+</head>
+<body>
+	<div class="bon_nut">
+		<ul>
+			<li class="active"><b class="btn btn-outline-warning">Nguyễn Thị Hiền</b></li>
+			<li><b class="btn btn-outline-warning">Lê Văn Tân</b></li>
+			<li><b class="btn btn-outline-warning">Lê Văn Tiến</b></li>
+			<li><b class="btn btn-outline-warning">Lê Thanh Hoài</b></li>
+		</ul>
+	</div>
+	<div class="bon_noidung">
+		<ul>
+			<li class="hienlen">
+				<div class="noidung_chitiet">
+					<img src="Anh/chimlua.png" alt="">
+					<p>Xác Sống / The Walking Dead phần 9 sẽ lấy bối cảnh sau cuộc Chiến tranh Toàn diện (All Out War). Lần này, Rick Grimes đang đứng đầu một nhóm người sống sót đang khá hoà thuận với nhau, đồng thời đang phát triển mạng lưới thương mại và hầu như không có bất cứ xung đột vũ trang gì.</p>
+				</div>
+			</li>
+			<li>
+				<div class="noidung_chitiet">
+					<img src="Anh/ga3.png" alt="">
+					<p>Xác Sống / The Walking Dead phần 9 sẽ lấy bối cảnh sau cuộc Chiến tranh Toàn diện (All Out War). Lần này, Rick Grimes đang đứng đầu một nhóm người sống sót đang khá hoà thuận với nhau, đồng thời đang phát triển mạng lưới thương mại và hầu như không có bất cứ xung đột vũ trang gì.</p>
+				</div>
+			</li>
+			<li>
+				<div class="noidung_chitiet">
+					<img src="Anh/lugia.png" alt="">
+					<p>Xác Sống / The Walking Dead phần 9 sẽ lấy bối cảnh sau cuộc Chiến tranh Toàn diện (All Out War). Lần này, Rick Grimes đang đứng đầu một nhóm người sống sót đang khá hoà thuận với nhau, đồng thời đang phát triển mạng lưới thương mại và hầu như không có bất cứ xung đột vũ trang gì.</p>
+				</div>
+			</li>
+			<li>
+				<div class="noidung_chitiet">
+					<img src="Anh/rongca.png" alt="">
+					<p>Xác Sống / The Walking Dead phần 9 sẽ lấy bối cảnh sau cuộc Chiến tranh Toàn diện (All Out War). Lần này, Rick Grimes đang đứng đầu một nhóm người sống sót đang khá hoà thuận với nhau, đồng thời đang phát triển mạng lưới thương mại và hầu như không có bất cứ xung đột vũ trang gì.</p>
+				</div>
+			</li>
+		</ul>
+	</div>
+
+</body>
+</html>

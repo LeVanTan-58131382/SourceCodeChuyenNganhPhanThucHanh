@@ -1,0 +1,7 @@
+Ta t?o thu m?c ch?a project.
+	-> m? cmd.
+	-> vue init webpack-simple "tên project"
+	-> tr? l?i m?t s? câu h?i: no sass
+	-> cd vào thu m?c project
+	-> npm install
+	-> npm run dev.

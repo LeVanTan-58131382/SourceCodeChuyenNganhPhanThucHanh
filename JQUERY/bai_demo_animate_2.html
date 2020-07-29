@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="font/LeckerliOne-Regular.ttf"> <!-- load font leckerli -->
+	<script src="jquery-3.4.1.js"></script>
+	<script src="jquery-3.4.1.min.js"></script>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		header.to{
+			height: 700px;
+			width: 100%;
+			background-size: cover;
+			background-image: url(Anh/images/nen.jpg);
+			position: relative;
+			overflow: hidden;
+		}
+
+		img.embe{
+			position: absolute;
+			z-index: 2;
+			bottom: 0px;
+			right: 18%;
+
+			opacity: 0;
+			animation: dilen 0.5s forwards;
+			animation-delay: 1.5s;
+		}
+
+		img.dammay{
+			position: absolute;
+			z-index: 3;
+			bottom: 0px;
+			left: 0px;
+
+			opacity: 0;
+			animation: dilen 1s forwards;
+		}
+
+		@-webkit-keyframes dilen{
+			0%{ transform: translateY(300px); opacity: 0;}
+			100%{ transform: translateY(0px); opacity: 1;};
+		}
+
+		@-webkit-keyframes phonglen{
+			0%{ transform: scale(0.4); opacity: 0;}
+			100%{ transform: scale(1); opacity: 1;};
+		}
+
+		@-webkit-keyframes nhayqua{
+			0%{ transform: translateX(400px); opacity: 0;}
+			100%{ transform: translateX(0px); opacity: 1;};
+		}
+
+		img.hoatiet1{
+			position: absolute;
+			bottom: 220px;
+			right: 17%; 
+			z-index: 1;
+
+			opacity: 0;
+			animation: phonglen 0.7s forwards;
+			animation-delay: 1.7s;
+		}
+
+		img.hoatiet2{
+			position: absolute;
+			bottom: 400px;
+			right: 20%; 
+			z-index: 1;
+
+			opacity: 0;
+			animation: phonglen 0.7s forwards;
+			animation-delay: 1.9s;
+		}
+
+		img.hoatiet3{
+			position: absolute;
+			bottom: 70px;
+			right: 17%; 
+			z-index: 1;
+
+			opacity: 0;
+			animation: phonglen 0.7s forwards;
+			animation-delay: 2.1s;
+		}
+
+		.chuto{
+			position: absolute;
+			width: 400px;
+			top: 25%;
+			left: 25%;
+			font-size: 50px;
+			font-family: 'LeckerliOne' , cursive;
+			color: white;
+
+			opacity: 0;
+			animation: nhayqua 0.7s forwards;
+			animation-delay: 2.3s;
+		}
+
+		.nut{
+			position: absolute;
+			top: 60%;
+			left: 30%;
+			width: 200px;
+			height: 50px;
+			cursor: pointer;
+			color: white;
+			background-color: green;
+			border: 1px solid white;
+			border-radius: 20px;
+			font-size: 25px;
+			font-family: 'LeckerliOne' , cursive;
+			text-align: center;
+
+			opacity: 0;
+			animation: dilen 1s forwards;
+			animation-delay: 2.5s;
+		}
+
+		.nut:hover{
+			background-color: lightgreen;
+		}
+	</style>
+</head>
+<body>
+	<header class="to">
+		<img src="Anh/images/s1.png" alt="" class="embe">
+		<img src="Anh/images/s3.png" alt="" class="hoatiet1">
+		<img src="Anh/images/s4.png" alt="" class="hoatiet2">
+		<img src="Anh/images/s2.png" alt="" class="hoatiet3">
+		<img src="Anh/images/s5.png" alt="" class="dammay">
+		<div class="chuto">Đây Là Bài Demo Thứ Hai Về Animation</div>
+		<div class="nut">See another</div>
+	</header>
+</body>
+</html>

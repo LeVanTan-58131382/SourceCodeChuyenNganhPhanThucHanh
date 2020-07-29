@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tìm hiểu tham số event của một đối tượng trong JS</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+</head>
+<body>
+    <div id="app-1">
+       <div id="divCon" v-on:mousemove="tinhToaDo">Tọa độ di chuyển của chuột: {{ x }} / {{ y }}
+            <div id="divKhongPhanUng" v-on:mousemove="dungTinhToaDo">Dừng tính tọa độ ở đây</div>
+            <p v-on:mousemove.stop="">Cách 2 dừng sự kiện on mousemove</p>
+       </div>
+    </div>
+
+    <script>
+        new Vue({
+            el: "#app-1",
+            data: {
+                x : 0,
+                y : 0
+            },
+            methods: {
+                tinhToaDo : function(event){
+                    this.x = event.clientX;
+                    this.y = event.clientY;
+                },
+                dungTinhToaDo : function(event){
+                    event.stopPropagation(); // phương thức dừng diễn biến sự kiện, ở đây là onmousemove
+                }
+            }
+        });
+    </script>
+
+    <style>
+        #app-1{
+            position: relative;
+            width: 300px;
+            height: 300px;
+            border: 1px solid blueviolet;
+            border-radius: 5px;
+        }
+        #divCon{
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            background-color: aqua;
+        }
+        #divKhongPhanUng{
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 40%;
+            height: 40%;
+            z-index: 5;
+            background-color: chartreuse;
+            border-radius: 5px;
+        }
+    </style>
+</body>
+</html>

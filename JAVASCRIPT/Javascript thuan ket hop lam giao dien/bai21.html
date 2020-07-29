@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 21 - Hiệu ứng thanh menu Facebook</title>
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+        .thanhngangxanh{
+            width: 100%;
+            height: 50px;
+            background-color: #4267b2;
+        }
+        .motphantu{
+            position: relative;
+            width: 300px;
+        }
+        .mot{
+            left: 400px;
+        }
+        .hai{
+            left: 700px;
+        }
+        .ba{
+            left: 1000px;
+        }
+        .iconFB{
+            position: absolute;
+            font-size: 30px;
+            right: 0px;
+            cursor: pointer;
+            transition: 0.5s;
+        }
+        .iconFBmautrang{
+            color: white;
+        }
+        .danhsach{
+            position: absolute;
+            top: 50px;
+            right: -10px;
+            width: 180px;
+            transition: 0.5s;
+
+            opacity: 0;
+            visibility: hidden;
+        }
+        .daudanhsach{
+            position: absolute;
+            top: -20px;
+            font-size: 30px;
+            right: 10px;
+            transform: rotateY(180deg);
+            color: ivory;
+        }
+        .hiendanhsach{
+            opacity: 1;
+            visibility: visible;
+        }
+        ul{
+            width: 100%;
+            height: auto;
+            background-color: ivory;
+            border-radius: 5px;
+            border: 1px solid gray;
+        }
+        li{
+            margin-bottom: 5px;
+        }
+
+        li:hover{
+            background-color: #4267b2;
+        }
+    </style>
+</head>
+<body>
+    <div class="thanhngangxanh">
+        <div class="motphantu mot">
+            <div class="iconFB" data-hienlen = "notifications"><i class="fas fa-globe-americas"></i></div>
+            <div class="danhsach" id="notifications">
+                <i class="fa fa-caret-up daudanhsach"></i>
+                <ul>
+                    <li>Item 1 nha</li>
+                    <li>Item 2 nha</li>
+                    <li>Item 3 nha</li>
+                    <li>Item 4 nha</li>
+                    <li>Item 5 nha</li>
+                </ul>
+            </div>
+        </div>
+        <div class="motphantu hai">
+            <div class="iconFB" data-hienlen="user"><i class="fa fa-user-circle"></i></div>
+            <div class="danhsach" id="user">
+                <i class="fa fa-caret-up daudanhsach"></i>
+                <ul>
+                    <li>Item 1 nha</li>
+                    <li>Item 2 nha</li>
+                    <li>Item 3 nha</li>
+                    <li>Item 4 nha</li>
+                    <li>Item 5 nha</li>
+                </ul>
+            </div>
+        </div>
+        <div class="motphantu ba">
+            <div class="iconFB" data-hienlen="setting"><i class="fa fa-caret-down"></i></div>
+            <div class="danhsach" id="setting">
+                <i class="fa fa-caret-up daudanhsach"></i>
+                <ul>
+                    <li>Item 1 nha</li>
+                    <li>Item 2 nha</li>
+                    <li>Item 3 nha</li>
+                    <li>Item 4 nha</li>
+                    <li>Item 5 nha</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function(){
+            var listiconFB = document.getElementsByClassName("iconFB");
+            var DShienra = document.getElementsByClassName("danhsach");
+            for(var i = 0; i < listiconFB.length; i++)
+            {
+                listiconFB[i].onclick = function(){
+                    // * ta có 2 trường hợp
+                    // Trường hợp 1: kích lại vào thằng đang kích => cho về bình thường
+                    if(this.classList[1] == "iconFBmautrang") // nó đang hiển thị
+                    {
+                        this.classList.remove("iconFBmautrang");
+                        // Cho danh sách item của thằng đó mất lun
+                        var DSCanHienThi = this.getAttribute("data-hienlen");
+                        var DSCanHienThiCuThe = document.getElementById(DSCanHienThi);
+                        DSCanHienThiCuThe.classList.remove("hiendanhsach");
+                    }
+                    else{
+                    // Trường hợp 2: kích vào những thằng còn lại
+                    // trước đó sẽ xóa màu trắng của toàn bộ icon đi
+                        for(var j = 0; j < listiconFB.length; j++)
+                        {
+                            listiconFB[j].classList.remove("iconFBmautrang");
+
+                            // var DSCanHienThi = document.getElementById(listiconFB[j].getAttribute("data-hienlen"));
+                            // DSCanHienThi.classList.remove("hiendanhsach");
+                        }
+                        this.classList.toggle("iconFBmautrang");
+                        this.getAttribute("data-hienlen"); // thông qua thằng này mình sẽ lấy dc ID của thằng danh sách tương ứng
+                        var DSCanHienThi = this.getAttribute("data-hienlen");
+                        var DSCanHienThiCuThe = document.getElementById(DSCanHienThi);
+
+                        // trước đó phải tắt các danh sách đang dc hiển thị
+                        for(var j = 0; j < listiconFB.length; j++)
+                            {
+                                DShienra[j].classList.remove("hiendanhsach");
+                            }
+                        DSCanHienThiCuThe.classList.toggle("hiendanhsach");
+                        }
+                    }
+            }
+        }, false)
+    </script>
+</body>
+</html>

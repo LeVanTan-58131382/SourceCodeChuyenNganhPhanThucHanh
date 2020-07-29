@@ -1,0 +1,10 @@
+Có hai môi trường:
+1. Development
+    - Babel:
+        -> ES6 phiên bản mới của ES5
+    - Webpack: 
+        -> Công cụ đóng gói code, đóng gói mã nguồn
+2. Production
+
+# Để chạy file index.html, ta chuột phải lên project helloVuejs chọn open terminal, gõ lệnh 'npm run dev'
+# Để build thì mở terminal, gõ 'npm run build', nó sẽ đóng gói code vào một file js cuối cùng. ( đó là file build.js)

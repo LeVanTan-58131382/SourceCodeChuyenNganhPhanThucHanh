@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 4 - Mảng</title>
+</head>
+<body>
+    - Mảng dùng để lưu nhiều giá trị. <br>
+    - Mỗi giá trị của (trong) một mảng đều chỉ có một tên.<br>
+    - Trong javascript sẽ không hỗ trợ kiểu mảng có tên như php, JS thuần 
+    chỉ hỗ trợ kiểu chỉ số. <br>
+        + vd: (php) ds = [
+        'hocvien_1' => "tân",
+        'hocvien_2' => "tiến",
+        ];<br>
+            (js) ds = ["tân", "tiến"];
+    <script>
+        // các học viên trong kháo học
+        var hocvien_1 = "tân";
+        var hocvien_2 = "cường";
+        var hocvien_3 = "tiến";
+
+        // không thể khai báo hàng ngàn biến => đưa vào một mảng, truy xuất bằng chỉ số của nó
+        // - Cách khai báo 1
+        var ds_hocvien = ["tân", "cường", "tiến"];
+        //                  0       1        2
+        console.log(ds_hocvien);
+        console.log(ds_hocvien[1]); // cường
+
+        // - Cách khai báo 2
+        var ds_hocvien_2 = [];
+        ds_hocvien_2[0] = "tân";
+        ds_hocvien_2[1] = "cường";
+        ds_hocvien_2[2] = "tiến";
+
+        // - Cách khai báo 3: Dùng từ khóa new
+        var ds_hocvien_3 = new Array("tuấn", "hải", "kha");
+        console.log(ds_hocvien_3[2]); // kha
+    </script>
+</body>
+</html>

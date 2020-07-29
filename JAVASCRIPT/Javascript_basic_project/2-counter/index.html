@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ứng dụng count để tạo Progress Bar với giá trị ngẫu nhiên</title>
+    <style>
+        #myProgress {
+          width: 100%;
+          background-color: #ddd;
+        }
+        
+        #myBar {
+          width: 0%;
+          height: 30px;
+          background-color: green;
+          text-align: center;
+          line-height: 30px;
+          color: white;
+        }
+        .listNut{
+            position: relative;
+            margin: auto;
+            width: 400px;
+            height: 100px;
+        }
+        .btn{
+            position: relative;
+            width: 100px;
+            height: 50px;
+            background-color: seagreen;
+            color: white;
+            border-radius: 5px;
+            margin: 10px;
+            text-align: center;
+            float: left;
+        }
+
+    </style>
+    <body>
+        
+        <h1>JavaScript Progress Bar</h1>
+        <h3 style="text-align: center;">Máu</h3>
+        <div id="myProgress">
+          <div id="myBar">0%</div>
+        </div>
+        <div class="listNut">
+            <button class="btn decrease">Giảm máu</button>
+            <button class="btn reset">Hồi sinh</button>
+            <button class="btn increase">Tăng máu</button>
+        </div>
+        
+        
+        <br>
+        
+        <script>
+        var elem = document.getElementById("myBar");
+        let count = 0;
+        const btns = document.querySelectorAll(".btn");
+
+        btns.forEach(function (btn) {
+        btn.addEventListener("click", function (e) {
+            const styles = e.currentTarget.classList; // currentTarget trả về phần tử đang lắng nghe sự kiện
+            if (styles.contains("decrease")) {
+                if(count > 0)
+                {
+                    count--;
+                    elem.style.width = count + "%";
+                }
+            } else if (styles.contains("increase")) 
+            {
+                if(count < 100)
+                {
+                    count++;
+                    elem.style.width = count + "%";
+                }
+
+            } else {
+            count = 100;
+            elem.style.width = count + "%";
+            }
+
+            if (count >= 50) {
+                elem.style.backgroundColor = "green";
+            }
+            if (count < 50) {
+                elem.style.backgroundColor = "orange";
+            }
+            if (count <= 10) {
+                elem.style.backgroundColor = "red";
+            }
+            elem.textContent = count + "%";
+        });
+        });
+        </script>
+        
+    </body>
+</html>
+        

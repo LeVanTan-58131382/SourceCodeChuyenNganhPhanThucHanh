@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Một vài điều cơ bản về VueJS Instance</title>
+	
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<h1>{{title}}</h1>
+		<h1>After Computed: {{lowercaseTitle}}</h1>
+		<button @click="show">Show</button>
+		<p v-if="showParagraph">
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, nam sapiente maiores facilis atque quia. Laudantium laborum esse aut saepe expedita, at sit culpa nesciunt nam sint officiis, labore asperiores?
+		</p>
+	</div>
+	<script type="text/javascript">
+		new Vue({
+			el: "#app",
+			data: {
+				title: 'This Is Title (Current) !',
+				showParagraph: false
+			},
+			methods: {
+				show: function(){
+					this.showParagraph = true;
+					this.upDateTitle("This Is Title (Updated) !");
+				},
+				upDateTitle: function(title){
+					this.title = title;
+				}
+			},
+			computed: {
+				lowercaseTitle: function(){
+					return this.title.toLowerCase();
+				}
+			},
+			watch: {
+				title: function(value){
+					alert("Title changed, new value: " + value);
+				}
+			}
+		});
+	</script>
+	Tất cả các phương thức, thuộc tính trên gọi một instance để quản lý một DOM của HTML (dom div có id là app)
+	Phương thức watch theo dõi và thục hiện hành động khi có bất kì sự thay đổi nào của biến mình muốn theo dõi (ở đây mình theo dõi biến title)
+</body>
+</html>

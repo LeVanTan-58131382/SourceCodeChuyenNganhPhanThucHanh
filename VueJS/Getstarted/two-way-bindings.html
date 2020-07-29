@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>VUEJS</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+</head>
+<body>
+    <div class="container-fluid">
+            <header><h1>Header</h1></header>
+            <div class="list-blog">
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Autem, ipsa optio cumque quaerat nihil voluptatibus accusamus ipsam eaque. Impedit eum obcaecati odit laborum reprehenderit libero dignissimos quia? Iusto, veritatis placeat.
+            <br>
+            <br>
+            <br>
+            </div>
+            <div id="app">
+                <h1> First Name = {{ firstname }}</h1>
+                <input type="text" v-model= 'firstname'>
+                <input v-bind:type="texttype" class="btn btn-success" v-bind:value="textvalue">
+
+                <!-- <button v-on:click="changeActive">Change Active</button> -->
+                <!-- <button v-on:click="changeError">Change Error</button> -->
+                <div class="demo" v-bind:class="objClass"></div>
+            </div>
+                
+            </div>
+            <br>
+            <br>
+            <br>
+            <footer><h1>Footer</h1></footer>
+    </div>
+    
+</body>
+<script >
+    var app = new Vue({
+        el: "#app",
+        data: {
+            firstname:'',
+            texttype: 'button',
+            textvalue: "A khà khà",
+            isActive: true,
+            isError: true
+        },
+        method: {
+        changeActive(){
+            // true -> false
+            // false -> true
+            this.isActive = !this.isActive;
+        },
+        // changeError(){
+        //     this.isError = !this.isError;
+        // }
+        },
+        computed: {
+            objClass: function(){
+                active = this.isActive;
+                error = this.isError;
+                return {
+                    active,
+                    error
+                };
+            }
+        }
+
+    })
+</script>
+</html>

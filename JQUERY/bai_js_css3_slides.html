@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="jquery-3.4.1.js"></script>
+	<script src="jquery-3.4.1.min.js"></script>
+
+	<style type="text/css">
+		
+		.apple{
+			width: 100%;
+			height: 700px;
+			overflow: hidden;
+		}
+
+		.anhslide{
+			position: relative;
+			width: 100%;
+			height: 650px;
+			overflow: hidden;
+			text-align: center;
+		}
+		._1slide{
+			position: absolute;
+			width: 100%;
+			height: 700px;
+			top: 0px;
+			left: 0px;
+			opacity: 0;
+			visibility: hidden;
+		}
+
+		._1slide img{
+			width: 100%;
+			height: 100%;
+		}
+		._1slide.active{
+			opacity: 1;
+			visibility: visible;
+		}
+
+		.next {
+			position: absolute;
+			top: 50%;
+			right: 0%;
+			z-index: 3;
+			width: 60px;
+			height: 60px;
+			border-radius: 50%;
+			overflow: hidden;
+			transform: rotate(180deg);
+			cursor: pointer;
+
+		}
+
+		.next img{
+			width: 100%;
+			height: 100%;
+		}
+		.prev {
+			position: absolute;
+			top: 50%;
+			left: 0%;
+			z-index: 3;
+			width: 60px;
+			height: 60px;
+			border-radius: 50%;
+			overflow: hidden;
+			cursor: pointer;
+		}
+
+		.prev img{
+			width: 100%;
+			height: 100%;
+		}
+
+		.nutslide li{
+			list-style: none;
+			background-color: gray;
+			float: left;
+			width: 15px;
+			height: 15px;
+			border-radius: 50%;
+			text-indent: -9999px;
+			margin: 10px;
+			cursor: pointer;
+		}
+		
+		.nutslide li:hover{
+			background-color: white;
+			border: 1px solid blue;
+		}
+
+		ul{
+			display: inline-block; /*đặt là inline-block thì hàng chấm tròn sẽ tự canh giữa*/
+		}
+
+		.nutslide{
+			width: 100%;
+			text-align: center;
+			height: 50px;
+		}
+		
+		/*next*/
+		._1slide.disangtrai{
+			animation: disangtrai 1s forwards;
+		}
+
+		._1slide.dituphaivao{
+			animation: dituphaivao 1s forwards;
+		}
+
+		@-webkit-keyframes disangtrai{
+			0%{ transform: translateX(0%);opacity: 1;
+			visibility: visible;}
+			100%{ transform: translateX(-100%);opacity: 0;
+			visibility: hidden;};
+		}
+
+		@-webkit-keyframes dituphaivao{
+			0%{ transform: translateX(100%);opacity: 0;
+			visibility: hidden;}
+			100%{ transform: translateX(0%);opacity: 1;
+			visibility: visible;};
+		}
+
+		/*prev*/
+		._1slide.disangphai{
+			animation: disangphai 1s forwards;
+		}
+
+		._1slide.ditutraivao{
+			animation: ditutraivao 1s forwards;
+		}
+
+		@-webkit-keyframes disangphai{
+			0%{ transform: translateX(0%);opacity: 1;
+			visibility: visible;}
+			100%{ transform: translateX(100%);opacity: 0;
+			visibility: hidden;};
+		}
+
+		@-webkit-keyframes ditutraivao{
+			0%{ transform: translateX(-100%);opacity: 0;
+			visibility: hidden;}
+			100%{ transform: translateX(0%);opacity: 1;
+			visibility: visible;};
+		}
+
+		.nutslide li.xanh{
+			background-color: white;
+			border: 1px solid blue;
+		}
+	</style>
+</head>
+<body>
+	<header class="apple">
+		<div class="anhslide">
+			<div class="_1slide active"><img src="Anh/b1.jpg" alt=""></div>
+			<div class="_1slide"><img src="Anh/b2.jpg" alt=""></div>
+			<div class="_1slide"><img src="Anh/b3.png" alt=""></div>
+			<div class="_1slide"><img src="Anh/b4.jpg" alt=""></div>
+		</div>
+		<div class="nutslide">
+			<div class="next"><img src="Anh/nextj.png" alt=""></div>
+			<div class="prev"><img src="Anh/nextj.png" alt=""></div>
+			<ul>
+			    <li class="xanh">1</li>
+			    <li>2</li>
+			    <li>3</li>
+			    <li>4</li>
+			</ul>
+		</div>
+	</header>
+
+	<script>
+		// code cho nút next
+		jQuery(document).ready(function($) {
+			// tự động chuyển slide
+			thoigian = setInterval(function(){
+				// hoặc là copy đoạn của xử lý của nút next vào hoặc 
+				//$(".next").trigger('click'); // kích hoạt sự kiện click sau 3s
+				var thangsau = $(".active").next(); //ảnh phía sau của ảnh đang hiển thị
+				// xử lý cho hàng nút nhỏ bên dưới chạy theo
+				var vitri = $('.xanh').index() + 1;
+				$('.nutslide ul li').removeClass('xanh');
+				// nếu đã đến slide cuối cùng
+				if(vitri == $('.nutslide ul li').length)
+				{
+					vitri = 0;
+				}
+				$('.nutslide ul li:nth-child('+ (vitri + 1) +')').addClass('xanh');
+
+
+				// xử lý nút next cho slide cuối cùng
+				if(thangsau.length == 0)
+				{
+					$(".active").addClass('disangtrai').one('webkitAnimationEnd', function(event) {
+					$(".disangtrai").removeClass('disangtrai');
+				});
+
+				$(".anhslide ._1slide:first-child").addClass('dituphaivao').one('webkitAnimationEnd', function(event) {
+					// bò class active của thằng đang active
+					$(".active").removeClass('active');
+					$(".dituphaivao").addClass('active').removeClass('dituphaivao');
+				});
+				}
+				else{
+					//khi bấm nút này thì add thêm class dichuyenvetrai cho slides đang hiển thị (active)
+				$(".active").addClass('disangtrai').one('webkitAnimationEnd', function(event) {
+					$(".disangtrai").removeClass('disangtrai');
+				});; 
+				//hàm .one() là hàm sau khi đợi chuyển động xong mới thực hiện tiếp hàm remove()
+
+				thangsau.addClass('dituphaivao').one('webkitAnimationEnd', function(event) {
+					// bò class active của thằng đang active
+					$(".active").removeClass('active');
+					$(".dituphaivao").addClass('active').removeClass('dituphaivao')
+					});
+				}
+				
+			}, 3000)
+
+
+			$(".next").click(function(event) {
+				clearInterval(thoigian); // khi người dùng đã kích vào rồi thì ko tự động chuyển nữa
+
+				var thangsau = $(".active").next(); //ảnh phía sau của ảnh đang hiển thị
+				// xử lý cho hàng nút nhỏ bên dưới chạy theo
+				var vitri = $('.xanh').index() + 1;
+				$('.nutslide ul li').removeClass('xanh');
+				// nếu đã đến slide cuối cùng
+				if(vitri == $('.nutslide ul li').length)
+				{
+					vitri = 0;
+				}
+				$('.nutslide ul li:nth-child('+ (vitri + 1) +')').addClass('xanh');
+
+
+				// xử lý nút next cho slide cuối cùng
+				if(thangsau.length == 0)
+				{
+					$(".active").addClass('disangtrai').one('webkitAnimationEnd', function(event) {
+					$(".disangtrai").removeClass('disangtrai');
+				});
+
+				$(".anhslide ._1slide:first-child").addClass('dituphaivao').one('webkitAnimationEnd', function(event) {
+					// bò class active của thằng đang active
+					$(".active").removeClass('active');
+					$(".dituphaivao").addClass('active').removeClass('dituphaivao');
+				});
+				}
+				else{
+					//khi bấm nút này thì add thêm class dichuyenvetrai cho slides đang hiển thị (active)
+				$(".active").addClass('disangtrai').one('webkitAnimationEnd', function(event) {
+					$(".disangtrai").removeClass('disangtrai');
+				});; 
+				//hàm .one() là hàm sau khi đợi chuyển động xong mới thực hiện tiếp hàm remove()
+
+				thangsau.addClass('dituphaivao').one('webkitAnimationEnd', function(event) {
+					// bò class active của thằng đang active
+					$(".active").removeClass('active');
+					$(".dituphaivao").addClass('active').removeClass('dituphaivao')
+					});
+				}
+			});
+
+
+		//	code cho nút prev
+
+			$(".prev").click(function(event) {
+				clearInterval(thoigian); // khi người dùng đã kích vào rồi thì ko tự động chuyển nữa
+
+				var thangtruoc = $(".active").prev(); //ảnh phía sau của ảnh đang hiển thị
+				// xử lý cho hàng nút nhỏ bên dưới chạy theo
+				var vitri = $('.xanh').index() + 1;
+				$('.nutslide ul li').removeClass('xanh');
+				// nếu đang ở slide đầu tiên
+				if(vitri == 1)
+				{
+					vitri = $('.nutslide ul li').length + 1;
+				}
+				$('.nutslide ul li:nth-child('+ (vitri - 1) +')').addClass('xanh');
+
+				// xử lý nút next cho slide cuối cùng
+				if(thangtruoc.length == 0)
+				{
+					$(".active").addClass('disangphai').one('webkitAnimationEnd', function(event) {
+					$(".disangphai").removeClass('disangphai');
+				});
+
+				$(".anhslide ._1slide:last-child").addClass('ditutraivao').one('webkitAnimationEnd', function(event) {
+					// bò class active của thằng đang active
+					$(".active").removeClass('active');
+					$(".ditutraivao").addClass('active').removeClass('ditutraivao');
+				});
+				}
+				else{
+					//khi bấm nút này thì add thêm class dichuyenvetrai cho slides đang hiển thị (active)
+				$(".active").addClass('disangphai').one('webkitAnimationEnd', function(event) {
+					$(".disangphai").removeClass('disangphai');
+				});; 
+				//hàm .one() là hàm sau khi đợi chuyển động xong mới thực hiện tiếp hàm remove()
+
+				thangtruoc.addClass('ditutraivao').one('webkitAnimationEnd', function(event) {
+					// bò class active của thằng đang active
+					$(".active").removeClass('active');
+					$(".ditutraivao").addClass('active').removeClass('ditutraivao')
+					});
+				}
+			});
+
+
+			// code cho hàng nút li bên dưới
+			$('.nutslide ul li').click(function(event) {
+				$('.nutslide ul li').removeClass('xanh');
+				$(this).addClass('xanh');
+
+
+				$(".active").addClass('disangtrai').one('webkitAnimationEnd', function(event) {
+					$(".disangtrai").removeClass('disangtrai');
+				});
+				$('.anhslide ._1slide:nth-child('+ ($(this).index() + 1)+')').addClass('dituphaivao').one('webkitAnimationEnd', function(event) {         // hàm index bắt đầu đếm từ 0
+					// bò class active của thằng đang active
+					$(".active").removeClass('active');
+					$(".dituphaivao").addClass('active').removeClass('dituphaivao');
+				});
+			});
+
+});
+	</script>
+</body>
+</html>

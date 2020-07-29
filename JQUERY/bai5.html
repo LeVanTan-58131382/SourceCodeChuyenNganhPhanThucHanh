@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="jquery-3.4.1.js"></script>
+	<script src="jquery-3.4.1.min.js"></script>
+
+	<style type="text/css">
+		.to{
+			width: 400px;
+			height: 300px;
+			position: relative;
+			overflow: hidden;
+		}
+
+		img.anh{
+			/*width: 400px;*/
+			height: 300px;
+			transition: 0.6s;
+			transform: scale(1.5);
+		}
+
+		.nenxanh{
+			width: 400px;
+			height: 300px;
+			position: absolute;
+			top: 0px;
+			left: 0px;
+			z-index: 1;
+			background-color: rgba(173, 216, 230, 0.42);
+			transition: 0.6s;
+
+			opacity: 0;
+		}
+
+		.thanh1, .thanh2{
+			width: 350px;
+			height: 1px;
+			position: absolute;
+			top: 140px;
+			left: 25px;
+			z-index: 3;
+			background-color: white;
+			transition: 0.3s;
+
+			/*ban đầu 2 thanh này không quay >> rotate(0deg)*/
+			transform: rotate(0deg);
+		}
+
+		.chuto, .chunho{
+			position: absolute;
+			z-index: 4;
+			top: 100px;
+			left: 0px;
+			width: 100%;
+			text-align: center;
+			/*bộ khung thuộc tính bên trên canh dòng chữ giữa màn hình*/
+			color: white;
+			font-size: 22px;
+			font-family: segoe ui light;
+			transition: 0.6s;
+		}
+
+		.chunho{
+			font-size: 15px;
+			width: 80%;
+			top: 180px;
+			padding: 0 40px; /*trên dưới - trái phải*/
+		}
+
+		/*hiệu ứng*/
+		.to:hover img.anh{
+			transform: scale(1);
+		}
+
+		.to:hover .nenxanh{
+			opacity: 1;
+		}
+		.to:hover .thanh1{
+			transform: rotate(45deg);
+		}
+		.to:hover .thanh2{
+			transform: rotate(-45deg);
+		}
+		.to:hover .chuto{
+			transform: translateY(10px); /*dịch xuống theo chiều dọc*/
+		}
+		.to:hover .chunho{
+			transform: translateY(-10px); /*dịch lên theo chiều dọc*/
+		}
+	</style>
+</head>
+<body>
+	<div class="to">
+		<img src="Anh/13.png" alt="" class="anh">
+		<div class="nenxanh"></div>
+		<div class="thanh1"></div>
+		<div class="thanh2"></div>
+		<div class="chuto">REOMEO WILD</div>
+		<div class="chunho">NEVER KNOWS WHAT HE WANTS. HE SEEMED TO BE VERY CROSS ABOUT SOMETHING</div>
+	</div>
+	
+</body>
+</html>

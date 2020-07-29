@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chuyển ảnh theo chiều dọc ( tự code)</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        .wrapper{
+            position: relative;
+            width: 300px;
+            height: 500px;
+            background-color: darkcyan;
+            border-radius: 10px;
+            margin: auto;
+            overflow: hidden;
+        }
+        .khoiCacAnh{
+            position: relative;
+            height: 80%;
+            width: 100%;
+            top: 10%;
+            left: 0;
+        }
+        .khoiCacAnh ul{
+            width: 100%;
+            height: 100%;
+        }
+        .khoiCacAnh ul li {
+            position: absolute;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            display: flex;
+            align-items: center;
+            text-align: center;
+        }
+        .khoiCacAnh ul li.active{
+            opacity: 1;
+        }
+        .khoiCacAnh ul li img{
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        .nutTren{
+            position: absolute;
+            width: 100%;
+            height: 10%;
+            background-color: dimgrey;
+            font-size: 50px;
+            text-align: center;
+            color: floralwhite;
+            cursor: pointer;
+        }
+        .nutDuoi{
+            position: absolute;
+            width: 100%;
+            height: 10%;
+            background-color: dimgrey;
+            font-size: 50px;
+            text-align: center;
+            color: floralwhite;
+            cursor: pointer;
+        }
+        .nutTren{
+            top: 0;
+            left: 0;
+        }
+        .nutDuoi{
+            bottom: 0;
+            left: 0;
+        }
+        .nutTren:hover{
+            background-color: darkturquoise;
+            color: darkslateblue;
+        }
+        .nutDuoi:hover{
+            background-color: darkturquoise;
+            color: darkslateblue;
+        }
+        .bienMatKhiBamNutNext{
+            animation: bienMat 1.5s ease forwards;
+        }
+        .diVaoKhiBamNutNext
+        {
+            animation: xuatHien 1.5s ease forwards;
+        }
+        @-webkit-keyframes bienMat{
+            from{
+                transform: scale(1);
+                opacity: 1;
+            }
+            to{
+                transform: scale(1.5);
+                opacity: 0;
+            }
+        }
+        @-webkit-keyframes xuatHien{
+            from{
+                transform: scale(0.5);
+                opacity: 0;
+            }
+            to{
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        /* nút back */
+        .bienMatKhiBamNutBack{
+            animation: bienMatBack 1.5s ease ;
+        }
+        .diVaoKhiBamNutBack
+        {
+            animation: xuatHienBack 1.5s ease ;
+        }
+        @-webkit-keyframes bienMatBack{
+            from{
+                transform: scale(1);
+                opacity: 1;
+            }
+            to{
+                transform: scale(0.5);
+                opacity: 0;
+            }
+        }
+        @-webkit-keyframes xuatHienBack{
+            from{
+                transform: scale(2);
+                opacity: 0;
+            }
+            to{
+                transform: scale(1);
+                opacity: 1;
+                
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="nutTren fa fa-angle-up"></div>
+        <div class="khoiCacAnh">
+            <ul>
+                <li class="active"><img src="anh/gaixinh1.jpg" alt=""></li>
+                <li><img src="anh/gaixinh2.jpg" alt=""></li>
+                <li><img src="anh/gaixinh3.jpg" alt=""></li>
+                <li><img src="anh/gai.jpg" alt=""></li>
+            </ul>
+        </div>
+        <div class="nutDuoi fa fa-angle-down"></div>
+    </div>
+    <script>
+        // bước 1: xác định slide hiện tại và slide tiếp theo
+        // và biết người ta kích vào nút nào
+        document.addEventListener("DOMContentLoaded", function(){
+            var nutNext = document.querySelector(".nutDuoi"),
+                nutBack = document.querySelector(".nutTren"),
+                slides = document.querySelectorAll(".khoiCacAnh ul li"),
+                chiSoHienTai = 0;
+                soLuongSlide = slides.length;
+                trangThai = "dangDungYen"; // biến này đánh dấu thời điểm đang có chuyển động
+                                            // -> dangDungYen thì dc kích, đang chuyển động mà vẫn kích thì return false
+                
+            // gọi sự kiện kích vào nút phải
+            nutNext.addEventListener("click", function(){
+
+                // kiểm tra xem có đang chuyển động hay ko, nếu có thì dừng chương trình
+                if(trangThai == "dangChuyenDong") {return false;}
+                trangThai = "dangChuyenDong";
+
+                var trangThaiCua2ChuyenDong = 0;
+
+                phanTuHienTai = slides[chiSoHienTai];
+                // xác dịnh chỉ số của phần tử tiếp theo dựa trên chỉ số của thằng hiện tại
+                if(chiSoHienTai < soLuongSlide - 1)
+                {
+                    chiSoHienTai ++;
+                }
+                else {
+                    // là phần tử cuối cùng
+                    chiSoHienTai = 0; // cho quay lại thằng slide đầu tiên
+                }
+
+                var phanTuTiepTheo = slides[chiSoHienTai];
+
+                // tạo chuyển động
+                phanTuHienTai.classList.add("bienMatKhiBamNutNext");
+                phanTuTiepTheo.classList.add("diVaoKhiBamNutNext");
+
+                //-- kiểm tra chuyển động kết thúc để thêm và xóa đi các class cần và dư
+                var xuLyHienTaiKetThucChuyenDong = function(){
+                    console.log("xong thằng hiện tại");
+                    this.classList.remove("active");
+                    this.classList.remove("bienMatKhiBamNutNext");
+
+                    trangThaiCua2ChuyenDong++;
+                    if(trangThaiCua2ChuyenDong == 2){ trangThai = "dangDungYen";}
+                }; // đây là một anonymous function
+                var xuLyTiepTheoKetThucChuyenDong = function(){
+                    console.log("xong thằng tiếp theo");
+                    this.classList.remove("diVaoKhiBamNutNext");
+                    this.classList.add("active");
+
+                    trangThaiCua2ChuyenDong++;
+                    if(trangThaiCua2ChuyenDong == 2){ trangThai = "dangDungYen";}
+                };
+
+                phanTuHienTai.addEventListener("webkitAnimationEnd", xuLyHienTaiKetThucChuyenDong);
+                phanTuTiepTheo.addEventListener("webkitAnimationEnd", xuLyTiepTheoKetThucChuyenDong);
+            });
+
+            nutBack.addEventListener("click", function(){
+                if(trangThai == "dangChuyenDong") {return false;}
+                trangThai = "dangChuyenDong";
+
+                var trangThaiCua2ChuyenDong = 0;
+
+                var phanTuHienTai = slides[chiSoHienTai];
+                if(chiSoHienTai > 0)
+                {
+                    chiSoHienTai--;
+                }
+                else {
+                    chiSoHienTai = soLuongSlide - 1;
+                }
+
+                var phanTuTiepTheo = slides[chiSoHienTai];
+
+                // tạo chuyển động
+                phanTuHienTai.classList.add("bienMatKhiBamNutBack");
+                phanTuTiepTheo.classList.add("diVaoKhiBamNutBack");
+
+                //-- kiểm tra chuyển động kết thúc để thêm và xóa đi các class cần và dư
+                var xuLyHienTaiKetThucChuyenDong = function(){
+                    console.log("xong thằng hiện tại");
+                    this.classList.remove("active");
+                    this.classList.remove("bienMatKhiBamNutBack");
+
+                    trangThaiCua2ChuyenDong++;
+                    if(trangThaiCua2ChuyenDong == 2){ trangThai = "dangDungYen";}
+                }; // đây là một anonymous function
+                var xuLyTiepTheoKetThucChuyenDong = function(){
+                    console.log("xong thằng tiếp theo");
+                    this.classList.remove("diVaoKhiBamNutBack");
+                    this.classList.add("active");
+
+                    trangThaiCua2ChuyenDong++;
+                    if(trangThaiCua2ChuyenDong == 2){ trangThai = "dangDungYen";}
+                };
+
+                phanTuHienTai.addEventListener("webkitAnimationEnd", xuLyHienTaiKetThucChuyenDong);
+                phanTuTiepTheo.addEventListener("webkitAnimationEnd", xuLyTiepTheoKetThucChuyenDong);
+            });
+
+        }, false)
+    </script>
+</body>
+</html>

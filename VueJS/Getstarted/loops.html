@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>VUEJS</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+    <style>
+        .list-blog {
+            display: flex;
+        }
+        .list-blog .blog{
+            width: 25%;
+            margin: 10px;
+            border: solid 1px #f81a1a;
+        }
+        .blog .title{
+            font-size: 18px;
+            font-weight: 500;
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+            <header><h1>Header</h1></header>
+            <div class="list-blog">
+                <h1>List blog</h1>
+            <br>
+            <br>
+            <br>
+            </div>
+            <div id="app">
+                Dùng vòng for và if
+                <!-- chỉ hiện lên những user có isActive = true -> Độ ưu tiên của vòng for nó sẽ cao hơn v-if -->
+                <div class="user" v-for="user in arrUser" v-if="user.isActive">{{user.email}}</div> 
+                <!-- dùng computed : không cần dùng vòng if nữa-->
+                Dùng vòng for với computed
+                <div class="user" v-for="user in userActive">{{user.email}}</div> 
+                <ul>
+                    <li v-for="(value, key) in scores">{{key}}: {{value}} </li>
+                </ul>
+                <div class="list-blog">
+                    <div class="blog" v-for = "(abc,index) in listblog" v-bind:key="index">
+                        <div class="title">
+                            {{abc.title}}
+                        </div>
+                        <div class="description">
+                            {{abc.description}}
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+                
+            </div>
+            <br>
+            <br>
+            <br>
+            <footer><h1>Footer</h1></footer>
+    </div>
+    
+</body>
+<script>
+    var app = new Vue({
+        el: "#app",
+        data: {
+            arrUser: [
+            {email: "test1@gmail.com", isActive:false},
+            {email: "test2@gmail.com", isActive:false},
+            {email: "test3@gmail.com", isActive:true},
+            {email: "test4@gmail.com", isActive:false},
+            {email: "test5@gmail.com", isActive:true},
+            {email: "test1@gmail.com", isActive:false},
+            ],
+            scores: {
+                math: 9,
+                english: 7,
+                history: 9
+            },
+            listblog:[
+                {
+                "userid": 1,
+                "id":1,
+                "title": "Đây là title",
+                "description":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, eius aperiam ex exercitationem totam tenetur laboriosam officiis accusamus dignissimos doloremque, odio quaerat reprehenderit illum beatae, accusantium qui corporis autem adipisci"
+                },
+                {
+                "userid": 2,
+                "id":2,
+                "title": "Đây là title",
+                "description":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, eius aperiam ex exercitationem totam tenetur laboriosam officiis accusamus dignissimos doloremque, odio quaerat reprehenderit illum beatae, accusantium qui corporis autem adipisci"
+                },
+                {
+                "userid": 3,
+                "id":3,
+                "title": "Đây là title",
+                "description":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, eius aperiam ex exercitationem totam tenetur laboriosam officiis accusamus dignissimos doloremque, odio quaerat reprehenderit illum beatae, accusantium qui corporis autem adipisci"
+                },
+                {
+                "userid": 4,
+                "id":4,
+                "title": "Đây là title",
+                "description":"Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, eius aperiam ex exercitationem totam tenetur laboriosam officiis accusamus dignissimos doloremque, odio quaerat reprehenderit illum beatae, accusantium qui corporis autem adipisci"
+                }
+            ]
+        },
+        method: {
+           changeTab(tab){
+            this.tabselected = tab;
+           }
+        },
+        computed:{
+            userActive(){
+                return this.arrUser.filter(function(u){
+                    return u.isActive;
+                });
+            }
+        }
+    })
+</script>
+</html>

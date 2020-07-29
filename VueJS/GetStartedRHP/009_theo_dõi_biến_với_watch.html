@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Theo dõi biến với watch - Ep02 | #14</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+</head>
+<body>
+    <div id="app">
+        <p> điểm hiện tại: {{ diem }}</p>
+        <input v-on:input="thayDoiDiem" id="oNhapDiem" type="text" placeholder="nhập điểm ở đây">
+    </div>
+
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                diem: "Điểm của bạn Tân đang là 8",
+            },
+            methods: {
+                thayDoiDiem : function(event) {
+                    this.diem = event.target.value;
+                    return this.diem;
+                }
+            },
+            watch: {
+                // khi biến điểm có sự thay đổi thì ta sẽ làm những công việc ở đây
+                diem: function(newValue){
+                    let oNhapDiem = document.getElementById("oNhapDiem");
+                    confirm("bạn có muốn thay đổi điểm của Tân thành: " + oNhapDiem.value + "hay không?") ?
+                    alert("Cập nhật thành công") : alert("Giữ nguyên điểm cũ");
+                    // Ở đây ta chỉ xuất ra thông báo thôi chứ chưa làm gì cả
+                    
+                }
+            }
+
+        });
+    </script>
+</body>
+</html>

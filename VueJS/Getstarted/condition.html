@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>VUEJS</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+
+    <style>
+        .menubox {
+            margin: 0;
+            padding: 0;
+        }
+    .menubox li{
+        cursor: pointer;
+        display: inline-block;
+        padding: 10px 15px;
+        margin-left: 20px;
+        border: 1px solid #000000;
+
+    }
+    .signin, .register{
+        padding: 10px 15px;
+        margin: 20px;
+        border: 1px solid #04700d;
+    }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+            <header><h1>Header</h1></header>
+            <br>
+            </div>
+            <div id="app">
+                <ul class="menubox">
+                    <li v-on:click="changeTab('signin')">Đăng nhập</li>
+                    <li v-on:click="changeTab('register')">Đăng ký</li>
+                </ul>
+                <div class="signin" v-if="tabselected === 'signin'">
+                    <h1>Form Đăng nhập</h1>
+                    <form action="">
+                            User name<input type="text">
+                            Password<input type="text">
+                    </form>  
+                </div>
+                <div class="register" v-else-if="tabselected === 'register'">
+                    <h1>Form Đăng ký</h1>
+                    <form action="">
+                            User name<input type="text">
+                            Password<input type="text">
+                            Repassword<input type="text">
+                    </form>
+                    </div>
+            </div>
+                
+            </div>
+            <br>
+            <br>
+            <br>
+            <footer><h1>Footer</h1></footer>
+    </div>
+    
+</body>
+<script>
+    var app = new Vue({
+        el: "#app",
+        data: {
+            tabselected:"register"
+        },
+        method: {
+           changeTab(tab){
+            this.tabselected = tab;
+           }
+        }
+    })
+</script>
+</html>

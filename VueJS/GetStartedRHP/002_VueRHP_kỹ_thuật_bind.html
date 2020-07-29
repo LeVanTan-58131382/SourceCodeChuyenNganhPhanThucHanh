@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kỹ thuật bind - video EP02 #4</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+</head>
+<body>
+    <!-- Với nội dung của các thẻ (tag) thì ta có thể sử dụng trực tiếp các thuộc tính
+    hay method thực tiếp, nhưng với các thuộc tính của các thẻ thì ta phải
+    ràng buộc với từ khóa bind -->
+    <div id="app_1">
+        <p>{{ noidung }}</p> 
+        <a v-bind:href="linkFB">Facebook của tôi</a>
+    </div>
+ 
+   <div id="app_2">
+        <p v-once>{{ noiDung }} - {{ inNoiDung() }}</p>
+        <!-- ở đây ta muốn giữ nguyên nội dung ban đầu (cũ) cho biến nội dung và
+        chỉ cho thay đổi ở trong hàm inNoiDung với nội dung mới -->
+    </div>
+</body>
+
+<script>
+    new Vue({
+        el: "#app_1",
+        data: {
+            noidung: "Cùng tìm hiểu kỹ thuật bind (ràng buộc dữ liệu trong Vue)",
+            linkFB: "http://www.facebook.com/",
+        },
+        methods: {
+        }
+
+    });
+
+    new Vue({
+        el: "#app_2",
+        data: {
+            noiDung: "Cùng tìm hiểu kỹ thuật bind (old)",
+        },
+        methods: {
+            inNoiDung: function(){
+                this.noiDung = "CÙNG TÌM HIỂU KỸ THUẬT BIND (NEW)";
+                return this.noiDung;
+            }
+        }
+
+    });
+</script>
+</html>

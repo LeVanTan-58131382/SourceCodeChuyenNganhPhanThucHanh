@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="css/boostrap.css">
+	<script type="text/javascript" href="js/jquery-3.4.1.js"></script>
+	<style>
+		.khoi{
+			width: 480px;
+			height: 360px;
+			position: relative;
+			margin: auto;
+			overflow: hidden; /*thuộc tính này có tác dụng khi zoom ảnh bên trong thẻ div nó ảnh sẽ ko tràn ra ngoài*/
+		}
+		.layer1{
+			transition: 0.5s;
+		}
+		.nenden{
+			width: 480px;
+			height: 360px;
+			position: absolute;
+			top: 0;
+			left: 0;
+			transition: 0.6s;
+			background: rgba(0, 0, 0, 0.5);
+			opacity: 0;
+		}
+		.khoi:hover .layer1{
+			transform: scale(1.2); /*zoom ảnh lên*/
+		}
+		.khoi:hover .nenden{
+			opacity: 1;
+		}
+		.chu1{
+			position: absolute;
+			z-index: 2;
+			top: 40px;
+			left: -400px; /*để dòng chữ bị khuất sang trái, khi ta hover sẽ cho tăng left lên để chạy ra màn hình*/
+			color: black;
+			background-color: white;
+			padding: 15px 20px; /*với padding 2 tham số thì tham số đầu là trên-dưới, tham số 2 là trái-phải*/
+			transition: 0.5s;
+		}
+
+		/*Ta có cách thứ 2 để chữ chạy là dùng transform: translate*/
+		.chu2, .chu3{
+			position: absolute;
+			z-index: 2;
+			left: 20px;
+			color: black;
+			background-color: white;
+			padding: 15px 20px;
+			transition: 0.5s;
+			transform: translateX(-400px);
+		}
+		.khoi .chu2{  /*ta có thể viết riêng cho từng dòng chữ như thế này*/
+			top: 100px;
+			transition-delay: 0.1s;
+		}
+		.khoi .chu3{
+			top: 160px;
+			transition-delay: 0.2s;
+		}
+		.khoi:hover .chu1{
+			left:20px;
+		}
+		.khoi:hover .chu2{
+			transform: translateX(0px);
+		}
+		.khoi:hover .chu3{
+			transform: translateX(0px);
+		}
+	</style>
+</head>
+<body>
+	<div class="khoi">
+		<img style="width: 480px; height: 360px;" class="layer1" src="Anh/13.png" alt="">
+		<div class="nenden"></div>
+		<div class="chu1">Đây là dòng chữ sẽ chuyển động thứ nhất</div>
+		<div class="chu2">Đây là dòng chữ sẽ chuyển động thứ hai</div>
+		<div class="chu3">Đây là dòng chữ sẽ chuyển động thứ ba</div>
+	</div>
+</body>
+</html>
+<!-- Phân tích:  - tất cả đều chia layer
+			- thuộc tính transition vì có sự chuyển động
+			- thuộc tính zoom ảnh
+			- có thể dùng translate(200px) -->

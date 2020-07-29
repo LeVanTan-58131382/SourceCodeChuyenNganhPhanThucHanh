@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div class="branding">
+    <a href="">
+        <span>Hac<span class="logo">k</span>er</span>
+    </a>
+</div>
+<style type="text/css">
+	@-webkit-keyframes unskew {
+    0% {
+    -webkit-transform: rotate(-15deg);
+    transform: rotate(-15deg);
+}
+to {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+}
+}
+
+@keyframes unskew {
+    0% {
+        -webkit-transform: rotate(-15deg);
+        transform: rotate(-15deg);
+    }
+    to {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+}
+
+@-webkit-keyframes skew {
+    40% {
+        -webkit-transform: rotate(-18deg);
+        transform: rotate(-18deg);
+    }
+    60% {
+        -webkit-transform: rotate(-10deg);
+        transform: rotate(-10deg);
+    }
+    to {
+        -webkit-transform: rotate(-15deg);
+        transform: rotate(-15deg);
+    }
+}
+
+@keyframes skew {
+    40% {
+        -webkit-transform: rotate(-18deg);
+        transform: rotate(-18deg);
+    }
+    60% {
+        -webkit-transform: rotate(-10deg);
+        transform: rotate(-10deg);
+    }
+    to {
+        -webkit-transform: rotate(-15deg);
+        transform: rotate(-15deg);
+    }
+}
+
+.branding {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.branding a {
+    color: # 000;
+}
+
+.branding a span {
+    display: inline - block;
+    font - size: 5 rem;
+    font - weight: 700;
+    text - transform: uppercase;
+    letter - spacing: 1 px;
+    text - shadow: 0 0 10 px #08cf1a;
+}
+
+.branding a span.logo {
+    -webkit-animation-name: unskew;
+    animation-name: unskew;
+    -webkit-animation-duration: .6s;
+    animation-duration: .6s;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+    -webkit-animation-iteration-count: 1;
+    animation-iteration-count: 1;
+    -webkit-animation-timing-function: cubic-bezier(0.75, -2, 0.75, 2);
+    animation-timing-function: cubic-bezier(0.75, -2, 0.75, 2);
+    -webkit-transform-origin: 86% 15%;
+    transform-origin: 86% 15%;
+}
+
+.branding a:hover .logo {
+    -webkit-animation-name: skew;
+    animation-name: skew;
+    -webkit-animation-duration: 1.2s;
+    animation-duration: 1.2s;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+    -webkit-animation-iteration-count: 1;
+    animation-iteration-count: 1;
+    -webkit-animation-timing-function: ease-in-out;
+    animation-timing-function: ease-in-out;
+    -webkit-transform-origin: 86% 15%;
+    transform-origin: 86% 15%;
+}
+</style>
+</body>
+</html>

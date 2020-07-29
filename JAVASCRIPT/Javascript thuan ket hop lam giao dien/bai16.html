@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 16 - 3 hàm xử lý giao diện mạnh</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+    - classList.remove(tenclass) <br>
+    - classList.add(tenclass) <br>
+    - classList.toggle(tenclass) : add + remove <br> 
+    - classList.remove() : bỏ tất cả class <br><br>
+
+    <button class="btn btn-outline-info n1">Nút số 1</button>
+    <button class="btn btn-outline-primary n2">Nút số 2</button>
+    <button class="btn btn-outline-success n3">Nút số 3</button>
+    <button class="btn btn-outline-warning n4">Nút số 4</button>
+
+    <button onclick="xoaBoostrap()">Xóa btn-outline-info</button>
+    <button onclick="xoaBTN()">Xóa btn</button>
+    <button onclick="toggleBoostrap()">Bật tắt btn-outline-info</button>
+    <button onclick="addBlock()">Bật tắt btn-block</button>
+    <script>
+        
+        function xoaBoostrap(){
+            var x = document.querySelectorAll(".n1"); // danh sách các thẻ có class là n1
+            x[0].classList.remove('btn-outline-info'); // classList là danh sách các class của thẻ đó
+        }
+
+        function xoaBTN()
+        {
+            var x = document.querySelectorAll(".n1"); // danh sách các thẻ có class là n1
+            x[0].classList.remove('btn');
+        }
+
+        function toggleBoostrap(){
+            var x = document.querySelectorAll(".n1"); // danh sách các thẻ có class là n1
+            x[0].classList.toggle('btn-outline-info');
+        }
+        
+        function addBlock(){
+            var x = document.querySelectorAll(".n1"); // danh sách các thẻ có class là n1
+            x[0].classList.toggle('btn-block');
+        }
+    </script>
+</body>
+</html>

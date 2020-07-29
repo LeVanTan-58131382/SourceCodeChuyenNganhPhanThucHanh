@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 7 - String</title>
+</head>
+<body>
+    length(); <br>
+    indexOf(); <br>
+    search(); (giống indexOf) <br>
+    replace(); <br>
+    split(): tách các phần tử của chuỗi thành mảng;
+    <script>
+        var x = "Công nghệ thông tin";
+
+        console.log(x.length);
+
+        var vitri = x.indexOf("thông");
+
+        // nếu có "thông" trong x thì trả về vị trí của từ đó trong x, nếu không thì trả về -1
+        if(vitri != -1)
+        {
+            console.log("tìm thấy");
+            var newString = x.replace("thông", "THÔNG");
+            console.log(newString);
+        }
+        else {
+            console.log("không thấy");
+        }
+
+        var listString = "iphone, android, nokia, samsung";
+        var listArray = listString.split(",");
+        console.log(listArray);
+    </script>
+</body>
+</html>

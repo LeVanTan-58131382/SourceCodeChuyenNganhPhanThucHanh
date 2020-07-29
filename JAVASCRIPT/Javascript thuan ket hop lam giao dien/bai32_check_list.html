@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 32 - Check list</title>
+    <style>
+        .wrapper{
+            position: relative;
+            width: 300px;
+            height: 600px;
+            margin: auto;
+            border: 1px solid steelblue;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .wrapper ul{
+            position: absolute;
+            width: 200px;
+            height: 30px;
+            left: 50%;
+            top: 10%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 30px;
+            padding: 5px;
+            
+        }
+        .wrapper ul li{
+            position: relative;
+            height: 40px;
+            width: 100%;
+            list-style: none;
+            border: 1px solid steelblue;
+            border-radius: 5px;
+            padding: 5px 10px;
+            
+            margin: 10px;
+        }
+        .item{
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        .item .item_text{
+            position: absolute;
+            left: 0;
+            width: 80%;
+            height: auto;
+            font-size: 17px;
+            text-align: center;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .item .item_check{
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 15%;
+            height: 55%;
+            border: 2px solid springgreen;
+            border-radius: 2px;
+            cursor: pointer;
+            transition: 0.3s;
+            z-index: 8;
+        }
+        .item .item_check:hover{
+            top: 50%;
+            transform: scale(0.95) translateY(-50%);
+
+        }
+        .item .item_check .child_item_check{
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translateX(-50%) translateY(-50%);
+            width: 80%;
+            height: 80%;
+            border-radius: 2px;
+            background-color: springgreen;
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.5s;
+            
+        }
+        .item .item_check .child_item_check.active{
+            animation: diVao 0.5s ease forwards;
+        }
+        @-webkit-keyframes diVao{
+            from{transform: translateX(100%) translateY(-50%); opacity: 0; visibility: hidden;}
+            to{transform: translateX(-50%) translateY(-50%); opacity: 1; visibility: visible;}
+        }
+
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <ul>
+            <li>
+                <div class="item">
+                    <div class="item_text">Option thứ nhất</div>
+                    <div class="item_check">
+                        <div data-checkGiDo = "Option thứ nhất" class="child_item_check"></div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="item">
+                    <div class="item_text">Option thứ hai</div>
+                    <div class="item_check">
+                        <div data-checkGiDo = "Option thứ hai" class="child_item_check"></div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="item">
+                    <div class="item_text">Option thứ ba</div>
+                    <div class="item_check">
+                        <div data-checkGiDo = "Option thứ ba" class="child_item_check"></div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="item">
+                    <div class="item_text">Option thứ tư</div>
+                    <div class="item_check">
+                        <div data-checkGiDo = "Option thứ tư" class="child_item_check"></div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="item">
+                    <div class="item_text">Option thứ năm</div>
+                    <div class="item_check">
+                        <div data-checkGiDo = "Option thứ năm" class="child_item_check"></div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function(){
+            //var list_li_items = document.querySelectorAll(".wrapper ul li");
+            var list_item_check = document.querySelectorAll(".item_check");
+            var list_child_item_check = document.querySelectorAll(".child_item_check");
+            //var y = document.getElementById("nut2");
+            
+            var trangThais = new Array;
+            for(var k = 0; k < list_item_check.length; k++)
+            {
+                trangThais[k] = "chuaKichHoat";
+            }
+            var i;
+            for(i = 0; i < list_item_check.length; i++){
+                list_item_check[i].addEventListener("click", function(){
+                        console.log(i);
+                        if(trangThais[i] == "chuaKichHoat")
+                        {
+                            list_child_item_check[i].classList.add("active");
+                            trangThais[i] = "dangKichHoat";
+                            console.log(trangThais[i]);
+                        }
+                        else if(trangThais[i] == "dangKichHoat")
+                        {
+                            list_child_item_check[i].classList.remove("active");
+                            trangThais[i] = "chuaKichHoat";
+                            console.log(trangThais[i]);
+                        }
+                });
+            }
+
+        }, false)
+    </script>
+</body>
+</html>

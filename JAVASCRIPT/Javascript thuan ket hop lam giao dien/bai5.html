@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 5 - Đối tượng</title>
+</head>
+<body>
+    - Kiểu object ngoài việc lưu các thuộc tính còn lưu được các phương thức.
+    <script>
+        // Kiểu dữ liệu object
+        var dongHo = {
+            hangSX : "Casio",
+            ngayHomNay : "14/7/2020",
+            mau: "đen",
+            gia: 6000000,
+            gioiTinh : "nam",
+            xemNgay : function () {
+                console.log("Hôm nay là ngày: " + this.ngayHomNay);
+            }
+        }
+
+        console.log(dongHo.hangSX);
+        console.log(dongHo.gia);
+
+        // Tạo một danh sách các object => đáp ứng kiểu dữ liệu phức tạp
+        var hocVien_1 = {
+            ten: "Lê Văn Tân",
+            ngaySinh : "15/8/1998",
+            diemToan : 8,
+            chieuCao: 160,
+            canNang : 60,
+            diemVan : 7,
+            diemTB : function() {
+                console.log((this.diemToan + this.diemVan)/2);
+            },
+            danhGia : function () {
+               if(this.chieuCao/this.canNang < 3) {return "Đẹp trai";}
+                else return "Cũng được";
+            }
+        }
+        var hocVien_2 = {
+            ten: "Lê Văn Tiến",
+            ngaySinh : "8/1/1998",
+            diemToan : 10,
+            diemVan : 10,
+            chieuCao: 160,
+            canNang : 60,
+            diemTB : function() {
+                console.log((this.diemToan + this.diemVan)/2);
+            },
+            danhGia : function () {
+               if(this.chieuCao/this.canNang < 3) {return "Đẹp trai";}
+                else return "Cũng được";
+            }
+        }
+
+        var ds_HocVien = [hocVien_1, hocVien_2];
+        console.log(ds_HocVien);
+        console.log(ds_HocVien[0].diemTB());
+        console.log(ds_HocVien[0].danhGia());
+    </script>
+
+    <button onclick="dongHo.xemNgay()">Hiển thị ngày trên đồng hồ</button>
+    <button onclick="ds_HocVien[0].diemTB()">Xem điểm trung bình</button>
+    <button onclick="ds_HocVien[0].danhGia()">Đánh giá</button>
+</body>
+</html>

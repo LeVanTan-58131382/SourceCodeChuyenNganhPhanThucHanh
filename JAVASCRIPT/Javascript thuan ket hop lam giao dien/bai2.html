@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 2</title>
+</head>
+<body>
+    Với phép cộng (+), javascript vừa có thể thực hiện phép toán thông thường 
+    ,vừa có thể cộng chuỗi
+    <script>
+        x = 1;
+        y = 2;
+        z = "Hello";
+
+        b = 5;
+        console.log(x + y);
+        console.log(x + y + z);
+
+        function chaythu(){
+            console.log("Bạn vừa kích vào nút 'Bấm ngay'");
+            //console.log("Giá trị của biến x + y + z là: " + x + y + z);
+
+            // In các giá trị chỉ trong vòng từ 1 -> 5 và không lớn hơn b => vòng lặp, hay dùng trong slide
+            b++;
+            console.log("Giá trị của b là: " + b%5 + 1);
+        }
+    </script>
+
+    <button onclick="chaythu()">Bấm ngay</button>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Tương tác với CSS qua Vue JS thông qua đối tượng Class</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body> 
+	<div class="container-fluid">
+		<div id="block" class="row">
+			<div class="col-md-3">
+				<div class="hinhvuong" @click="quanlido = !quanlido" :class="{do: quanlido}"></div>
+			</div>
+			<div class="col-md-3">
+				<div class="hinhvuong" @click="quanlixanh = !quanlixanh" :class="{xanh: quanlixanh}"></div>
+			</div>
+			<div class="col-md-3">
+				<div class="hinhvuong" @click="quanlivang = !quanlivang" :class="{vang: quanlivang}"></div>
+			</div>
+		</div>
+		<div class="row"><h1>_____________________________________________________________</h1></div>
+		<div id="block2" class="row">
+			<div class="col-md-3">
+				<div class="hinhvuong" :style="{backgroundColor: color}"></div>
+			<!-- => cái này là ta dùng trực tiếp(kiểu :style="{backgroundColor: color}" - theo kiểu của javascript)
+			nhưng ta nên làm trong computed, trên đây chỉ 
+			khai báo phương thức() hay thuộc tính mà thôi -->
+		</div>
+		<div class="col-md-3">
+			<div class="hinhvuong" :style="customStyles"></div>
+		</div>
+		<div class="col-md-3">
+			<div class="hinhvuong" ></div>
+		</div>
+		<div class="row">
+			<div>
+				Color <input  class="form-control input"  type="text" v-model="color">
+				Width <input  class="form-control input"  type="text" v-model="width">
+				Height <input  class="form-control input"  type="text" v-model="height">
+			</div>
+
+		</div>
+	</div>
+</div>
+
+
+
+<!-- :class là cú pháp của shorthand , cũng như :style-->
+</body>
+
+<script type="text/javascript">
+	new Vue({
+		el: "#block",
+		data: {
+			quanlido: false,
+			quanlixanh: false,
+			quanlivang: false
+		}
+
+	});
+	new Vue({
+		el: "#block2",
+		data: {
+			color: 'green',
+			width: 100,
+			height: 200
+		},
+		computed: {
+			customStyles: function(){
+				return {
+					backgroundColor: this.color,
+					width: this.width + 'px',
+					height: this.height + 'px',
+				}
+			}
+		}
+
+	});
+</script>
+<style type="text/css">
+	.hinhvuong {
+		margin: 20px;
+		width: 200px;
+		height: 300px;
+		background-color: gray;
+	}
+	.hinhvuong:hover{
+		cursor: pointer;
+	}
+	.do { 
+		background-color: red;
+	}
+	.xanh {
+		background-color: green;
+	}
+	.vang {
+		background-color: yellow;
+	}
+	
+</style>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 6 - Vòng lặp</title>
+</head>
+<body>
+    Ngoài vòng lặp for truyền thống, ta cũng có vòng lặp for chuyên sử dụng với kiểu dữ liệu object.
+    <br>
+    for(x in du_lieu)
+    <script>
+        for(var i = 0; i <= 10; i++)
+        {
+            console.log(i);
+        }
+
+        var sv = ["Nam", "Hân", "Hải"];
+        // in ra tất cả phần tử của vòng lặp
+        for(var i = 0; i < sv.length; i++)
+        {
+            console.log("In kiểu truyền thống: " + i + "." + sv[i]);
+        }
+
+        var hocVien = {
+            ten: "Lê Văn Tân",
+            ngaySinh : "15/8/1998",
+            diemToan : 8,
+            diemVan : 7,
+            chieuCao: 160,
+            canNang : 60,
+        }
+        console.log(hocVien.diemToan);
+        console.log(hocVien["diemToan"]); // hai kiểu trên là giống nhau
+
+
+        // Dùng For in để in tất cả thuộc tính, vì kiểu object sẽ không đánh chỉ số cho thuộc tính
+        for(var temp in hocVien)
+        {
+            console.log(hocVien[temp]);
+            // => temp lúc này lần lượt sẽ là tên, ngày sinh, ..
+        }
+
+    </script>
+</body>
+</html>

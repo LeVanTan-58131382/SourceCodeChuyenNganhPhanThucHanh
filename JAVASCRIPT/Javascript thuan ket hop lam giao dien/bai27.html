@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 27 - Hàm check chuyển động trong javascript</title>
+    
+    <style>
+        .khoi{
+            width: 200px;
+            height: 100px;
+            background-color: chartreuse;
+            transition: 2s;
+        }
+        .khoi.chuyenDong{
+            animation: chayNgayDi 2s ease forwards;
+        }
+        .khoi.diXuongDuoi{
+            animation: chayXuongDi 2s ease forwards;
+        }
+        @-webkit-keyframes chayNgayDi{
+            from {
+                transform: translateX(0);
+            }
+            to{
+                transform: translateX(500px);
+            }
+        }
+        @-webkit-keyframes chayXuongDi{
+            from {
+                transform: translateY(0) translateX(500px);
+            }
+            to{
+                transform: translateY(500px) translateX(500px);
+            }
+        }
+    </style>
+
+</head>
+<body>
+    <button class="nut_1">Click đi</button>
+    <div class="khoi"></div>
+ 
+    <script>
+        document.addEventListener("DOMContentLoaded", function(){
+            var nut = document.querySelector(".nut_1"),
+                khoi = document.querySelector(".khoi");
+
+            // Hàm check xem chuyển động của khối đã kết thúc hay chưa
+            khoi.addEventListener("webkitAnimationEnd", function(){
+                console.log("Kết thúc chuyển động rồi, làm gì làm đi");
+                this.classList.add("diXuongDuoi");
+            })
+
+            nut.addEventListener("click", function(){
+                khoi.classList.add("chuyenDong");
+            }) ;  
+        },false)
+    </script>
+</body>
+</html>

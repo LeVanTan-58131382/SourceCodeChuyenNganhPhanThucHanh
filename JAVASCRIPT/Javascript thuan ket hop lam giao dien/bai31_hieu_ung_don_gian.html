@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 31 - Hiệu ứng đơn giản với hình học</title>
+
+    <style>
+        .nut{
+            position: relative;
+            left: 200px;
+            top: 200px;
+            width: 100px;
+            height: 100px;
+        }
+        .chamTron{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+            border-radius: 50%;
+            background-color: dodgerblue;
+            transition: 0.5s;
+            margin: 0;
+            z-index: 1;
+
+        }
+        .chamTron.toRa{
+            animation: toRa 1s ease forwards infinite;
+        }
+        @-webkit-keyframes toRa{
+            from {transform: scale(1); opacity: 1;}
+            to { transform: scale(1.5); opacity: 0;}
+        }
+        .tamChamTron{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            left: 0;
+            top: 0;
+            background-color: lightseagreen;
+            z-index: 3;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="nut">
+        <div class="chamTron"></div>
+        <div class="tamChamTron"></div>
+    </div>
+    
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function(){
+            var nut = document.querySelector(".nut");
+            var chamTron = document.querySelector(".chamTron");
+            nut.addEventListener("mouseover", function(){
+                chamTron.classList.add("toRa");
+            });
+            nut.addEventListener("mouseout", function(){
+                chamTron.classList.remove("toRa");
+            });
+        },false)
+    </script>
+</body>
+</html>

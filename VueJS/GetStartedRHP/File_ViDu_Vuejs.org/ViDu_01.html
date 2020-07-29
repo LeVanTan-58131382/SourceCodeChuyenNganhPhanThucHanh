@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ví dụ 1: Hiệu ứng đơn giản</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+</head>
+<body>
+    <div class="wrapper">
+        <div id="app">
+            {{ message }}
+            <div v-bind:class="hinhTron"></div>
+            <!-- directive v-bind về cơ bản là đang giữ thuộc tính class 
+            của phần tử web luôn luôn đồng nhất với property message 
+            của đối tượng Vue được khởi tạo. -->
+        </div>
+    </div>
+    <div class="wrapper">
+        <div id="app-2">
+            <span v-bind:title="message">
+              Rê chuột lên đây một vài giây để xem thuộc tính `title` được bind!
+            </span>
+            <!-- directive v-bind về cơ bản là đang giữ thuộc tính title 
+            của phần tử web luôn luôn đồng nhất với property message 
+            của đối tượng Vue được khởi tạo. -->
+        </div>
+    </div>
+    <div class="wrapper">
+        <div id="app-3">
+            <span v-if="seen">Thoắt ẩn thoắt hiện</span>
+        </div>
+    </div>
+    <div class="wrapper">
+        <div id="app-4">
+            <ol>
+              <li v-for="todo in todos">
+                {{ todo.text }}
+              </li>
+            </ol>
+        </div>
+        <!-- Ngoài v-bind, v-if, ta có nhiều directive khác như v-for, v-on, ở đây
+        ta sẽ hiển thị một list các item dùng v-for -->
+    </div>
+    <div class="wrapper">
+        <div id="app-5">
+            <p>{{ message }}</p>
+            <button v-on:click="reverseMessage">Đảo ngược dòng text trên</button>
+        </div>
+    </div>
+    
+    <div class="wrapper">
+        <div id="app-6">
+            <p>{{ tinNhanDuocThayDoi }}</p>
+            <input v-model="tinNhanDuocThayDoi">
+        </div>
+        <!-- Vue cũng cung cấp directive v-model giúp cho việc ràng buộc hai chiều (two-way binding) 
+        giữa form input và trạng thái ứng dụng trở nên vô cùng dễ dàng -->
+    </div>
+
+    <div class="wrapper">
+        <div id="app-7">
+            <ol>
+                <!-- Tạo một đối tượng của component todo-item -->
+                <todo-item></todo-item>
+            </ol>
+        </div>
+        
+    </div>
+    
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: 'Dòng này sẽ hiển thị',
+                hinhTron: 'hinhTron'
+            }
+            })
+
+        var app2 = new Vue({
+            el: '#app-2',
+            data: {
+                message: 'Bạn đã mở trang này vào ' + new Date().toLocaleString()
+            }
+            })
+
+        var app3 = new Vue({
+            el: '#app-3',
+            data: {
+                //seen: true -> dòng chữ "Thoắt ẩn thoắt hiện" sẽ hiển thị
+                seen: false // -> dòng chữ "Thoắt ẩn thoắt hiện" sẽ biến mất
+            }
+            })
+
+        var app4 = new Vue({
+            el: '#app-4',
+            data: {
+                todos: [
+                { text: 'Học JavaScript' },
+                { text: 'Học Vue' },
+                { text: 'Xây dựng cái gì đó hay ho' }
+                ]
+            }
+            })
+        app4.todos.push({ text: 'Nghỉ ngơi' }); //bạn sẽ thấy danh sách có thêm một mục mới.
+
+        var app5 = new Vue({
+            el: '#app-5',
+            data: {
+                message: 'qua lại khách chờ sông lặng sóng'
+            },
+            methods: {
+                reverseMessage: function () {
+                this.message = this.message.split(' ').reverse().join(' ')
+                }
+            }
+            })
+
+        var app6 = new Vue({
+            el: '#app-6',
+            data: {
+                tinNhanDuocThayDoi: 'Hãy sửa thông điệp này'
+            },
+
+            })
+        
+        // Định nghĩa một component todo-item
+        Vue.component('todo-item', {
+            template: '<li>Đây là một đề mục todo thuộc app7</li>'
+            })
+        var app7 = new Vue({
+            el: '#app-7',
+            data: {
+                
+            },
+
+            })
+        
+
+    </script>
+
+    <style>
+        .hinhTron{
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: blueviolet;
+        }
+
+        .wrapper{
+            width: 400px;
+            height: 200px;
+            float: left;
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid steelblue;
+            border-radius: 5px;
+        }
+    </style>
+</body>
+</html>

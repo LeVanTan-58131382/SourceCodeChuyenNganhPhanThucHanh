@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="obj">
+        <input type="text" v-on:input="thayDoiGiaTri">
+        <!-- v-on:input ở đây là sự kiện chỉ thị, lắng nghe sự kiện
+            nghĩa là: khi nào có sự thay đổi tại đây, nó sẽ đi báo lại
+            với thằng đối tượng vue quản lý nó
+        -->
+        <p>{{ noidung }}</p>
+
+        <h3 id="textVui">{{ hienThiVui() }}</h3>
+        
+        <h3>{{ returnTieuDe() }}</h3>
+    </div>
+
+    <script>
+        // VueJS sẽ tạo một đối tượng ảo để quản lý các đối tượng DOM, ở đây là quản
+        // lý đối tượng div có id là obj
+        new Vue({
+            el: "#obj",
+            data: {
+                noidung: "Quyết tâm học js",
+                tieuDe: "Đây là tiêu đề nha"
+            },
+            methods: {
+                thayDoiGiaTri: function(event){
+                    this.noidung = event.target.value;
+                },
+                hienThiVui: function(){
+                    let textVui = document.getElementById("textVui");
+                    
+                    textVui.innerHTML = "Đây là đoạn text của hàm Hiển Thị Vui";
+                    //console.log(textVui);
+                    document.write("kkk");
+                },
+                returnTieuDe: function()
+                {
+                    // ta có thể truy cập thuộc tính của đối tượng data = this
+                    return this.tieuDe;
+                }
+            }
+        });
+    </script>
+</body>
+</html>

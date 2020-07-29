@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>E-commerce Example Application</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+
+<body>
+    <div id="app">
+        <div class="container">
+            <br>
+            <nav id="top-navigation" class="well well-sm flex flex-row align-center">
+                <a href="#" @click.prevent="isShowingCart = false"><strong>E-commerce Inc.</strong></a>
+
+                <div class="text-right pull-right cart-info">
+                    <span class="stats">{{ totalItemCart }} <template v-if="cart.items.length < 2">item</template> <template v-else>items</template> in cart, totalling {{ totalPriceCart | currency }}</span>
+                    <button class="btn btn-primary" @click="isShowingCart = true">View Cart</button>
+                </div>
+            </nav>
+
+            <div id="products" class="row list-group" v-if="!isShowingCart">
+                <div v-for="product in products" class="item col-xs-4">
+                    <div class="thumbnail">
+                        <img class="group list-group-image" src="http://placehold.it/400x250/000/fff">
+                        <div class="caption">
+                            <h4 class="group inner list-group-item-heading">{{ product.name }}</h4>
+                            <p class="group inner list-group-item-text">{{ product.description }}</p>
+                            <br>
+
+                            <div class="row flex flex-row align-center">
+                                <div class="col-xs-4">
+                                    <p class="lead">{{ product.price | currency }}</p>
+                                </div>
+
+                                <div class="col-xs-8 flex flex-row align-center justify-right">
+                                    <div class="number-in-stock" :class="{ few:product.inStock < 10 && product.inStock > 0, none:product.inStock == 0 }">
+                                        {{ product.inStock }} in stock
+                                    </div>
+                                    <button class="btn btn-success" @click="addProductToCart(product)" :disabled="product.inStock == 0">Add to cart</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="cart" v-else-if="!isCheckout">
+                <h1>Cart</h1>
+                <p>Cart will be displayed here</p>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Product</th> 
+                            <th>Price</th>
+                            <th>Quantity</th> 
+                            <th>Total</th> 
+                        </tr>
+                    </thead>
+                    <tbody >
+                        <tr v-for="item in cart.items">
+                            <td>{{ item.product.name }}</td>
+                            <td>{{ item.product.price | currency }}</td>
+                            <td>
+                                {{ item.quantity }} &nbsp
+                                <button class="btn btn-success" @click="incrementItem(item)" :disabled="item.product.inStock < 1">+</button>
+                                <button class="btn btn-danger" @click="decrementItem(item)" :disabled="item.quantity < 1">-</button>
+                            </td>
+                            <td>{{ item.product.price * item.quantity | currency }}</td>
+                        </tr>
+
+                        <tr>
+                            <td class="text-right" colspan="3">
+                                Subtotal: {{ totalPriceCart | currency }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="btn btn-primary" colspan="3" v-bind:style="float=right">
+                                <button @click="checkout">Checkout</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div v-if="isCheckout == true">
+                <h1>Cart is empty</h1>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="js/app.js"></script>
+    <a href="https://viblo.asia/p/mot-chut-vuejs-ByEZkgeoZQ0">Nguồn tham khảo</a>
+</body>
+</html>

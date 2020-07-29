@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 5 - Thêm sự kiện cho một hoặc nhiều thẻ html</title>
+    <style>
+        .nutChucNang_1, .nutChucNang_2{
+            width: 100px;
+            height: 30px;
+            background-color: orange;
+            color: honeydew;
+            padding: 5px;
+            border-radius: 3px;
+            border: 1px solid steelblue;
+            cursor: pointer;
+        }
+        .nutChucNang_1.daClick{
+            background-color: yellow;
+        }
+        .nutChucNang_2.daClick{
+            background-color: teal;
+        }
+    </style>
+</head>
+<body>
+    <input class="nutChucNang_1" value="Chức Năng 1"></input>
+    <input class="nutChucNang_2" value="Chức Năng 2"></input>
+    <input class="nutChucNang_2" value="Chức Năng 2"></input>
+    <input class="nutChucNang_2" value="Chức Năng 2"></input>
+    <input class="nutChucNang_2" value="Chức Năng 2"></input>
+    <input class="nutChucNang_2" value="Chức Năng 2"></input>
+    <input class="nutChucNang_2" value="Chức Năng 2"></input>
+
+    <script>
+        var nut_1 = document.querySelector(".nutChucNang_1");
+        var listNut_2 = document.querySelectorAll(".nutChucNang_2");
+
+        nut_1.addEventListener("click", function(){
+            this.classList.add("daClick");
+            this.value = "Đã Click Nút 2";
+        });
+
+        for(var i = 0; i < listNut_2.length; i++)
+        {
+            listNut_2[i].addEventListener("click", function(){
+                this.classList.toggle("daClick");
+                this.value = "Đã Click Nút 2";
+            })
+        }
+    </script>
+</body>
+</html>

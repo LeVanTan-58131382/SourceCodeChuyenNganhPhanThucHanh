@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 17 - Xử lý sự kiện</title>
+    <style>
+        .toRa{
+            width: 200px;
+            height: 100px;
+            background-color: greenyellow;
+            transition: 2s;
+        }
+    </style>
+</head>
+<body>
+    <button id="nut">Bấm vào đây và xem chuyện gì xảy ra</button>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function(){
+            var x = document.getElementById("nut");
+            x.onclick = function(){
+                // hàm anonymous
+                x.classList.add("toRa");
+                alert("Bạn vừa bấm vào nút này, nó sẽ to lên kkk");
+            }
+
+        }, false)
+    </script>
+</body>
+</html>

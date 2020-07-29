@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 12 - Bài tập</title>
+    <style>
+        .list-item{
+            position: relative;
+            margin: auto;
+            width: 400px;
+        }
+        .item{
+            position: relative;
+            width: 100%;
+            height: 100px;
+            border: 1px solid gray;
+            border-radius: 5px;
+            padding: 5px;
+        }
+        .anh{
+            position: absolute;
+            left: 5px;
+            top: 5px;
+            width: 20%;
+            height: 90%;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        // Tạo mảng dữ liệu
+        mangDL = [
+            {
+                id: 1,
+                anh: "anh/gai.jpg",
+                ten: "Gái xinh",
+                noiDung: "Gái xinh của năm 2020"
+            },
+            {
+                id: 2,
+                anh: "anh/2gai.jpg",
+                ten: "Hai gái xinh",
+                noiDung: "Cặp đôi gái xinh của năm 2020"
+            }
+        ];
+        // truy xuất với mảng thì dùng [], đối tượng object thì dùng dấu chấm "." hoặc ngoặc vuông []
+        console.log(mangDL[0].ten);
+    </script>
+
+    <div class="list-item">
+        <div class="item">
+            <img class="anh" src="" alt="">
+        </div>
+    </div>
+</body>
+</html>

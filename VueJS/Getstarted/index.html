@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>VUEJS</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+</head>
+<body>
+    <div class="container-fluid">
+            <header><h1>Header</h1></header>
+            <div class="list-blog">
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Autem, ipsa optio cumque quaerat nihil voluptatibus accusamus ipsam eaque. Impedit eum obcaecati odit laborum reprehenderit libero dignissimos quia? Iusto, veritatis placeat.
+            <br>
+            <br>
+            <br>
+            </div>
+            <div id="app">
+                <!-- <p>{{title}}</p>
+                <p>{{say("World")}}</p> -->
+                <div class="row">
+                        <div class="col-md-3">
+                            <img src="/ao-thun-tron-mau-cam-1.jpg" width="400px" height="400px"></img>
+                        </div>
+                        <div class="col-md-1"></div>
+                        <div class="col-md-5">
+                            <h2><a v-bind:href="url" v-bind:target="target">{{title}}</a></h2>
+                            <!-- <p>{{brand}}</p>-->
+                            <p>{{ formatPrice() }}</p> 
+                        </div>
+                        <div class="col-md-2"></div>
+                </div>
+                
+            </div>
+            <br>
+            <br>
+            <br>
+            <footer><h1>Footer</h1></footer>
+    </div>
+    
+</body>
+<script src="main.js"></script>
+</html>

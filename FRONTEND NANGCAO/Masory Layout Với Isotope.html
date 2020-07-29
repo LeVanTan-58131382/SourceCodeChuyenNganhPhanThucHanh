@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script type="text/javascript" href="js/jquery-3.4.1.js"></script>
+	<script type="text/javascript" href="js/jquery-3.4.1.min.js"></script>
+	<!-- Link thư viện ISOTOPE -->
+	<script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.js"></script>
+	<!-- Thư viện load img -->
+	<script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.js"></script>
+	<style>
+		.noidung{
+			display: flex; /*căng tất cả thành hàng ngang*/
+			flex-wrap: wrap; /*bọc lại và tự động xuống hàng trong một khối*/
+		}
+		.noidung .khoianh{
+			width: 25%; /*4 cột*/
+			box-sizing: border-box; /*bọc lại, khi padding sẽ ko bị phình ra ngoài*/
+			padding: 5px;
+			/*border: 1px solid #666;*/
+		}
+		.noidung .nhandoi{
+			width: 50%;
+		}
+		.khoianh img{
+			width: 100%; /*ảnh sẽ phình ra đúng kích thước của khối ảnh là 25% (1 cột)*/
+		}
+		figcaption{
+			background-color: lightblue;
+			text-align: center;
+		}
+
+		/*Giả sử màn hình ipad hiện 2 cột, iphone hiện 1 cột*/
+		@media (max-width: 576px){
+			.noidung .khoianh{width: 100%;}
+			.noidung .nhandoi{width: 100%;}
+		}
+		@media (min-width: 577px) and (max-width: 768px){
+			.noidung .khoianh{width: 50%;}
+			.noidung .nhandoi{width: 50%;}
+		}
+		.a{
+			text-align: center;
+		}
+		.duocchon{
+			background-color: brown;
+		}
+	</style>
+</head>
+<body>
+	<div class="tieude container-fluid text-center">
+		<h3>Bài Đầu Tiên Về Masonry Layout</h3>
+	</div>
+	<div class="container danhmuc">
+		<a class="btn btn-outline-primary" href="*">Tất Cả Ảnh</a>
+		<a class="btn btn-outline-warning" href=".anime">Ảnh Anime</a> <!-- dùng dấu chấm cho dấu chấm vì đang sử dụng tên class -->
+		<a class="btn btn-outline-warning" href=".conan">Ảnh Conan</a>
+		<a class="btn btn-outline-warning" href=".doremon">Ảnh Doremon</a>
+	</div>
+	<div class="container">
+		<div class="noidung">
+			<div class="khoianh conan" data-danhmuc='conan'>
+				<figure>
+					<img src="Anh/conan1.png" alt="">
+					<figcaption>
+						<h5>Tiêu Đề Của Ảnh</h5>
+					</figcaption>
+				</figure>
+			</div>
+			<div class="khoianh nhandoi conan" data-danhmuc='conan'>
+				<figure>
+					<img src="Anh/conan2.png" alt="">
+					<figcaption>
+						<h5>Tiêu Đề Của Ảnh</h5>
+					</figcaption>
+				</figure>
+			</div>
+			<div class="khoianh anime" data-danhmuc='anime'>
+				<figure>
+					<img src="Anh/anime1.png" alt="">
+					<figcaption>
+						<h5>Tiêu Đề Của Ảnh</h5>
+					</figcaption>
+				</figure>
+			</div>
+			<div class="khoianh nhandoi anime" data-danhmuc='anime'>
+				<figure>
+					<img src="Anh/anime2.png" alt="">
+					<figcaption>
+						<h5>Tiêu Đề Của Ảnh</h5>
+					</figcaption>
+				</figure>
+			</div>
+			<div class="khoianh doremon" data-danhmuc='doremon'>
+				<figure>
+					<img src="Anh/doremon1.png" alt="">
+					<figcaption>
+						<h5>Tiêu Đề Của Ảnh</h5>
+					</figcaption>
+				</figure>
+			</div>
+			<div class="khoianh doremon" data-danhmuc='doremon'>
+				<figure>
+					<img src="Anh/doremon2.png" alt="">
+					<figcaption>
+						<h5>Tiêu Đề Của Ảnh</h5>
+					</figcaption>
+				</figure>
+			</div>
+			<div class="khoianh anime" data-danhmuc='anime'>
+				<figure>
+					<img src="Anh/anime3.png" alt="">
+					<figcaption>
+						<h5>Tiêu Đề Của Ảnh</h5>
+					</figcaption>
+				</figure>
+			</div>
+			<div class="khoianh anime" data-danhmuc='anime'>
+				<figure>
+					<img src="Anh/anime4.png" alt="">
+					<figcaption>
+						<h5>Tiêu Đề Của Ảnh</h5>
+					</figcaption>
+				</figure>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			// để tránh vấn đề ảnh load hàng loạt làm lo6nj xộn trước khi thực hiện sắp xếp thì ta tiến 
+			// hành load ảnh đến đâu sắp xếp đến đó
+  			$hieuung = $('.noidung').isotope({ // tên div bố
+			  // options
+			  itemSelector: '.khoianh', // tên div con
+			  layoutMode: 'masonry' // kiểu
+			});
+
+			$hieuung.imagesLoaded().progress( function() {
+  			$hieuung.isotope('layout');
+				});
+
+			// Xử lý nút trong div .danhmuc
+			$('.danhmuc a').click(function(event) {
+				$('.danhmuc a').removeClass('duocchon');
+				$(this).addClass('duocchon'); // hết phần xử lý chuyển màu
+				tendanhmuc = $(this).attr('href');
+				// filter .metal items
+				$hieuung.isotope({ filter: tendanhmuc });
+				return false; // khi kích vào ko load lại trang web gì cả, tuy nhiên thay vì dùng thẻ a ta có thể dùng button để khỏi phải viết hàm này
+
+			});
+});
+	</script>
+</body>
+</html>
+<!-- Chú ý: Phần data-danhmuc: là một phần rất mạnh trong html5, hỗ trợ javascript
+	Cú pháp: data- +tên mình tự đặt, ví dụ: data-type, data-language,... -->

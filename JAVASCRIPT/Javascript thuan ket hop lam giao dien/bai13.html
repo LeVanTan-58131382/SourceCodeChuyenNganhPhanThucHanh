@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 13 - Bài tập</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Tiêu đề 1</h1>
+        <h3>Tiêu đề 2</h3>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus, similique nemo porro ad facere voluptatum eveniet blanditiis minima odio nostrum provident voluptate quia obcaecati delectus nulla animi, neque officia laboriosam.</p>
+    </div>
+
+    <script>
+        var h_1 = document.getElementsByTagName("h1"); // đây là một mảng các phần tử là thẻ h1
+        // ngoài ra còn có document.getElementByID(), document.getElementsByClassName()
+
+        console.log(h_1[0]);
+
+        var p = document.getElementsByTagName("p");
+
+        console.log(p[0]);
+
+        // Ta có thể thay đổi giá trị của các thẻ với thuộc tính innerHTML
+        h_1[0].innerHTML = "WEB ĐÃ BỊ HACK MẤT RỒI NHA";
+    </script>
+</body>
+</html>

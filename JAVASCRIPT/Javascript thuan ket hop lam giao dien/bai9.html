@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 9 - Hàm</title>
+</head>
+<body>
+    <script>
+        // Hàm thông thường
+        function tinhTong(a, b) {
+            var tong = a + b;
+            console.log("Tổng của 2 số là: " + tong);
+            return tong;
+        }
+
+        if(tinhTong(5, 9) > 10)
+        {
+            console.log("Đây là một số tự nhiên lớn hơn 10");
+        }
+
+        // - Anonymous function : Hàm không tên
+        var z = function (x, y){
+            return (x+y)/2;
+        }
+        console.log(z(8,2));
+
+        // Closure function
+        // => Tạo ra một biến trong nó và một hàm bên trong nó, 
+        // cái hàm trong cùng có thể sử dụng các biến bên ngoài nó
+        function chao()
+        {
+            var ten = "Tân Lê";
+            return function()
+            {
+                console.log("Đi cafe không " + ten);
+            }
+        }
+        // sử dụng closure function
+        var h = chao() // lúc này h là một hàm anonymous
+        h();
+    </script>
+    <button onclick="tinhTong(5, 9)">Tính tổng</button>
+</body>
+</html>

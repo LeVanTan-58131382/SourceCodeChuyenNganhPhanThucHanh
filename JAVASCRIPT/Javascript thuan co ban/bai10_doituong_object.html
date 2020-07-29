@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 10 - Kiểu dữ liệu đối tượng</title>
+</head>
+<body>
+    <script>
+        // Khởi tạo
+        var Comment = {
+            // Thêm thuộc tính - thông thường
+            
+            title : '',
+            content : '',
+            fullname : '',
+            email : '',
+
+            constructor : function(title, content, fullname, email){
+                this.title = title,
+                this.content = content,
+                this.fullname = fullname,
+                this.email = email
+            },
+
+            // Thêm phương thức
+            addComment : function(){
+                // do some thing
+                console.log("KKK");
+            },
+
+            // CHỖ NÀY CÒN LỖI
+            editComment : function(typeProperty = "", value = ""){
+            
+                    switch (typeProperty){
+                        case "title" : this.title = value;
+                        case "content" : this.content = value;
+                        case "fullname" : this.fullname = value;
+                        case "email" : this.email = value;
+                    }
+            },
+
+            // Đối tượng chứa các phương thức
+            list_function : {
+                
+                deleteComment: function(){
+
+                },
+                validateComment : function(){
+                // do some thing
+            }
+            },
+            
+        };
+
+        // truy xuất thuộc tính
+        var comment = new Comment.constructor("Đây là comment đầu tiên", "Cố gắng học JS nha Tân",
+        "Comment hay nhất", "levantanstudy@gmail.com");
+        
+        console.log(comment.fullname); // "Comment hay nhất"
+
+        comment.editComment("title", "Comment thứ hai nha");
+        
+        console.log(comment);
+    </script>
+</body>
+</html>

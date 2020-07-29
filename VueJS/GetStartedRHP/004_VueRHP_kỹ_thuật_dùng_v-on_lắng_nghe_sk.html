@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dùng v-on để lắng nghe sự kiện</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+</head>
+<body>
+    <div id="app-1">
+        <p>Bấm nút để tăng giá trị</p> <br>
+        <button v-on:click="tangGiaTri">Bấm đi</button> <br><br>
+        Vue còn cho phép viết code javascript ngay trong template của họ, ví dụ bên dưới <br><br>
+        <button v-on:click="dem++">Tăng biến đếm với JS</button> <br> <!-- viết trực tiếp code javascript -->
+        <p>Giá trị: {{ dem }}</p> <br>
+        <p>Giá trị: {{ dem > 10 ? "Giá trị của bạn lớn hơn 10 rồi" : "Giá trị của bạn còn bé hơn 10"}}</p> <!-- viết trực tiếp code javascript -->
+    </div>
+
+    <script>
+        new Vue({
+            el: "#app-1",
+            data: {
+                dem : 0,
+            },
+            methods: {
+                tangGiaTri : function(){
+                    this.dem++;
+                }
+            }
+        });
+    </script>
+</body>
+</html>

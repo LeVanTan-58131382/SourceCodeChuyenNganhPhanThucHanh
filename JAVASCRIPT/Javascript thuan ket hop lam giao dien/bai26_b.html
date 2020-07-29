@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 26 - Hiệu ứng slides nâng cao - Viết gọn vào hàm, dễ tái sử dụng</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+        *{  margin: 0;
+            padding: 0;
+            }
+        html, body {
+            height: 100%;
+            width: 100%;
+        }
+        #slideWrapper{
+            height: 100%;
+            width: 100%;
+
+            position: relative;
+            overflow: hidden;
+            background-color: black;
+        }
+        .slides {
+            position: relative;
+            height: 100%;
+            width: 100%;
+        }
+        .slides ul {
+            height: 100%;
+            width: 100%;
+
+            position: relative;
+            margin: 0;
+        }
+        .slides ul li {
+            height: 100%;
+            width: 100%;
+            /* để lúc nào cũng full màn hình thì ngoài width, height = 100% thì ta thêm background-size: cover; */
+            background-size: cover;
+
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+        }
+        .slides ul li.active{
+            opacity: 1;
+        }
+            
+        .nuts {
+            position: absolute;
+            right: 0;
+            top: 0;
+            z-index: 9;
+            
+        }
+        .nuts b {
+            font-size: 100px;
+            font-weight: bold;
+            cursor: pointer;
+            color: darkslategrey;
+            padding: 20px;
+            transition: 0.2s;
+        }
+        .nuts b:hover {
+            color: deepskyblue;
+        }
+        /* nút next */
+        .bienMatKhiBamNutNext{
+            animation: bienMat 1.5s ease forwards;
+        }
+        .diVaoKhiBamNutNext
+        {
+            animation: xuatHien 1.5s ease forwards;
+        }
+        @-webkit-keyframes bienMat{
+            from{
+                transform: scale(1);
+                opacity: 1;
+            }
+            to{
+                transform: scale(1.5);
+                opacity: 0;
+            }
+        }
+        @-webkit-keyframes xuatHien{
+            from{
+                transform: scale(0.5);
+                opacity: 0;
+            }
+            to{
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        /* nút back */
+        .bienMatKhiBamNutBack{
+            animation: bienMatBack 1.5s ease ;
+        }
+        .diVaoKhiBamNutBack
+        {
+            animation: xuatHienBack 1.5s ease ;
+        }
+        @-webkit-keyframes bienMatBack{
+            from{
+                transform: scale(1);
+                opacity: 1;
+            }
+            to{
+                transform: scale(0.5);
+                opacity: 0;
+            }
+        }
+        @-webkit-keyframes xuatHienBack{
+            from{
+                transform: scale(2);
+                opacity: 0;
+            }
+            to{
+                transform: scale(1);
+                opacity: 1;
+                
+            }
+        }
+    </style>
+
+</head>
+<body>
+    <div id="slideWrapper">
+        <div class="slides">
+            <ul>
+                <li class="active" style="background-image: url('anh/gaixinh1.jpg'); background-repeat: no-repeat;">
+                </li>
+                <li style="background-image: url('anh/gaixinh2.jpg'); background-repeat: no-repeat;">
+                </li>
+                <li style="background-image: url('anh/gaixinh3.jpg'); background-repeat: no-repeat;">
+                </li>
+            </ul>
+        </div>
+
+        <div class="nuts">
+            <b class="trai"><span class="fa fa-angle-left"></span></b>
+            <b class="phai"><span class="fa fa-angle-right"></span></b>
+        </div>
+    </div>
+
+    <script>
+        // bước 1: xác định slide hiện tại và slide tiếp theo
+        // và biết người ta kích vào nút nào
+        document.addEventListener("DOMContentLoaded", function(){
+            var nutNext = document.querySelector(".nuts .phai"),
+                nutBack = document.querySelector(".nuts .trai"),
+                slides = document.querySelectorAll(".slides ul li"),
+                chiSoHienTai = 0;
+                soLuongSlide = slides.length;
+                trangThai = "dangDungYen"; // biến này đánh dấu thời điểm đang có chuyển động
+                                            // -> dangDungYen thì dc kích, đang chuyển động mà vẫn kích thì return false
+                
+            // gọi sự kiện kích vào nút phải
+            nutNext.addEventListener("click", function(){
+
+                // kiểm tra xem có đang chuyển động hay ko, nếu có thì dừng chương trình
+                if(trangThai == "dangChuyenDong") {return false;}
+                trangThai = "dangChuyenDong";
+
+                var trangThaiCua2ChuyenDong = 0;
+
+                phanTuHienTai = slides[chiSoHienTai];
+                // xác dịnh chỉ số của phần tử tiếp theo dựa trên chỉ số của thằng hiện tại
+                if(chiSoHienTai < soLuongSlide - 1)
+                {
+                    chiSoHienTai ++;
+                }
+                else {
+                    // là phần tử cuối cùng
+                    chiSoHienTai = 0; // cho quay lại thằng slide đầu tiên
+                }
+
+                var phanTuTiepTheo = slides[chiSoHienTai];
+
+                // tạo chuyển động
+                phanTuHienTai.classList.add("bienMatKhiBamNutNext");
+                phanTuTiepTheo.classList.add("diVaoKhiBamNutNext");
+
+                //-- kiểm tra chuyển động kết thúc để thêm và xóa đi các class cần và dư
+                var xuLyHienTaiKetThucChuyenDong = function(){
+                    console.log("xong thằng hiện tại");
+                    this.classList.remove("active");
+                    this.classList.remove("bienMatKhiBamNutNext");
+
+                    trangThaiCua2ChuyenDong++;
+                    if(trangThaiCua2ChuyenDong == 2){ trangThai = "dangDungYen";}
+                }; // đây là một anonymous function
+                var xuLyTiepTheoKetThucChuyenDong = function(){
+                    console.log("xong thằng tiếp theo");
+                    this.classList.remove("diVaoKhiBamNutNext");
+                    this.classList.add("active");
+
+                    trangThaiCua2ChuyenDong++;
+                    if(trangThaiCua2ChuyenDong == 2){ trangThai = "dangDungYen";}
+                };
+
+                phanTuHienTai.addEventListener("webkitAnimationEnd", xuLyHienTaiKetThucChuyenDong);
+                phanTuTiepTheo.addEventListener("webkitAnimationEnd", xuLyTiepTheoKetThucChuyenDong);
+            });
+
+            nutBack.addEventListener("click", function(){
+                if(trangThai == "dangChuyenDong") {return false;}
+                trangThai = "dangChuyenDong";
+
+                var trangThaiCua2ChuyenDong = 0;
+
+                var phanTuHienTai = slides[chiSoHienTai];
+                if(chiSoHienTai > 0)
+                {
+                    chiSoHienTai--;
+                }
+                else {
+                    chiSoHienTai = soLuongSlide - 1;
+                }
+
+                var phanTuTiepTheo = slides[chiSoHienTai];
+
+                // tạo chuyển động
+                phanTuHienTai.classList.add("bienMatKhiBamNutBack");
+                phanTuTiepTheo.classList.add("diVaoKhiBamNutBack");
+
+                //-- kiểm tra chuyển động kết thúc để thêm và xóa đi các class cần và dư
+                var xuLyHienTaiKetThucChuyenDong = function(){
+                    console.log("xong thằng hiện tại");
+                    this.classList.remove("active");
+                    this.classList.remove("bienMatKhiBamNutBack");
+
+                    trangThaiCua2ChuyenDong++;
+                    if(trangThaiCua2ChuyenDong == 2){ trangThai = "dangDungYen";}
+                }; // đây là một anonymous function
+                var xuLyTiepTheoKetThucChuyenDong = function(){
+                    console.log("xong thằng tiếp theo");
+                    this.classList.remove("diVaoKhiBamNutBack");
+                    this.classList.add("active");
+
+                    trangThaiCua2ChuyenDong++;
+                    if(trangThaiCua2ChuyenDong == 2){ trangThai = "dangDungYen";}
+                };
+
+                phanTuHienTai.addEventListener("webkitAnimationEnd", xuLyHienTaiKetThucChuyenDong);
+                phanTuTiepTheo.addEventListener("webkitAnimationEnd", xuLyTiepTheoKetThucChuyenDong);
+            });
+
+        }, false)
+    </script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sự kiện tương tác với bàn phím - Ep02 | #10 </title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="text" name="" id="nhapVaoDay" v-on:keyup.enter="nhapXongBamInter" 
+        placeholder="nhập xong rồi bấm enter">
+        <input type="text" name="" id="nhapVaoDay_2" @keyup.space="nhapXongBamSpace" 
+        placeholder="nhập xong rồi bấm space">
+        <br>
+        Có các keyup modify sau: <br>
+            .enter <br>
+            .tab
+            .delete (captures both “Delete” and “Backspace” keys) <br>
+            .esc <br>
+            .space <br>
+            .up <br>
+            .down <br>
+            .left <br>
+            .right <br>
+    </div>
+
+
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+
+            },
+            methods: {
+                nhapXongBamInter : function(){
+                    let input = document.getElementById("nhapVaoDay");
+                    alert("Bạn vừa nhập " + input.value);
+                },
+                nhapXongBamSpace : function(){
+                    console.log("kkk");
+                    let input_2 = document.getElementById("nhapVaoDay_2");
+                    alert("Bạn vừa nhập " + input_2.value);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
